@@ -1319,3 +1319,264 @@ b = a.copy()
 b.sort()
 print(a, b) # [6, 8, 3, 1] [1, 3, 6, 8]
 ```
+## FUNKCIE
+- objekt, ktory vieme volat
+- funkcia pri volani:
+  - 1. nieco vezme(argumenty)
+  - 2. nieco urobi
+  - 3. nieco vrati(navratova hodnota)
+- funkcia `print`:
+  - 1. vezme lubovolny pocet argumentov
+  - 2. prevedie vsetky arg. na retazec a vypise ich na vystup
+  - 3. vrati navratovu hodnotu: `None`
+- funkcia `input`:
+  - 1. vezme 0 arg.
+  - 2. pocka na vstup od uzivatela
+  - 3. vrati navratovu hodnotu: retazec zadany uzivatelom
+  
+ARGUMENTY
+  - pozicne(positional) - uvadzaju sa kao prve
+  - pomenovane(keyword) - vieme prehadzovat
+- napriklad: 3  pozicne:1, 2, 'A' a 2 pomenovane: '-', ';\n'
+```python
+print(1, 2, 'A', sep='-', end=';\n')
+# 1-2-A;
+```
+METODY
+- normalna funkcia, iba ju inak volame
+- viazu sa ku konkretnemu objektu, kt. je akoby parameter
+```python
+'ukazatel'.count('a') # 2
+```
+- mozme si vytvarat vlastne funkcie napriklad ked nejaku operaciu vyuzivame casto a nechce sa nam ju neustale pisat alebo chceme iba sprehladnit kod
+- pomcou klucoveho slova `def ...` vytvorime fukciu
+
+- parametre a premenne vytvorene vnutri funkcie existuju IBA TAM!!!
+
+# Navratova hodnota funkcieb (return value)
+- je to hodnota, kt je vysledkom volania funkcie
+- ked sa prevedie `return` funkcia skonci a vyskoci ako u `break`
+```python
+def obsah_ctverce(a):
+    print('Počítám obsah čtverce...')
+    S = a**2
+    return S
+S1 = obsah_ctverce(5)
+S1 # 25
+```
+- defaultna navratova hodnota:
+  - bez najdenia `return`
+  - navratova hodnota je None
+
+# Parametre a argumenty funkcie
+- pri volani funkcie sa arg. dosadzuju do parametru funkcie
+- pocet argumentov musi sediet
+
+- defaultna hodnota parametru:
+  - mozeme nastavit v definicii funkcie pomocou `=`
+```python
+def pozdrav(jmeno, opakovani=1):
+    for i in range(opakovani):
+        print(f'Hello {jmeno}!')
+pozdrav('Bob', opakovani=3)
+# Hello Bob!
+# Hello Bob!
+# Hello Bob!
+```
+# Dokumentacia
+- aby bolo jasne, co funkcie robia, je zvykom doplnit `docsstring` na zaciatku funkcie
+- nepovinne, ale uzitocne
+```python
+def objem_valce(r, h):
+    """Spočítej a vrať objem válce o polomeru r a výšce h."""
+    V = math.pi * r**2 * h
+    return V
+```
+# TYPOVE ANOTACIE
+- moze oznacit typy parametrov a navratove hodnoty
+- kontorolu vieme urobit pomocou modulu `- m mypy`
+- vyuziva VSCode
+```python
+import math
+def objem_valce(r: float, h: float) -> float:
+    """Spočítej a vrať objem válce o polomeru r a výšce h."""
+    V = math.pi * r**2 * h
+    return V
+
+V1 = objem_valce(5, 2)
+print(V1) # .....
+```
+
+```python
+def pozdrav(jmeno: str, opakovani: int = 1) -> None:
+    """Vypiš pozdrav osobě jmeno opakovani-krát."""
+    for i in range(opakovani):
+        print(f'Hello {jmeno}!')
+```
+- pomocou modulo `typing` mozeme presnejsie specifikovat typy:
+```python
+def min_max_pocet(cisla: list) -> tuple:
+    """Vrať nejmenší, největší číslo a počet čísel."""
+    return (min(cisla), max(cisla), len(cisla))
+```
+```python
+from typing import Tuple, List
+def min_max_pocet(cisla: List[float]) -> Tuple[float, float, int]:
+    """Vrať nejmenší, největší číslo a počet čísel."""
+    return (min(cisla), max(cisla), len(cisla))
+```
+
+# Rekurze
+- ked funkcia vola sama seba
+- Pozor!!! hrozi zacyklenie(volanie faktorial(0)) - ukoncim to `Ctrl+C`
+```python
+def faktorial(n: int) -> int:
+    """Spočítej faktoriál čísla n."""
+    if n == 1:
+        return 1
+    else:
+        return n * faktorial(n - 1)
+
+faktorial(5) # 120
+```
+PRIKLAD REKURZIE
+- Platy zaměstnanců máme uloženy ve slovníkové struktuře rozdělené podle hierarchie
+univerzity (fakulty, ústavy apod.).
+- Chceme spočítat součet platů všech zaměstnanců.
+```python
+platy = {
+    'PřF': {
+        'Biologie': {'Alice': 30, 'Bob': 30},
+        'Chemie': {
+            'Organika': {'Cyril': 35},
+            'Anorganika': {'Dana': 28}
+        },
+        'Fyzika': {'Emil': 27}
+    },
+    'LF': {'Filip': 34, 'Gertruda': 33},
+    'FSpS': {'Hana': 30}
+}
+
+def rekurzivni_soucet(celek):
+    if isinstance(celek, dict): # Testuje jestli cast je typu dict.
+        return sum(rekurzivni_soucet(cast) for cast in celek.values())
+    else:
+        return celek
+
+rekurzivni_soucet(platy) # 247
+```
+# Rozbalovanie argumentov (unpacking)
+  - pozicne => rozbalim pomocou `*`(z iterovatelneho objektu)
+  - pomenovane => rozbalim pomocou `**`(zo slovnika)
+```python
+cisla = [3, 2, 1]
+formatovani = {'sep': ', ', 'end': '.'}
+print(*cisla, **formatovani) # 3, 2, 1.
+
+print(cisla) # [3, 2, 1]
+print(*cisla) # Ekvivalentní print(3, 2, 1) 
+# 3 2 1
+print(*cisla, **formatovani) # Ekvivalentní print(3, 2, 1, sep=', ', end='.')
+# 3, 2, 1.
+```
+# Nenasytne parametry
+- pokial pouzijete `*` pred nazvom posledneho parametru, tento parameter bude obs. vsetky nadbztocne pozicne arg.
+- pokial pouzijete `**` pred nazvom posledneho parametru, tento parameter bude obs. vsetky nadbzyocne klucove arg. 
+```python
+def foo(a, b, *args, **kwargs):
+    print(a)
+    print(b)
+    print(args)
+    print(kwargs)
+
+foo(1, 2, 3, 4, 5, 6, x=100, y=200)
+# 1
+# 2
+# (3, 4, 5, 6)
+# {'x': 100, 'y': 200}
+```
+# Anonymna funkcia `lambda`
+- vytvorenie funkcie bez mena
+```python
+studenti = [('Alice', 'Nováková'), ('Cyril', 'Veselý'), ('Bob', 'Marley')]
+sorted(studenti) # Řadí podle křestního jména
+# [('Alice', 'Nováková'), ('Bob', 'Marley'), ('Cyril', 'Veselý')]
+#---------------------------------------------------------------------------
+
+def prijmeni(osoba):
+    return osoba[1]
+sorted(studenti, key=prijmeni) # Řadí podle příjmení
+# [('Bob', 'Marley'), ('Alice', 'Nováková'), ('Cyril', 'Veselý')]
+```
+- ekvivalent bez pomenovanych funkcii:
+```python
+sorted(studenti, key = lambda osoba: osoba[1]) # Řadí podle příjmení
+# [('Bob', 'Marley'), ('Alice', 'Nováková'), ('Cyril', 'Veselý')]
+```
+
+# Generatorove funkcie (generatir functions)
+- navratova hodnota je `generator`, co je typ iteratoru
+- generuje hodnoty az kym je nutne
+  - jednu hodnotu vyziadame pomocou funkcie `next`
+  - viacej hodnout pomocou `for` cyklu
+- generovane hodnoty sa v tele funkcie uvadzaju slovom `yield` namiesto `return`
+```python
+# Generátorová funkce
+def ozvena(slovo):
+    while len(slovo) > 0:
+        yield slovo
+        slovo = slovo[1:]
+generator = ozvena('ahoj') # Vytváříme generátor
+generator # <generator object ozvena at 0x7fd18c493830>
+
+next(generator) # Vygenerujeme 1. hodnotu
+# 'ahoj'
+
+for s in generator: # Vygenerujeme zbylé hodnoty
+print(s)
+# hoj
+# oj
+# j
+
+for s in generator: # Generátor se už vyčerpal, nevypíše se nic
+print(s)
+```
+- generator moze generovat i nekonecno postupnosti(není to problém, protože
+hodnoty se generují až když je potřeba)
+```python
+def suda_cisla():
+    i = 2
+    while True:
+        yield i
+        i += 2
+enerator = suda_cisla()
+generator # <generator object suda_cisla at 0x7fd18c3c56d0>
+
+for x in generator:
+    print(x)
+    if x >= 10:
+        break
+# 2
+# 4
+# 6
+# 8
+# 10
+```
+- funkcia `iter` urobi z akelkolvek iterovatelneho objektu iterator
+```python
+iterator = iter('ahoj')
+iterator # <str_iterator at 0x7fd18c3bd828>
+
+next(iterator) # 'a'
+next(iterator) # 'h'
+
+for x in iterator:
+    print(x)
+# o
+# j
+```
+
+
+
+
+

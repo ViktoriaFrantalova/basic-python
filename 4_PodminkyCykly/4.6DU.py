@@ -8,12 +8,13 @@
 # input - 7
 # output - 0
 
-vstup = input()
+vstup = int(input())
 pocet_deleni = 0
+cislo = 0
 while True:
-    vysledok = vstup
-    if (int(vysledok) % 2 != 0):
+    if(vstup % 2 == 0):
+        pocet_deleni = pocet_deleni + 1
+        vstup = vstup / 2
+    else:
         break
-    vysledok = int(vstup) / 2
-    pocet_deleni = pocet_deleni + 1
 print(pocet_deleni)
