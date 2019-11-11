@@ -9,4 +9,31 @@ def ordinal(number: int) -> str:
     >>> ordinal(151)
     '151st'
     """
-    pass  # tento řádek nahraďte řešením
+    if number < 20:
+        if number == 1:
+            pripona = 'st'
+        elif number == 2:
+            pripona = 'nd'
+        elif number == 3:
+            pripona = 'rd'
+        else:
+            pripona = 'th'  
+    else:   #determining pripona for > 20
+        desiatky = str(number)
+        desiatky = desiatky[-2]
+        jednotky = str(number)
+        jednotky = jednotky[-1]
+        if desiatky == "1":
+            pripona = "th"
+        else:
+            if jednotky == "1": 
+                pripona = 'st'
+            elif jednotky == "2":
+                pripona = 'nd'
+            elif jednotky == "3":
+                pripona = 'rd'
+            else:
+                pripona = 'th'
+    return str(number)+pripona
+
+print(ordinal(22))

@@ -12,6 +12,7 @@
 # Součin:   12.00
 
 from typing import List, Tuple
+import math
 
 def soucet_a_soucin(cisla: List[float]) -> Tuple[float, float]:
     """
@@ -20,7 +21,9 @@ def soucet_a_soucin(cisla: List[float]) -> Tuple[float, float]:
     >>> soucet_a_soucin([0.25, 10.5, 0.75, -2.0, 2.0])
     (11.5, -7.875)
     """
-    pass  # tento řádek nahraďte řešením
-
-
-# Sem doplňte kód pro načtení čísel a výpis výsledků
+    sucet = sum(cisla)
+    sucin = 1
+    for i in cisla:
+      sucin = sucin * i
+    return(f'Součet: {sucet:>7.2f} \nSoučin: {sucin:>7.2f}')
+print(soucet_a_soucin([1.5, 2.0, 4.0]))

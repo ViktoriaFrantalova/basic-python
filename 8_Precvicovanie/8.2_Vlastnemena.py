@@ -9,4 +9,10 @@ def vlastni_jmena(seznam: List[str]) -> List[str]:
     >>> vlastni_jmena(['pes', 'Rex', 'Bohunice', 'sklenice', 'slepice'])
     ['Rex', 'Bohunice']
     """
-    pass  # tento řádek nahraďte řešením
+    vystup = []
+    for slovo in seznam:
+      if slovo[0].isupper(): # ak je velke pismeno
+        vystup.append(slovo)
+    return vystup
+
+print(vlastni_jmena(['pes', 'Rex', 'Bohunice', 'sklenice', 'slepice']))
