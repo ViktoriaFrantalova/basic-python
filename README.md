@@ -724,7 +724,7 @@ else:
 # 33
 # Nalezen násobek jedenácti: 33
 ```
-## 4.Kolekce   
+## 4.KOLEKCE  
 - objekty, kt. obs. strukturne viac honot, vsetky kolekce su iterovane objekty 
 - zakladne kolekce: 
   - `list` (zoznam) - upravovatelny zoznam zoradenich hodnot, [1, 5, 1]
@@ -1319,7 +1319,7 @@ b = a.copy()
 b.sort()
 print(a, b) # [6, 8, 3, 1] [1, 3, 6, 8]
 ```
-## FUNKCIE
+## 5. FUNKCIE
 - objekt, ktory vieme volat
 - funkcia pri volani:
   - 1. nieco vezme(argumenty)
@@ -1353,7 +1353,7 @@ METODY
 
 - parametre a premenne vytvorene vnutri funkcie existuju IBA TAM!!!
 
-# Navratova hodnota funkcieb (return value)
+# Navratova hodnota funkcie (return value)
 - je to hodnota, kt je vysledkom volania funkcie
 - ked sa prevedie `return` funkcia skonci a vyskoci ako u `break`
 ```python
@@ -1575,8 +1575,344 @@ for x in iterator:
 # o
 # j
 ```
+## 6. CHYBY A TESTOVANIE + DEBAGOVANIE
+3 zakladne typi:
+  - `Syntakticke chyby` program nie je vobec spusteny
+  - `Vynimky` program bezi, ale nastane chyba v priebehu vyjonavania
+  - `Systematicke chyby` z pohladu Python je vsetko v poriadku, program bezi bez chyb, ale nerobi to, co chceme
 
+# Syntakticke chyby
+- zle odsadenie, chybajuce alebo nadbytocne zatvroky, dvojbodky...
 
+```python
+if True:
+print("Hello World!") # Chybí odsazení
 
+# File "<ipython-input-1-97322b684b0b>", line 2
+# print("Hello World!") # Chybí odsazení
+# ^
+# IndentationError: expected an indented block
+```
+- casto sa chyba odhali az na nasledujucom riadku
+```python
+import math
+a = abs(math.sqrt((10 - 5)**2) # Chybí konec závorky
+print(a)
 
+# File "<ipython-input-3-143e81d33c6d>", line 3
+# print(a)
+# ^
+# SyntaxError: invalid syntax
+```
+# Vynimky
+- za behu programu(runtime) sa zisti, ze nieco nejde vykonat -> vyhodi sa vynimka
+- typ vynimky uprestnuje preco to nejde:
+  - [Typy_vynimiek](https://docs.python.org/3/library/exceptions.html)
+  - vacsina knihovien obs. vlastne
+  - vieme zadefinovat vlastne
+- bezne typi vynimiek:
+  - `NameError` - snazime sa pouzit premennu, kt. neexistuje
+  ```python
+  print(b)
+  ```
+  - `TypeError` - snazime sa urobit nieco s hodnotou zleho typu
+  ```python
+  'abc' + 5
+  ```
+  - `ZeroDivisionError` - snazime sa delit nulou
+  ```python
+  x = 5
+  y = 1 / (x - 5)
+  ```
+  - `IndexError` - index je mimo rozsah
+  ```python
+  cisla = [1, 2, 8]
+  cisla[3]
+  ```
+  - `KeyError` - kluc chyba vo slovniku
+  ```python
+  slovnik = {'a': 1, 'c': 4}
+  slovnik['b']
+  ```
+  - `ValueError` - davame funkcii spravneho typu ale zlu hodnotu
+  ```python
+  int('12a')
+  ```
+  - `StopIteration` - chceme dalsiu hodnotu od iteratoru, kt. sa uz vycerpal
+  ```python
+  iterator = reversed('ab')
+  next(iterator)
+  next(iterator)
+  next(iterator)
+  ```
+  - `RecursionError` - rekurzivna funkcia sa zacyklila
+  ```python
+    def factorial(n):
+  return n * factorial(n-1)
+  factorial(5)
+  ```
+**Traceback** popisuje kde nastala vynimka a ako sa tam program dostal
+```python
+def foo(cisla):
+    for x in cisla:
+        print(podil(1, x))
+def podil(a, b):
+    return a / b
+foo([3, 2, 0])
+
+# 0.3333333333333333
+# 0.5
+# ---------------------------------------------------------------------------
+# ZeroDivisionError Traceback (most recent call last)
+# <ipython-input-6-2159f2a70615> in <module>()
+# ----> 1 foo([3, 2, 0])
+# <ipython-input-4-ba5814e3052f> in foo(cisla)
+# 1 def foo(cisla):
+# 2 for x in cisla:
+# ----> 3 print(podil(1, x))
+# <ipython-input-5-0a3c1262fa57> in podil(a, b)
+# 1 def podil(a, b):
+# ----> 2 return a / b
+# ZeroDivisionError: division by zero
+```
+**Osetrenie vynimky** ked sa vieme s konkretnou vynimkou nejako vyrovnat, odchytime ju pomocou bloku `try... except`
+```python
+import math
+def podil(a, b):
+  print(f'Počítá se {a}/{b}...')
+  try:
+    c = a / b
+    print('Dělení proběhlo bez problémů')
+    return c
+  except ZeroDivisionError:
+    print('Dělení nulou ¯\_(ツ)_/¯')
+    return math.nan # Not-a-number
+
+podil(5, 2)
+
+# Počítá se 5/2...
+# Dělení proběhlo bez problémů
+# 2.5
+#---------------------------------------------
+podil(5, 0)
+
+# Počítá se 5/0...
+# Dělení nulou ¯\_(ツ)_/¯
+# nan
+```
+**Kombinacia vynimiek**
+```python
+try:
+  jmenovatel = int(input())
+  vysledek = 1 / jmenovatel
+  print(f'OK: {vysledek}')
+except ZeroDivisionError:
+  print('Nulou nelze dělit!')
+except ValueError:
+  print('Nemůžu převést zadaný vstup na číslo!')
+except (RuntimeError, TypeError, NameError):
+  pass # jako by se chyba nestala
+except:
+  print('Chyba vole!')
+  raise # výjimka se znovu vyvolá
+
+# tisíc
+# Nemůžu převést zadaný vstup na číslo!
+```
+
+`try... except... else... finally`
+```python
+def podil(a, b):
+  try:
+    c = a / b
+  except ZeroDivisionError:
+    print('Nulou nelze dělit')
+    c = math.inf
+  else:
+    print('Proběhlo bez výjimky!')
+  finally:
+    print('Já se provedu pokaždé')
+    return c
+
+podil(5, 2)
+
+# Proběhlo bez výjimky!
+# Já se provedu pokaždé
+# 2.5
+#-------------------------------------------------------------
+podil(5, 0)
+
+# Nulou nelze dělit
+# Já se provedu pokaždé
+# inf
+```
+
+**Vyhodenie vynimky**
+- pomocou `raise`
+- vytvorime:
+  - TypVyjimky()
+  - TypVyjimky('Chybová hláška')
+```python
+def faktorial(n):
+  if n >= 0:
+    vysledek = 1
+    for i in range(1, n+1):
+      vysledek *= i
+    return vysledek
+  else:
+    raise ValueError('Nelze spočítat faktoriál záporného čísla.')
+faktorial(10)
+
+# 3628800
+#----------------------------------------------------------------
+faktorial(-5)
+# ---------------------------------------------------------------------------
+# ValueError Traceback (most recent call last)
+# <ipython-input-16-3635df1c3214> in <module>()
+# ----> 1 faktorial(-5)
+# <ipython-input-14-a68bea9aa445> in faktorial(n)
+# 6 return vysledek
+# 7 else:
+# ----> 8 raise ValueError('Nelze spočítat faktoriál záporného čísla.')
+# ValueError: Nelze spočítat faktoriál záporného čísla.
+```
+
+**return** vs **raise**
+- obe ukoncuju beh funkcie
+- `return x` - uspesne ukoncenie, vrati sa navratova hodnota x
+- `raise x` - neuspe3ne ukoncenie, vyhodi sa vynimka
+```python
+def fluffy(n):
+  if n == 0:
+    return 'OK'
+  elif n == 1:
+    return ValueError(n)
+  else:
+    raise ValueError(n)
+
+fluffy(0)
+# 'OK'
+#------------------------------------------
+fluffy(1)
+# ValueError(1)
+#------------------------------------------
+fluffy(2)
+# ---------------------------------------------------------------------------
+# ValueError Traceback (most recent call last)
+# <ipython-input-20-6396b24bbeda> in <module>()
+# ----> 1 fluffy(2)
+# <ipython-input-17-eb6aa5feffc2> in fluffy(n)
+# 5 return ValueError(n)
+# 6 else:
+# ----> 7 raise ValueError(n)
+# ValueError: 2
+```
+- iba `raise` vieme vyuzit v bloku `except` - opat vyhadzuje odchztenu vznimku
+```python
+def podil(a, b):
+  try:
+    return a / b
+  except:
+    print('Nastala výjimka.')
+    raise
+
+podil(5, 0)
+# Nastala výjimka.
+# ---------------------------------------------------------------------------
+# ZeroDivisionError Traceback (most recent call last)
+# <ipython-input-22-f4456981ee1c> in <module>()
+# ----> 1 podil(5, 0)
+# <ipython-input-21-e839663917b1> in podil(a, b)
+# 1 def podil(a, b):
+# 2 try:
+# ----> 3 return a / b
+# 4 except:
+# 5 print('Nastala výjimka.')
+# ZeroDivisionError: division by zero
+```
+# Testovanie
+- umoznuje automaticky skontrolovat, ci sa funkcia chova tak ako ocakavame
+- `Test` = popis ocakavaneho chovania na konkretnom vstupe
+- Vysledkom testu:
+  - `pass` test presiel, chova sa podla ocakavania `:)`
+  - `fail` test nepresiel, chova sa inak `:(`
+- moduly na testovanie: `doctest`, `pytest`...
+
+**Doctest**
+Testy v dokumentacii funkcie
+  - vyzeraju ako interaktivny Pzyhon
+  - popisuju, ako sa ma funkcia chovat na konkretnych vstupoch
+- modul `doctest` kontroluje, ci sa funkcia chova tak ako to popisuju testy
+- [viac_tu](https://docs.python.org/3/library/doctest.html)
+```python
+def soucet(a, b):
+  """ Vrací součet parametrů.
+  >>> soucet(1, 2)
+  3
+  >>> soucet(10, 2)
+  12
+  """
+  return 3
+
+import doctest
+doctest.testmod()
+**********************************************************************
+File "__main__", line 5, in __main__.soucet
+Failed example:
+soucet(10, 2)
+Expected:
+12
+Got:
+3
+**********************************************************************
+1 items had failures:
+1 of 2 in __main__.soucet
+***Test Failed*** 1 failures.
+# TestResults(failed=1, attempted=2)`
+```
+- spusteie doctestu z prikazoveho riadku:
+```
+- $ python3 -m doctest muj_skript.py
+```
+- i ked prejdu vsetky testy neznamena to ze funkcia je spravna!
+```python
+def soucet(a, b):
+  """ Vrací součet parametrů.
+  >>> soucet(2, 2)
+  4
+  >>> soucet(0, 0)
+  0
+  """
+  return a * b
+
+import doctest
+doctest.testmod()
+# TestResults(failed=0, attempted=2)
+```
+**Pytest**
+- prechadza vsetky subory a zlozky `test*`
+- pouziva `assert` pre validaciu
+- [viac_tu](https://docs.pytest.org/en/latest/ (https://docs.pytest.org/en/latest/))
+- `inc.py`
+```python
+def inc(x):
+  return x + 1
+```
+- `test_inc.py`
+```python
+def test_answer():
+  assert inc(3) == 5
+```
+**pytest - fixure a parametrize**
+```python
+import pytest
+@pytest.mark.parametrize("test_input,expected", [
+    ("3+5", 8), 
+    ("2+4", 6), 
+    ("6*9", 42),
+])
+
+def test_eval(test_input, expected):
+    assert eval(test_input) == expected
+```
 

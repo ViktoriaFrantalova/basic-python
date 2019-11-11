@@ -14,10 +14,12 @@
 from typing import List
 
 def nasobky3(cisla: List[int]) -> List[int]: 
-    for i in range(0, len(cisla)):
-        if cisla[i] % 3 == 0:
-            nas_cisla = cisla[i]
-            zoznam.append(nas_cisla)
-            return zoznam
+    vysledok = []
+    for i in range(0,len(cisla)):
+        vstup = cisla[i]
+        if(cisla[i] % 3 == 0):
+            if(vstup == cisla[i]):
+                vysledok.append(cisla[i])
+    return vysledok
         
-print(eval(input()))  # Neměňte! Do not change!
+print(nasobky3([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))

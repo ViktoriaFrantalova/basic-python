@@ -13,17 +13,15 @@
 from typing import List
 zoznam = []
 def fibonacci(n: int) -> List[int]:
-    if n < 0:
-        return []
-    elif n == 1:
-        return [1]
-    elif n == 2:
-        return [1, 1]
-    else:
-        for i in range(n-2):
-            nove_cislo = zoznam[-2] + zoznam[-1]
-            zoznam.append(nove_cislo)
-        return zoznam
+    vysledok = []
+    a = 1
+    b = 1
+    for i in range(n):
+        vysledok.append(b)
+        scitanec = b + a
+        b = a
+        a = scitanec
+    return vysledok
 
 print(fibonacci(6))
 
