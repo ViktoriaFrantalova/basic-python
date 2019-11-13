@@ -4,10 +4,16 @@
 
 # Úlohu řešte pomocí cyklu, bez použití operátoru ** nebo funkce pow.
 
-vstup = input() # 2.0 3
+# Sample Input:
+# 2 3
+
+# Sample Output:
+# 8
+
+vstup = input()
 zaklad, exponent = vstup. split(' ')
 n = 1
 
 for i in range(1, int(exponent) + 1):
     n = n * float(zaklad)
-print(float(n)) # 8.0
+print(float(n))

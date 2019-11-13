@@ -5,11 +5,9 @@
 # Výsledek vypište jako seznam dvojic. Dvojice vypisujte ve tvaru (menší, větší) a seřaďte je podle prvního čísla. Pokud zadané číslo nelze získat při hodu dvěma kostkami, vraťte prostě prázdný seznam.
 
 # Sample Input:
-
 # 8
 
 # Sample Output:
-
 # [(2, 6), (3, 5), (4, 4)]
 
 vstup = input()

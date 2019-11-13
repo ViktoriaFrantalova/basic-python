@@ -26,4 +26,4 @@ def soucet_a_soucin(cisla: List[float]) -> Tuple[float, float]:
     for i in cisla:
       sucin = sucin * i
     return(f'Součet: {sucet:>7.2f} \nSoučin: {sucin:>7.2f}')
-print(soucet_a_soucin([1.5, 2.0, 4.0]))
+print(soucet_a_soucin(input()))

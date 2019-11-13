@@ -10,6 +10,12 @@
 # "{}" neobsahuje "{}"
 # Místo {} doplňte první a druhý řetězec.
 
+# Sample Input:
+# abcabc abc
+
+# Sample Output:
+# "abcabc" začíná a končí "abc"
+
 kupka_slamy, jehla = input().split(' ')
 realita = jehla in kupka_slamy
 if realita == True:

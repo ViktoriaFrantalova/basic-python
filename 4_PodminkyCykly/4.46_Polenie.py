@@ -1,12 +1,17 @@
 # Půlení
 # Na vstupu získáte přirozené číslo. Zjistěte kolik krát po sobě lze toto číslo dělit dvěma (např. 40 --> 20 --> 10 --> 5, odpověď je 3krát)
 
-# napr
-# input - 40
-# output - 3
+# Sample Input 1:
+# 40
 
-# input - 7
-# output - 0
+# Sample Output 1:
+# 3
+
+# Sample Input 2:
+# 7
+
+# Sample Output 2:
+# 0
 
 vstup = int(input())
 pocet_deleni = 0

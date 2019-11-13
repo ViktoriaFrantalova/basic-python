@@ -3,11 +3,9 @@
 # Napište funkci, která získá jako parametr počet prvků Fibonacciho posloupnosti a ty vrátí ve formě seznamu.
 
 # Sample Input:
-
 # fibonacci(6)
 
 # Sample Output:
-
 # [1, 1, 2, 3, 5, 8]
 
 from typing import List

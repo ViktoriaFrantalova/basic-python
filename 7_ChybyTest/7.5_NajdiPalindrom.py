@@ -21,16 +21,21 @@
 # LookupError
 
 def najdi_palindrom(veta: str, n: int) -> str:
-  veta = veta.replace(" ","") # bez medzier
-  veta = veta.lower() # iba male pismena
-  naopak = veta[::-1] # string naopak
-  return naopak
+    pole = veta.split()
+    slovo = ''
+    vysledok = False
+    for index in range(0, len(pole)):
+        slovo = slovo + pole[index]
+    slovo2 = ''
+    for i in range(0, len(slovo)):
+        slovo2 = slovo[(i+1-n):(i+1)]
+        if(len(slovo2) == n):
+            if (slovo2.lower() == slovo2[::-1].lower()):
+                vysledok = slovo2.lower()
+    if(vysledok == False):
+        raise LookupError()
+    return vysledok
 
-  i = n-1
-  for i in range(0, len(naopak)):
-      veta_nova = naopak[i]
-      return veta_nova
-
-vstup = input()
-veta, n = vstup.split(', ')
-print(najdi_palindrom(vstup))
+# vstup = input()
+# veta, n = vstup.split(', ')
+print(najdi_palindrom('Petr jede v kajaku', 5))

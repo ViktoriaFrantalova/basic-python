@@ -3,10 +3,9 @@
 # Napište definici funkce spolecna_pismena, která přijímá seznam řetězců. Funkce vrátí seznam znaků, které se vyskytují v každém z těchto řetězců. Seznam bude seřazen podle abecedy. Pokud bude funkce volána na prázdném seznamu, vrátí prázdný seznam.
 
 # Sample Input:
-
 # spolecna_pismena(['mrkev', 'krkavec', 'krabice'])
-# Sample Output:
 
+# Sample Output:
 # ['e', 'k', 'r']
 
 from typing import List

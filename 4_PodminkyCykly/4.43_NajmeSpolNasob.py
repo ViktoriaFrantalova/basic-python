@@ -11,6 +11,18 @@
 # Ak m a n sú nesúdeliteľné, najmenší spoločný násobok je ich súčin.
 # Súčin najmenšieho spoločného násobku a najväčšieho spoločného deliteľa čísel m a n je ich súčin.
 
+# Vyzkoušejte také:
+# 12 15
+# 3 6
+# 8 11
+# 8 21 
+
+# Sample Input:
+# 4 6
+
+# Sample Output:
+# 12
+
 vstup_1, vstup_2 = input().split(' ')
 if int(vstup_1) > int(vstup_2):
     vacsi_vstup = int(vstup_1)

@@ -8,4 +8,4 @@ x2 = (-float(b) - D**0.5)/(2*float(a))
 print(float(x1), float(x2))
 
 # vstupne hodnoty napr. 1.0 -5.0 6.0
-# vzstup: 3.0 2.0
+# vystup: 3.0 2.0

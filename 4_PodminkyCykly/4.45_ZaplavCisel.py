@@ -1,10 +1,11 @@
 # Záplava čísel
 # Na vstupu získáte řetězec obsahující pouze číslice. Vypište na výstup řetězec, který bude obsahovat každou číslici ze vstupu tolik krát, kolik je hodnota číslice (tj. dvě dvojky, pět pětek atd...).
 
-# napr
-# input - 25104 
+# Sample Input:
+# 25104
 
-# output - 225555514444
+# Sample Output:
+# 225555514444
 
 vstup = input()
 for i in vstup:

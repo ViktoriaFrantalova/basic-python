@@ -19,7 +19,6 @@ for i in vstup:
         i = 10
     if(str(i) == 'A'):
         i = 11
-        
     vysledok += int(i)
     
 if(vysledok <= 21):

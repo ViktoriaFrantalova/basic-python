@@ -16,6 +16,12 @@
 
 # - číslo nedělitelné 3 ani 5
 
+# Sample Input:
+# 4
+
+# Sample Output:
+# číslo nedělitelné 3 ani 5
+
 vstup = int(input())
 
 if vstup >= 0 and vstup <= 100:

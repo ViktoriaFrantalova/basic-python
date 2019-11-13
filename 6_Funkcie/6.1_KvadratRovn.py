@@ -5,17 +5,15 @@
 # Řádek print(eval(input())) zabezpečí, že vaše funkce se bude volat přesně tak, jak je uvedeno na vzorovém vstupu. Nemusíte tedy načítat vstup ani vypisovat výstup, stačí naimplementovat funkci.
 
 # Sample Input 1:
-
 # koreny(1.0, -5.0, 6.0)
-# Sample Output 1:
 
+# Sample Output 1:
 # (3.0, 2.0)
 
 # Sample Input 2:
-
 # koreny(1.0, -2.0, 1.0)
-# Sample Output 2:
 
+# Sample Output 2:
 # (1.0,)
 
 from typing import Tuple
