@@ -1,22 +1,32 @@
 """
 Úloha:
-Vytvořte program, který načte CSV soubor Brno_denni_teploty.csv.
-Následně spočítá průměrnou teplotu pro každý měsíc v letech 1961-2017.
-Výsledné průměrné hodnoty uloží do souboru Brno_mesicni_teploty.csv, a to 
-tak, že každý řádek bude odpovídat jednomu roku a každý sloupec jednomu 
-měsíci v roku. Vzorový výsledek najdete v Brno_mesicni_teploty-vzor.csv.
+Vytvorte program, ktorý načíta CSV súbor Brno_denne_teploty.csv.
+Následne spočíta priemernú teplotu pre každý mesiac v rokoch 1961-2017.
+Výsledné priemerné hodnoty uložia do súboru Brno_mesacne_teploty.csv, a to tak, že každý riadok bude zodpovedať jednému roku a každý stĺpec jednému mesiaci v roku. Vzorový výsledok nájdete v Brno_mesacne_teploty-vzor.csv
 Zdroj dat: http://portal.chmi.cz/historicka-data/pocasi/denni-data
 
-Bonus: 
-Upravte program tak, aby přijímal název vstupního a výstupního souboru 
-jako argumenty z příkazové řádky (hint: využijte modul argparse).
-"""
+Vystup v terminaly:
+01:  -5.14
+02:   1.59
+03:   8.32
+04:   9.19
+05:  15.98
+06:  21.02
+07:  21.21
+08:  22.08
+09:  14.10
+10:  10.63
+11:   4.65
+12:   1.87
 
+Bonus: 
+Upravte program tak, aby prijímal názov vstupného a výstupného súboru ako argumenty z príkazového riadku (hint: využite modul argparse).
+"""
 
 import csv
 
-with open('Brno_denni_teploty.csv') as f:
-    for i in range(4):  # Ignorujeme hlavičku (první 4 řádky)
+with open('Brno_denne_teploty.csv') as f:
+    for i in range(4):  # Ignorujeme hlavičku (prve 4 riadky)
         f.readline()
     temperatures_by_years = {}
     for row in csv.reader(f):
@@ -30,7 +40,7 @@ with open('Brno_denni_teploty.csv') as f:
             temperatures_by_years[year] = []
         temperatures_by_years[year].append(average)
 
-with open('Brno_mesicni_teploty.csv', 'w') as g:
+with open('Brno_mesacne_teploty.csv', 'w') as g:
     csv_writer = csv.writer(g)
     header = [''] + list(range(1, 13))
     csv_writer.writerow(header)

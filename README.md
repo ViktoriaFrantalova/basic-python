@@ -27,7 +27,7 @@ b = 10
 ```
 # Dynamicke typovanie
 * Python typuje hodnoty a premenne nemaju typ:
-Zajladne typy: 
+Zakladne typy: 
   - noneType - `None`
   - boolean - `True/False`
   - cele cisla - `integer (i)`
