@@ -20,6 +20,11 @@ def delicka(text: str, separator: str = ';') -> float:
 
 print(input())
 
+# # Alternativní řešení:
+# def delicka(text: str, separator: str = ';') -> float:
+#     prvky = text.split(separator)
+#     return float(prvky[0]) / float(prvky[1])
 
+# print(eval(input()))  # Neměňte! Do not change!
 
 

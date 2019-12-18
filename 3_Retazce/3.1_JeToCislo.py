@@ -3,3 +3,6 @@
 vstup = input()
 test = vstup.isdigit() 
 print(test)
+
+#----------------------------------------
+print(input().isdigit())

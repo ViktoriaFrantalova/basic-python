@@ -30,3 +30,17 @@ posledne_cislo = moj_zoznam.pop() # posledne cislo
 
 print('Min:', '{:.2f}'.format(mini), 'Max:', '{:.2f}'.format(maxi), 'Avg:', '{:.2f}'.format(avg), 'Med:','{:.2f}'.format(med))
 print('Last number:', posledne_cislo)
+
+#----------------------------------------------------
+# import statistics
+
+# vstup = input()
+# retezce = vstup.split()
+# cisla = [int(r) for r in retezce]
+# minimum = min(cisla)
+# maximum = max(cisla)
+# prumer = statistics.mean(cisla)
+# median = statistics.median(cisla)
+# posledni = cisla[-1]
+# print(f'Min: {minimum:.2f} Max: {maximum:.2f} Avg: {prumer:.2f} Med: {median:.2f}')
+# print(f'Last number: {posledni}')

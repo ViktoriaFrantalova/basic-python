@@ -17,3 +17,12 @@ n = 1
 for i in range(1, int(exponent) + 1):
     n = n * float(zaklad)
 print(float(n))
+
+#--------------------------------------
+# z, e = input().split()
+# z = int(z)
+# e = int(e)
+# result = 1
+# for i in range(e):
+#     result *= z
+# print(result)

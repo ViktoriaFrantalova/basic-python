@@ -1,0 +1,11 @@
+--------------------------
+Přihláška na hudební tábor
+--------------------------
+
+Jméno a příjmení: Jožko Mrkvička
+Datum narození:   29. 2. 2000
+Hudební nástroj:  klarinet
+Adresa:           Kamenice 5, Brno
+Telefon:          987654321
+E-mail:           carrot.man@gmail.com
+

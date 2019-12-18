@@ -3,3 +3,6 @@
 vstup_cislo = input()
 test = (int(vstup_cislo)%2) or 0
 print(test)
+
+#-----------------------------------
+print(int(input()) % 2)

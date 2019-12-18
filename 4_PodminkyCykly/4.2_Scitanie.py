@@ -18,3 +18,24 @@ while True:
     y = float(x) + float(y)
 
 print('{:.2f}'.format(y))
+
+# #Alternativní řešení:
+# suma = 0
+# vstup = input()
+# while vstup != 'stop':
+#     x = float(vstup)
+#     suma += x
+#     vstup = input()
+# print(f'{suma:.2f}')
+
+
+# # Alternativní řešení:
+# suma = 0
+# while True:
+#     vstup = input()
+#     if vstup == 'stop':
+#         print(f'{suma:.2f}')
+#         break
+#     else:
+#         x = float(vstup)
+#         suma += x

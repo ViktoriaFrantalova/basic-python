@@ -25,3 +25,10 @@ if vstup.count(int(maxi)) > 1:
     print(vstup.index(int(maxi)))
 else:
     print(vstup.index(int(maxi)))
+
+# # Alternativní řešení:
+# retezce = input().split()
+# cisla = [int(r) for r in retezce]
+# maximum = max(cisla)
+# index_maxima = cisla.index(maximum)
+# print(index_maxima)

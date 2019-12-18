@@ -1915,4 +1915,1084 @@ import pytest
 def test_eval(test_input, expected):
     assert eval(test_input) == expected
 ```
+## 7. PRACA SO SUBORMI
+`Subor` - sada informacii ulozenych pod konkretnym menom na dotovom mediu, kazdz je ulozeny v nejakom formate
+  - `textovy` (TXT, DOCX, HTML...)
+  - `binarny` (ZIP, JPEG, MPEG4...) 
+!!!Poznamka - textovy subor je vlastne binarny subor, kde kazdy bajt(skupina bajtov) koduje nejaky znak. Roydiel je v tom, ako bude subor citat.
+
+### Textove subory
+- subory tvorene postupnost znakov
+- `stream`, `file handler`, `file object` - je objekt, kt. nam ukazuje na koknretny subor a konkretne miesto v subore
+```python
+open(file, mode="r", encoding=None, ...)
+```
+
+## Zakladne operacie so suborom
+- otvorenie `open()`
+- citanie `read()`
+- zapis `write()`
+- zatvorenie `close()` = umoznuje zmeny na disk
+
+## Otvaranie a zatvaraie suboru
+1. Explicitne - nedoporucuje sa (hrozi, ze zabudneme subor zatvorit a zmeny sa neulozia)
+  ```python
+  f = open('my_file.txt')
+  # Pracujeme so suborom ...
+  # Pracujeme so suborom ...
+  f.close()
+  ```
+1. Pomocou bloku `with` - doporuceny sposob (subor sa zavrie automaticky na konci bloku)
+  ```python
+  with open('my_file.txt') as f:
+  # Pracujeme so suborom ...
+  # Pracujeme so suborom ...
+  # Tu sa subor automaticky zavrie
+  ```
+- funkcia `open` - otvorime stream do suboru a mozeme s nim dalej pracovat
+  Argumenty:
+    - umiestnenie suboru (`path`)
+    - mozeme upresnit mod, kodovanie...
+  Navratova hodnota:
+    - `File object` - popisuje, kt. subor je otvoreny, ukazatel na konkretne miesto suboru, modu, kodovania...
+```python
+with open('skarabeus.txt', mode='r', encoding='utf8') as f:
+    print(f)
+# <_io.TextIOWrapper name='skarabeus.txt' mode='r' encoding='utf8'>
+```
+
+# Mod otvarania textovych suborov - citame a zapisuje znaky `str()`
+- `r`: pre citanie `(read)` - defaultny mod
+  - subor neexistuje -> `FileNotFoundErrror`
+  - subor existuje -> cita ho od zaciatku
+- `r+` pre citanie a zapis
+  - subor neexistuje -> `FileNotFoundException`
+  - subor existuje -> cita/zapisu od zaciatku
+- `w`: pre zapis `(write)`
+  - subor neexistuje -> vytvori ho
+  - subor existuje -> **premaze** a zapisuje od zaciatku!
+- `w+` pre citanie a zapis
+  - subor neexistuje -> vytvori ho
+  - subor existuje -> premaze a cita/zapisuje od zaciatku
+- `x`: pre zapis
+  - subor neexistuje -> vytvori ho
+  - subor existuje -> `FileExistsError`
+- `a`: pre zapis `(append)`
+  - subor neexistuje -> vytvori ho
+  - subor existuje -> doplnuje na koniec
+
+**Citanie z textoveho suboru**
+- funguje iba v modoch `r`, `r+`, `w+`
+- metoda `read()` precita cely subor (bez argumentu) alebo dany pocet znakov (s argumentom)
+  - vrati nacitany subor
+- po zatvoreni suboru uz sa neda citat
+```python
+with open('skarabeus.txt', mode='r') as f:
+    text = f.read()
+text
+# 'Vruboun posvátný (Scarabaeus sacer), označovaný také jen krátce skarabeus či
+# skarab, je brouk z čeledi vrubounovití (Scarabaeidae). Žije ve Středomoří. Sam
+# ička naklade larvy do kuličky uhnětené z trusu, kterou posléze zahrabe do zem
+# ě. Vyvíjející se larva se živí trusem.\n'
+```
+```python
+with open('skarabeus.txt', mode='r') as f:
+    prvych_20_znakov = f.read(20)
+    zbytok = f.read()
+prvych_20_znakov # 'Vruboun posvátný (Sc'
+zbytok
+# 'arabaeus sacer), označovaný také jen krátce skarabeus či skarab, je brouk z č
+# eledi vrubounovití (Scarabaeidae). Žije ve Středomoří. Samička naklade larvy d
+# o kuličky uhnětené z trusu, kterou posléze zahrabe do země. Vyvíjející se larv
+# a se živí trusem.\n'
+```
+- metoda `readline()` nacita jeden riadok zo suboru ako retazec
+- pokial sme uz na konci suboru, vrati sa prazdny retazec `' '`
+```python
+with open('nakup.txt', mode='r') as f:
+    prvy = f.readline()
+    druhy = f.readline()
+    treti = f.readline()
+    stvrty = f.readline()
+prvy #'chleba\n'
+druhy #'jogurt\n'
+treti #'\n'
+stvrty #''
+```
+- riadok sa nacita vzdy so znakom noveho riadku na konci - tohoto sa zbavime pomocou metody `rstrip()`
+```python
+with open('nakup.txt', mode='r') as f:
+    prvy = f.readline()
+prvy # 'chleba\n'
+prvy.rstrip() # 'chleba'
+```
+- metoda `readlines()` nacita vsetky riadky (od aktualnej pozicie) ako zoznam
+```python
+with open('nakup.txt', mode='r') as f:
+    riadky = f.readlines()
+riadky # ['chleba\n', 'jogurt\n', '\n']
+```
+## Citanie suboru pomocou `for`
+```python
+with open('nakup.txt', mode='r') as f:
+    for riadok in f:
+print(riadok)
+# chleba
+# jogurt
+```
+## Zapis do textoveho suboru
+- funguje iba v modoch `w`, `x`, `a`, `r+`, `w+`
+- metoda `write()` zapise retazec do suboru
+  - vrati pocet zapisanych znakov
+- na koniec nevklada automaticky novy riadok, ako u `print()`
+- po zavreni suboru uz nevieme zapisovat
+```python
+with open('novy.txt', mode='w') as f:
+    f.write('Alica')
+    f.write('Bob')
+    f.write('Cyril')
+with open('novy.txt', mode='r') as f:
+    text = f.read()
+text # 'AlicaBobCyril'
+```
+- funkcia `print()` vieme presmerovat do suboru
+```python
+with open('novy.txt', mode='w') as f:
+    print('Alica', 10, True, file=f)
+with open('novy.txt', mode='r') as f:
+    text = f.read()
+text # 'Alice 10 True\n'
+```
+- mozeme otvarat niekolko suborov sucastne
+```python
+with open('nakup.txt', mode='r') as fr:
+    with open('novy.txt', mode='w') as fw:
+        for radek in fr:
+            fw.write(radek.strip())
+            fw.write(';')
+with open('novy.txt', mode='r') as f:
+    text = f.read()
+text # 'chleba;jogurt;;'
+```
+## Metody `tell` a `seek`
+- metoda `tell()` vracia aktualnu poziciu ukazovatela, `seek()` nastavuje poziciu ukazovatela
+```python
+with open('nakup.txt') as f:
+    print(f.tell())
+    print(f.readline().rstrip())
+    print(f.tell())
+    print(f.readline().rstrip())
+    print(f.tell())
+# 0
+# chleba
+# 7
+# jogurt
+# 14
+with open('nakup.txt') as f:
+    f.seek(7)
+    print(f.readline().rstrip())
+# jogurt
+```
+## Specialne "subory"
+- `sys.stdin` - cita zo standardneho vstupu
+- `sys.stout` - zapisuje na standardny vystup
+- `sys.stderr` - zapisuje na standardny chybovy vystup
+
+## Kodovanie suborov `(encoding)`
+- v suboroch realne nie su ulozene znaky ale iba bajty
+- kodovanie popisuje, ako sa znaky zakoduju do bajtov `encode` a spat `decode`
+- ak natvarim subor a vidim, ze znaky sa mi neyhoduju napr. pri makkych spoluhlaskach tak mam yle nastavene kodovanie
+- priklady zleho kodovania:
+```python
+with open('skarabeus.txt', encoding = 'windows-1250') as f:
+    text = f.read()
+text
+# 'Vruboun posvĂˇtnĂ˝ (Scarabaeus sacer), oznaÄŤovanĂ˝ takĂ© jen krĂˇtce skarabe
+# us ÄŤi skarab, je brouk z ÄŤeledi vrubounovitĂ\xad (Scarabaeidae). Ĺ˝ije ve St
+# Ĺ™edomoĹ™Ă\xad. SamiÄŤka naklade larvy do kuliÄŤky uhnÄ›tenĂ© z trusu, kterou
+# poslĂ©ze zahrabe do zemÄ›. VyvĂ\xadjejĂ\xadcĂ\xad se larva se ĹľivĂ\xad truse
+# m.\n'
+```
+- defaultne kodovanie zavisi na systeme
+```python
+import locale
+locale.getpreferredencoding()
+# 'UTF-8'
+```
+- priklady kodovania:
+  - `windows-1250. cp1250` - stredoeuropske
+  - `windows-1252 (cp1252)` - zapadoeuropske
+  - `iso-8859-2, latin2`
+  - `UTF-8(utf8)` - najmodernejsie, dokaze zakodovat celu znakovu sadu **Unicode** (niektore znaky sa ukladaju na viacej bajtov)
+- znaky `ASCII`(prvych 128 znakov z Unicode) sa koduje rovnako vo vacsine kodovania
+
+## Ukoncenie riadku
+- Unix(Linux a MacOS) ukoncuje riadky jednim znakom `\n`
+- Windows ukoncuje riadky dvojicou znakov `\r\n`
+
+# NA CO SI DAT POZOR
+1. kodovanie suboru
+2. riadky vzdy koncia bielimy znakmi (NAJCASTEJSIE `\n`), preto je vhodne pouzivanie metod `rstrip()` alebo `strip()`
+3. vzdy musite ukladat retazec, vzdy citat retazec
+4. pokial subor zavriete, uz s nim nemozte dalej pracovat (read, write); jedine ze si ho znohu otvorite
+5. pokial subor otvorite v mode `w`, hrozi strata dat - sucasny subor je ihned nenavratne prepisany novym prazdnym suborom
+
+## Binarne subory
+- subor tvoreny postupnosti bajtov
+- namiesto retazcov `(str)` citame a zapisujeme bajty `(bytes)`
+- binarene mody otvorenia: `rb`, `wb`, `xb`, `ab`, `r+b`, `w+b`
+- metoda `read()` vracia typ bytes 
+- metoda `write()` berie typ bytes
+```python
+with open('funny_cat.gif', mode='r+b') as f:
+    obsah = f.read(100)
+obsah
+# b'GIF89a\xe0\x01\xe0\x01\xf7\xff\x00\x11\r\x08\x12\x0f\x0b\x15\x12\x0e\x1a\x12
+# \x0b\x1a\x15\x0f\x1b\x18\x14!\x1c\x17#\x12\x08#\x19\x0f% \x19(#\x1f)\x18\r)\x1
+# c\x15,"\x18.\'!2\x1a\x0e4!\x124$\x195)!6/(7*\x1a8."94+?%\x19?,\x1d?1\x1e@1%A9.
+# D2%'
+```
+## Moduly `(module)`
+- subor funkcii a premennych, ktore vieme importovat
+```python
+import math
+math # <module 'math' (built-in)>
+math.cos(0) # 1.0
+math.pi # 3.141592653589793
+```
+### Balicek `(package)`
+- modul obsahujuci dalsie moduly (zlozka s modulmy)
+```python
+import os
+os # <module 'os' from '/usr/lib/python3.6/os.py'>
+
+import os.path
+os.path # <module 'posixpath' from '/usr/lib/python3.6/posixpath.py'>
+```
+### Import pomocou `from` a `as`
+`from` - importuje modul z balicka alebo premennu (funkciu) z modulu
+`as` - premenovanie importovaneho modulu/premennej/funkcie
+```python
+from os import path
+path # <module 'posixpath' from '/usr/lib/python3.6/posixpath.py'>
+
+import numpy as np
+np # <module 'numpy' from '/home/adam/.local/lib/python3.6/site-packages/numpy/__in
+# it__.py'>
+
+from math import factorial as fact
+fact(6) # 720
+```
+### Spustenie modulu ako scriptu
+- z prirodyenej riadky pomocou prepinaca `-m`
+```python
+$ python3 -m doctest
+```
+### Zdroje modulu/balickov
+- standardna knihovna Pythonu
+  - moduly pritomne pri instalacii
+  - `math`, `os`, `sys`...
+  - [library](https://docs.python.org/3.7/library/)
+- `PyPI` - Python Package Index
+  - moduly doinstalovatelne napr. pomocou nastroja `pip`
+  - numpy, sklearn...
+  - [pypi](https://pypi.org/)
+- vlastne moduly
+  - kazdy pythonovsky skript vieme importovat ako modul
+
+## Pip
+- modul sluzi ku stahovaniu a doinstalovaniu balicku z `PyPI`
+- spustame ho vzdy z prikazoveho riadku pomocou `-m` (nesmie sa importovat)
+```python
+$ python3 -m pip install numpy # Nainstaluj balíček numpy
+$ python3 -m pip show numpy # Vypiš verziu a info o nainstalovanom balíčku
+$ python3 -m pip search sound # Vyhladaj balíčky suvisiace so zvukom
+$ python3 -m pip list # Vypiš zoznam nainstalovaných balíčkov
+$ python3 -m pip help # Vypiš nápovedu k pipu
+```
+## Vlastne moduly
+- mame dlhy program -> mozeme ho roztriedit na viac modulov
+  - z hlavneho skriptu (__main__) potom importujeme ostatne moduly
+  - rovnaky modul vieme importovat do viacerych skriptov alebo do dalsich modulov
+- subor ukazkovej_moduly/obsahy.py:
+```python
+"""
+Modul pre výpočet obsahu rozných geometrických útvarov.
+"""
+import math
+
+def obsah_obdelniku(a: float, b:float) -> float:
+    """Vrať obsah obdlzníku o stranách a, b."""
+    return a * b
+
+def obsah_ctverce(a: float) -> float:
+    """Vrať obsah stvorca o strane a."""
+    return a**2
+
+def obsah_kruhu(r: float) -> float:
+    """Vrať obsah kruhu o polomere r."""
+    return math.pi * r**2
+#-------------------------------------------------
+from ukazkove_moduly import obsahy
+obsahy.obsah_ctverce(5.0) # 25.0
+```
+
+- subor ukazkove_moduly/fibonacci.py:
+```python
+"""
+Modul pre generovánie Fibonacciho postupnosti.
+"""
+from typing import List
+
+def fib(n: int) -> List[int]:
+    """Vrať prvních n prvků Fibonacciho posloupnosti."""
+    result = []
+    a, b = 1, 1
+    while len(result) < n:
+        result.append(a)
+        a, b = b, a+b
+    return result
+
+def main() -> None:
+    """Interaktivní výpis Fibonacciho posloupnosti."""
+    pocet = int(input('Zadej požadovaný počet prvků: '))
+    posloupnost = fib(pocet)
+    print(*posloupnost, sep=', ')
+
+if __name__ == '__main__':
+main()
+```
+- tento blok sa vykona, iba ak modul spustime ako script
+- ked modul importujeme, tento blok sa nevykona
+- toto funguje vdaka tomu, ze pokial je modul importovany, v magickej premennej `__name__` je nazov modulu; pokial je spusteny ako script, v premennej `__name__je '__main__'`
+
+```python
+if __name__ == '__main__':
+```
+- import:
+```python
+from ukazkove_moduly import fibonacci as fib
+fib.fib(10) # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+```
+  - spustenie z prikazoveho riadku:
+  ```python
+  $ python3 ukazkove_moduly/fibonacci.py 
+  zadej požadovaný počet prvků: 10
+  1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+  ```
+
+## Uztitocne moduly
+- [standardnaknihovna](https://docs.python.org/3.7/library/
+(https://docs.python.org/3.7/library/))
+- [PythonPackageIndex](https://pypi.org/ (https://pypi.org/))
+1. Modul `math` - matematicke funkcie
+2. Modul `cmath` - matematicke funkcie nad komplexnimi cislami
+3. Modul `random` - generovanie pseudo-nahodnych cisel
+  ```python
+  import random
+  random.random() # Náhodné reálné číslo z intervalu [0, 1]
+  random.randint(0, 100) # Náhodné celé číslo z intervalu [0, 100]
+  random.choice(['červená', 'zelená', 'modrá', 'čierna']) # Náhodný výber
+  ```
+4. Modul `datetime` - praca s casovymi udajmi
+  - zakladne typy:
+    - `datetime` - datum + cas
+    - `timedelta` - trvanie
+    - `date` - datum
+    - `time` - cas
+    - `timezone` - casova zona
+  ```python
+  from datetime import datetime, timedelta
+
+  zaciatok = datetime.now()
+  math.factorial(1000000)
+  koniec = datetime.now()
+  dlzka_vypoctu = koniec - zaciatok
+  print(dlzka_vypoctu)
+  # 0:00:05.916388
+  #-----------------------------------------
+  dnes = datetime.now().date()
+  za_tyzden = dnes + timedelta(weeks=1)
+  print(dnes) # 2019-11-18
+  print(za_tyzden) # 2019-11-25
+
+  za_tyzden.strftime('%A, %d. %B %Y') # 'Monday, 25. November 2019'
+  ``` 
+  ```python
+  from datetime import datetime
+  datetime.strptime('1. 7. 2000, 13:30:05', '%d. %m. %Y, %H:%M:%S')
+  # datetime.datetime(2000, 7, 1, 13, 30, 5)
+  ```
+5. Modul `itertools` - rozne moznosti iterovania
+  ```python
+  import itertools
+  for dvojice in itertools.combinations(['bílá', 'zelená', 'modrá', 'černá'], 2):
+      print(*dvojice)
+  # biela zelená
+  # biela modrá
+  # biela čierná
+  # zelená modrá
+  # zelená čierná
+  # modrá čierná
+
+  for pismeno, cislo in itertools.zip_longest('ABCDE', [1, 2, 3], fillvalue='?'):
+      print(pismeno, cislo)
+  # A 1
+  # B 2
+  # C 3
+  # D ?
+  # E ?
+  ```
+6. Modul `sys` - funkcie zavisle na systeme
+  ```python
+  import sys
+  sys.version # Verzia interpretru
+  # '3.6.8 (default, Oct 7 2019, 12:59:55) \n[GCC 8.3.0]'
+  ```
+  - sys.argv - zoznam argumentov z prikazoveho riadku
+    - nulty argument = nazov argumentu
+  - subor ukazkove_moduly/suma.py:
+  ```python
+  import sys
+
+  print(sys.argv)
+  suma = sum(int(x) for x in sys.argv[1:])
+  print(suma)
+  ```
+  - spustenie z prikazovej riadky
+  ```python
+  $ python3 ukazkove_moduly/suma.py 1 5 8
+  ['suma.py', '1', '5', '8']
+  # 14
+  ```
+7. Modul `os` - funkcie zavisle na operacnom systeme
+  - `os.getcwd()` – zisti aktuálny pracovny adresár
+  - `os.chdir()` – zmen pracovny adresár
+  - `os.listdir()` – vráť obsah adresaru
+  - `os.mkdir()` – vytvor nový adresar
+  - `os.makedirs()` – vytvor nový adresár, vratane všetkych nadadresarov
+  - `os.rename()` – premenuj subor alebo adresár
+  - `os.remove()` – zmaž subor
+  - `os.rmdir()` – zmaž prázdný adresár
+  - ...
+8. Modul `shutil` - viac moznosti nez `os`
+  ```python
+  import shutil
+  shutil.rmtree('ukazkove_moduly/novy') # Zmaž adresár nový a všetko v nom
+  shutil.copy('Pictures/funny_cat.gif', 'Desktop/CLICK_HERE.gif') # Zkopíruj subor
+  shutil.copytree('Pictures', 'Desktop/Studijni_materialy_z_Pythonu') # Zkopíruj adresár a všetko v nom
+  ```
+9. Modul `os.path` - funkcie pre pracu s cestami (`path` = umiestnenie suboru alebo adresara)
+  - riesi za nas rozdiely medzi operacnymi szstemami
+  1. ABSOLUTNA CESTA - zacina v koreni suboroveho systemu (v Unixu / vo Windowse pismeno disku)
+  ```python
+  /home/krtecek/Pictures/funny_cat.gif
+  C:\Users\Krtecek\Pictures\funny_cat.gif
+  ```
+  2. RELATIVNA CESTA - zacina v aktualnom adresare (., sa nemusi pisat)
+  ```python
+  Pictures/funny_cat.gif
+  ./Pictures/funny_cat.gif
+  Pictures\funny_cat.gif
+  .\Pictures\funny_cat.gif
+  ```
+  - `os.path.join()` – spojenie časti cesty
+  ```python
+  from os import path
+  path.join('Pictures', 'funny_cat.png') # 'Pictures/funny_cat.png'
+  path.abspath('Pictures/funny_cat.png') # '/home/adam/Pictures/funny_cat.png'
+  path.dirname('/home/adam/Pictures/funny_cat.png') # '/home/adam/Pictures'
+  path.basename('/home/adam/Pictures/funny_cat.png') # 'funny_cat.png'
+  path.exists('/home/adam/Pictures/funny_cat.png') # False
+  path.isfile('/home/adam/Pictures/funny_cat.png') # False
+  path.isdir('/home/adam/Pictures/funny_cat.png') # False
+  ```
+10. Modul `glob()` - chytry vypis suboru v adresari pomocou funkcie `glob.glob()`
+    - `*` - lubovolny pocet znakov (tj. i 0 znakov)
+    - `**` - vsetky subory vratane podurovni (pokial `recursieve=True`)
+    - `?` - jeden lubovolny znak
+    - `[A-Za-z] - jeden znak z vyctu
+  ```python
+  import glob
+
+  glob.glob('Pictures/*')
+  # ['Pictures/funny_cat.gif',
+  # 'Pictures/funny_dog.gif',
+  # 'Pictures/grumpy_cat.gif',
+  # 'Pictures/giraffes']
+
+  glob.glob('Pictures/funny_*.gif')
+  # ['Pictures/funny_cat.gif', 'Pictures/funny_dog.gif']
+
+  glob.glob('Pictures/**', recursive=True)
+  # ['Pictures/',
+  # 'Pictures/funny_cat.gif',
+  # 'Pictures/funny_dog.gif',
+  # 'Pictures/grumpy_cat.gif',
+  # 'Pictures/giraffes',
+  # 'Pictures/giraffes/mad_giraffe.gif',
+  # 'Pictures/giraffes/sad_giraffe.gif',
+  # 'Pictures/giraffes/confused_giraffe.gif']
+
+  glob.glob('Pictures/giraffes/?ad_giraffe.*')
+  # ['Pictures/giraffes/mad_giraffe.gif', 'Pictures/giraffes/sad_giraffe.gif']
+
+  glob.glob('Pictures/funny_[bcr]at.gif')
+  # ['Pictures/funny_cat.gif']
+  ```
+### Dalsie uzivatelske moduly
+- argparse
+- requests
+- subprocess
+- **json**
+- **csv**
+- pickle
+- email
+- re
+- codecs
+- warnings
+- numpy
+- matplotlib
+- sklearn
+- pandas
+- ...
+
+## Skusanie otvorit subor
+- Ask for forgiveness, not for permission
+- Nezistujeme, ci subor existuje a ci ho vieme otvorit, proste ho skusime otvorit !!!
+```python
+try:
+    with open('neexistujici_subor.txt') as f:
+        print(f.read())
+except FileNotFoundError:
+    print('Subor neexistuje.')
+except PermissionError:
+    print('Nemáš právo čítat subor.')
+except OSError:
+    print('Subor sa nepodarilo otvorit.')
+# Subor neexistuje.
+```
+# 8. Praca so subormy `CSV` a `JSON`
+## Format CSV 
+- CSV = comma-separated values
+- sluzi pre ukladanie tabulkovych dat
+- hodnoty su do stlpcou rozdelene pomocou separatoru (delimeter, vacsinou ciarka) a do riadku pomocou znakov noveho riadku
+- [linka](https://cs.wikipedia.org/wiki/CSV)
+!!!!!!**- ![tabulka_auta](/.myimage)**!!!!!
+- CSV:
+  Rokvyroby,Značka,Model,Cena
+  1995,Opel,Vectra,45000
+  1998,Škoda,Felicia,80000
+  2002,Škoda,Octavia,70000
+
+## Modul `csv` v Pythone
+- `csv.reader` - nacitanie formatu CSV
+- `csv.writer` - ukladanie vo formate CSV
+### Citanie
+```python
+with open('tabulka_auta.csv', 'r') as f:
+    print(f.read())
+# Rok výroby,Značka,Model,Cena
+# 1995,Opel,Vectra,45000
+# 1998,Škoda,Felicia,80000
+# 2002,Škoda,Octavia,70000
+```
+```python
+import csv
+
+with open('tabulka_auta.csv', 'r') as f:
+    reader = csv.reader(f)
+    for riadok in reader:
+        print(riadok)
+# ['Rok výroby', 'Značka', 'Model', 'Cena']
+# ['1995', 'Opel', 'Vectra', '45000']
+# ['1998', 'Škoda', 'Felicia', '80000']
+# ['2002', 'Škoda', 'Octavia', '70000']
+```
+- nacitane hodnoty su vzdy retazec, musime si ich sami previest na cislo
+```python
+with open('tabulka_auta.csv', 'r') as f:
+    reader = csv.reader(f)
+    tabulka = list(reader)
+tabulka
+# [['Rok výroby', 'Značka', 'Model', 'Cena'],
+# ['1995', 'Opel', 'Vectra', '45000'],
+# ['1998', 'Škoda', 'Felicia', '80000'],
+# ['2002', 'Škoda', 'Octavia', '70000']]
+```
+```python
+with open('tabulka_auta.csv') as f:
+    csvreader = csv.DictReader(f)
+    for riadok in csvreader:
+        print(dict(riadok))
+# {'Rok výroby': '1995', 'Značka': 'Opel', 'Model': 'Vectra', 'Cena': '45000'}
+# {'Rok výroby': '1998', 'Značka': 'Škoda', 'Model': 'Felicia', 'Cena': '80000'}
+# {'Rok výroby': '2002', 'Značka': 'Škoda', 'Model': 'Octavia', 'Cena': '70000'}
+```
+### Zapis
+```python
+vzdialenosti = [['', 'Brno', 'Praha', 'Ostrava'],
+              ['Brno', 0, 202, 165],
+              ['Praha', 202, 0, 362],
+              ['Ostrava', 165, 362, 0]]
+              
+with open('vzdialenosti.csv', 'w') as f:
+    csvwriter = csv.writer(f)
+    csvwriter.writerows(vzdialenosti)
+    
+with open('vzdialenosti.csv') as f:
+    print(f.read())
+# ,Brno,Praha,Ostrava
+# Brno,0,202,165
+# Praha,202,0,362
+# Ostrava,165,362,0
+```
+### Zapis specialnych znakov
+!!!!**- Tabulka: ![Tabulka](./MyImage...)**!!!!!!!
+- CSV:
+  - 1995,Opel,Vectra,"klimatizace, střešní okno",45000
+    1998,Škoda,"Felicia ""Fun""",,80000
+    2002,Škoda,Octavia,"klimatizace, ABS
+    bouraná",70000
+
+### Parametre pre upresnenie formatu
+- `delimiter` - oddelovac stlpcov (default `','`)
+- `quotechar` - vyclenenie pola sa specialnymi znakmi (default `'"'`)
+- `doublequote` - zdvojenie quotecharu rusi jeho funkciu (default `True`)
+- `escapechar` - rusi funkciu specialnych znakov (delimetru a quotecharu) (default `None`)
+- `dialect` - nastavenie viacerych parametrov sucastne (napr. `excel`)
+```python
+with open('vzdialenosti.csv', 'w') as f:
+    csvwriter = csv.writer(f, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
+    csvwriter.writerows(vzdialenosti)
+with open('vzdialenosti.csv') as f:
+    print(f.read())
+# "";"Brno";"Praha";"Ostrava"
+# "Brno";0;202;165
+# "Praha";202;0;362
+# "Ostrava";165;362;0
+```
+## Format `JSON`
+- JavaScript Object Notation
+- [JSON](https://www.json.org/json-en.html)
+- Mapovaie na typy Pythonu:
+  !!! **![Tabulka]
+  Python JSON Poznámka
+int/float 5, 10.2 5, 10.2
+řetězec 'ahoj' "ahoj" vždy dvojité uvozovky
+True, False true, false
+None null
+seznam [], n-**!!!!!!
+## Modul `json`
+- `json.load()` - nacitaj JSON zo suboru
+- `json.loads()` - nacitaj JSON z retazca
+- `json.dump()` - zapis JSON so suboru
+- `json.dumps()` - zapis Json do retazca
+
+### Citanie
+```python
+with open('bob.json') as f:
+    bob = f.read()
+print(type(bob)) # <class 'str'>
+print(bob)
+# {
+#   "name": "Bob",
+#   "age": 30,
+#   "married": false,
+#   "cars": ["Ford", "BMW", "Fiat"]
+# }
+```
+```python
+import json
+
+with open('bob.json') as f:
+    bob = json.load(f)
+print(type(bob)) # <class 'dict'>
+print(bob) # {'name': 'Bob', 'age': 30, 'married': False, 'cars': ['Ford', 'BMW', 'Fiat']}
+
+text = '{ "name": "John", "age": 35, "married": true, "cars": ["Mercedes", "BM
+W", "Volkswagen"] }'
+john = json.loads(text)
+print(type(john)) # <class 'dict'>
+print(john) # {'name': 'John', 'age': 35, 'married': True, 'cars': ['Mercedes', 'BMW', 'Volkswagen']}
+```
+### Zapis
+```python
+alice = {'name': 'Alice', 'age': 28, 'married': False, 'cars': ('Ford', 'Traban
+t'), 10: 20 }
+
+with open('alice.json', 'w') as f:
+    json.dump(alice, f)
+
+with open('alice.json') as f:
+print(f.read())
+# {"name": "Alice", "age": 28, "married": false, "cars": ["Ford", "Trabant"], "10": 20}
+
+text = json.dumps(alice)
+print(type(text)) # <class 'str'>
+print(text)
+# {"name": "Alice", "age": 28, "married": false, "cars": ["Ford", "Trabant"], "10": 20}
+
+text = json.dumps(alice, indent=4)
+print(text)
+# {
+#     "name": "Alice",
+#     "age": 28,
+#     "married": false,
+#     "cars": [
+#         "Ford",
+#         "Trabant"
+#     ],
+#     "10": 20
+# }
+```
+## Format `XML`
+- Extensible Markup Language
+- [linka](https://cs.wikipedia.org/wiki/Extensible_Markup_Language)
+```xml
+<messages>
+  <note id="501">
+    <to>Tove</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+  </note>
+  <note id="502">
+    <to>Jani</to>
+    <from>Tove</from>
+    <heading>Re: Reminder</heading>
+    <body>I will not</body>
+  </note>
+</messages>
+```
+## Zvysne moduly
+1. Modul `lxml` - cita a zapisuje vo formate `XML`
+- externy balicek, nutne doinstalovat pomocou pipu
+2. Modul `pickle` - ulozenie pythonovskych dat v binarnom formate
+  - dokaze ulozit takmer lubovolny objekt (napr. funkciu)
+  - **Nebezpecie** - pickle subor z cudzieho zdroja moze obsahovat skodlivy kod
+3. Modul `argparse` - predava argumenty z prikazoveho riadku
+  - rovnaky ucel ako `sys.argv`, ale sofistikovanejsi a krajsi pre uzivatela
+  - argumenty z prikazovaho riadku (netyka sa iba Pythonu):
+    - Povinne
+    - Volby/prepinace/options
+      - zacinaju - (jednopismenne) alebo - - (viacpismenne)
+      - mozu mat vlastne parametre
+```python
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('input', help='Input CSV file', type=str)
+parser.add_argument('-H', '--header',
+    help='Interpret the first line as column names', action='store_true')
+parser.add_argument('-v', '--verbose',
+    help='Print extra information', action='store_true')
+parser.add_argument('-d', '--delimiter',
+    help='Delimiter in the CSV file', type=str, default=',')
+parser.add_argument('-s', '--stat',
+    help='Statistics to be computed',
+    choices=['mean', 'median', 'min', 'max'], default='mean')
+args = parser.parse_args()
+print('Input file:', args.input)
+print('Header:', args.header)
+print('Verbose:', args.verbose)
+print('Delimiter:', args.delimiter)
+print('Statistics:', args.stat)
+```
+- spustenie z prikazoveho riadku:
+```python
+$ python3 make_statistics.py
+$ python3 make_statistics.py --help
+$ python3 make_statistics.py data.csv --stat median --header --verbose
+$ python3 make_statistics.py data.csv -s median -Hv
+```
+4. Modul `requests` - internetova komunikacia cez protokol `HTTP`
+  - nutne doinstalovat pomocou pipu
+  - posielame poziadavky (request) na server pomocou metod `GET`, `POST`, `PUT`, `DELETE`, ...
+```python
+import requests
+
+URL = 'http://endless.horse' # URL = Uniform Resource Locator = webová adresa
+odpoved = requests.get(URL) # Používáme HTTP metodu GET
+print('STATUS:', odpoved.status_code) # Status code: 200 = OK, 404 = Not Foun
+d...
+print('TEXT:', odpoved.text[-700:]) # Poslednych 700 znakov zo stiahnutého textu`python
+STATUS: 200
+TEXT: le="padding-top: 222px">
+        <pre> ,
+_,,)\.~,,._
+(()`  ``)\))),,_
+  |     \ ''((\)))),,_          ____
+  |6`   |   ''((\())) "-.____.-"    `-.-,
+  |   .'\     ''))))'                  \)))
+  |   | `.       ''                     ((((
+  \, _)   \/                            |))))
+  `'       |                            (((((
+           \                  |         ))))))
+            `|    |           ,\       /((((((
+             |   / `-.______.&lt;  \     | )))))
+             |   |  /        `.  \  \    ((((
+             |  / \ |          `. \  |   (((
+             \  | | |           ) |  |    ))
+              | | | |           | |  |    '</pre>
+<a href="legs.html"></a>
+</div>
+  </body>
+</html>
+```
+5. Modul `re` - regularny vyraz = regular expression = regex = RE
+  - sposob ako zapisat obecne vzorku textu, ktory chceme vyhladat/nahradit/...
+  ```python
+  import re
+
+  text = 'Helloooo! She sells sea shells. Good as hell!'
+  vzorka1 = re.compile('[Hh]ello*')
+  vzorka1.findall(text) # ['Helloooo', 'hell', 'hell']
+
+  vzorka2 = re.compile(r'\b[Hh]ello+\b')
+  vzorka2.findall(text) # ['Helloooo']
+
+  vzorka2.sub('Ciao', text) # 'Ciao! She sells sea shells. Good as hell!'
+  ```
+  **Vysvetlenie**
+  - `[Hh]` jeden znak z vyctu ('H' alebo 'h')
+  - `o*` lubovolny pocet (vratane O) opakovanie o ('' aleb 'o' alebo 'oo'...)
+  - `o+` aspon 1 opakovanie o ('o' alebo 'oo' ...)
+  - `\b` hranica slova
+  - `dlsie moznosti pouzitia`:
+    - [re.html](https://docs.python.org/3.7/library/re.html)
+    - [regex.html](https://docs.python.org/3.7/howto/regex.html)
+- **POZOR!!!** - pravidla `re` a `glob` su ine
+
+# 9. VEDECKY PYTHON
+- instalacia
+```vanie popisuje, ako sa 
+python -m pip install numpy/jupyter/atplotlib
+```
+## NumPy
+- je to standard pre numericke vypocty v Pythone
+- velke mnozstvo dalsich modulov postavenych nad NumPy
+```python
+import numpy as np
+```
+- zakl. objekt s ktorym NumpPy pracuje
+- iba prvkz rovnakeho typu
+- fixna velkost
+```python
+np.array([1, 3, 4])
+# array([1, 3, 4])
+```
+```python
+np.arange(10) #array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+- funkcia `linspace` - viem si ...
+```python
+np.linspace(0, 1, 11) 
+# array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
+
+np.random.sample(10)
+# array([0.62666803, 0.07045182, 0.20550107, 0.36733577, 0.38851806,
+#        0.03756064, 0.90113418, 0.6652082 , 0.43018563, 0.6772363 ])
+```
+# Zakladne operacie
+```python
+a = np.arange(10)
+a # array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+- Operacie sa prevadza nad celym polom, nie je nutne pouzivat `for` cyklus
+```python
+a + 1 # array([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+a ** 2 # array([ 0, 1, 4, 9, 16, 25, 36, 49, 64, 81])
+```
+# Viacejrozmerne pole
+```python
+a = np.arange(25)
+a # array([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+a.shape # (25,)
+b = a.reshape(5, 5)
+b # array([[ 0, 1, 2, 3, 4],
+        # [ 5, 6, 7, 8, 9],
+        # [10, 11, 12, 13, 14],
+        # [15, 16, 17, 18, 19],
+        # [20, 21, 22, 23, 24]])
+
+b.shape #(5, 5)
+
+b[2, :] # array([10, 11, 12, 13, 14])
+b[:, 4] # array([10, 11, 12, 13, 14])
+b[3:6, 2] # array([17, 22])
+```
+- vytvorenie pole 3 x 3 pomocou funkcie `zeros()`
+```python
+np.zeros((3, 3)) # array([[0., 0., 0.],
+                        # [0., 0., 0.],
+                        # [0., 0., 0.]])
+```
+- to same s jednixckami `ones()`
+```python
+x = np.ones((3, 3))
+x # array([[1., 1., 1.],
+        # [1., 1., 1.],
+        # [1., 1., 1.]])
+```
+- vytvorim si jednotkovu maticu pomocou funkcie `eye()`
+```python
+np.eye(3)
+# array([[1., 0., 0.],
+      # [0., 1., 0.],
+      # [0., 0., 1.]])
+```
+
+****
+
+# Uzitocne funkcie
+```python
+b = np.arange(25), reshape(5, 5)
+b # array([[ 0, 1, 2, 3, 4],
+        # [ 5, 6, 7, 8, 9],
+        # [10, 11, 12, 13, 14],
+        # [15, 16, 17, 18, 19],
+        # [20, 21, 22, 23, 24]])
+
+**dokonc**
+```
+# Linearna algebra
+- `np.linalg`
+- velke mnozstvo funkcii (determinaty, inverzne matice, vlastne hodnoty, ...)
+
+**dokonc**
+
+# Vizualizacia dat - `matplotlib` 
+- asi najrozsirenejsi modul
+- podobnz szytax ako v Matlabu
+- velke mnoystvo nastaveni, typy grafov
+- pracujeme nad NumPy polom
+```python
+import matplotlib.pyplot as plt
+```
+- funkcia `plot` - vykreslovacia funkcia
+- defaltne vzkresluje spojenu ciaru
+- `-o` vzkreslenie v bodoch, `'x'` - vykreslenie v znaku x
+- funkcia `grid` - zobrayi sa mi mriezka
+```python
+xs = np.linspace(0, 10, 50)
+plt.plot(xs, np.sin(xs))
+plt.show() # [<matplotlib.lines.Line2D at 0x7fef25f51250>]
+
+plt.grid()
+plt.plot(xs, np.sin(xs), '-o', color='red')
+# [<matplotlib.lines.Line2D at 0x7fef25eb2950>]
+```
+- ak vykreslujem viac os tak musim pouzit funkciu `legend()`
+```python
+plt.grid()
+plt.xlim(-1, 11)
+plt.ylim(-2, 2)
+plt.title('Goniometrické funkce')
+plt.plot(xs, np.sin(xs), label='$y = \sin{x}$')
+plt.plot(xs, np.cos(xs), label='$y = \cos{x}$')
+plt.legend() # <matplotlib.legend.Legend at 0x7fef25e975d0>
+```
+- stlpcovy graf `bar`
+```python
+x = np.random.randint(10, size=10)
+x # array([1, 4, 4, 8, 6, 3, 4, 7, 1, 3])
+
+plt.bar(np.arange(10), x)
+# <BarContainer object of 10 artists>
+```
+- histogram = ukazuje cetnost
+- funkcia `hist()` - 
+- `bins` - viem si podla toho ...
+```python
+plt.hist(np.random.sample(100), bins=15)
+# (array([ 4., 9., 5., 4., 5., 5., 10., 5., 5., 7., 8., 12., 5.,
+# 11., 5.]),
+# array([0.02412496, 0.08896623, 0.1538075 , 0.21864877, 0.28349004,
+# 0.34833131, 0.41317258, 0.47801385, 0.54285512, 0.60769639,
+# 0.67253765, 0.73737892, 0.80222019, 0.86706146, 0.93190273,
+# 0.996744 ]),
+# <a list of 15 Patch objects>)
+```
+
+- Bodovz graf `scatter`
+```python
+xs = np.random.sample(50)
+ys = np.random.sample(50)
+sizes = np.random.randint(100, size=50) # oplivnuje velkost bodov
+colors = np.random.randint(3, size=50) # budem mat 3 farby
+
+plt.scatter(xs, ys, c=colors, s=sizes) # volam
+# <matplotlib.collections.PathCollection at 0x7fef25eba6d0>
+```
+# NumPy - masky
+- funkcia `mask` - zamaskujem urcite data, kt nevyhovuje mojejj odmienky
+
+```python
+a = np.random.randint(100, size=16).reshape(4, 4)
+a # array([[54, 23, 7, 62],
+        # [28, 53, 69, 81],
+        # [72, 76, 11, 63],
+        # [67, 40, 41, 61]])
+a > 20 # tie kt. splnaju podmienky
+a # array([[ True, True, False, True],
+        # [ True, True, True, True],
+        # [ True, True, False, True],
+        # [ True, True, True, True]])
+mask = a > 20
+a[mask] # array([54, 23, 62, 28, 53, 69, 81, 72, 76, 63, 67, 40, 41, 61])
+a[~mask] # array([ 7, 11])
+```
+- vyuzitie `mask`, napr. chcem vykreslit niektore data inou farbou.
+```python
+xs = np.arange(100)
+ys = np.random.sample(100)
+plt.scatter(xs, ys)
+
+for threshold in np.linspace(0, 1, 6):
+mask = (ys > threshold) & (ys < threshold + 0.2)
+plt.scatter(xs[mask], ys[mask])
+```
+
+# Nahodny vypocet piii
+```python
+xs = np.random.sample(10000) * 2 - 1 # body syradnic ktore su v rozsahu od -1 do 1, vdaka nasobeniu 2 a odpocitaniu 1
+ys = np.random.sample(10000) * 2 - 1
+
+mask = xs ** 2 + ys ** 2 <= 1 # vykresli mi plnykruh
+plt.scatter(xs[mask], ys[mask])
+plt.scatter(xs[~mask], ys[~mask])
+
+4 * np.sum(mask) / len(mask) # pocet bodov v ktuhu/pocet bodov v celej maske a vyde mi moje pii
+# 3.138 - ak zvacsim pocet bodov tak ziskam presnejsie pii
+**dokonc**
+```
+# NumPy Vstup a Vystup
+- textovy
+  - `np.savetxt` a `np.loadtxt`
+  - precuje so standartnym `CSV`
+  - potreba nastavit sposob ulozenia a nacitania
+- binarny
+  - `np.save` a `np.load`
+  - rychlejsi, mensia velkost
+
+- `%%timeit` - ymeriam cas ako dlho bude trvat vygenerovanie
+```python
+%%timeit
+[x ** 2 for x in range(1000)]
+# 185 μs ± 967 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+%%timeit
+np.arange(1000) ** 2
+# 2.46 μs ± 23.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+```
+
+# Sucet dvoch zoznamov/poli
+```python
+a = list(np.random.sample(1000))
+b = list(np.random.sample(1000))
+```
+- tri sposoby:
+  - 
 
