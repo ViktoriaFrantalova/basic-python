@@ -1,4 +1,7 @@
-# Na vstupu získáte dvě čísla oddělená mezerou. Spočítejte a vypište součin těchto čísel.
+# Násobička
+# Na vstupu získáte dve čísla oddelen0 medzerou. Spočítajte a vypíšte súčin týchto čísel.
+
+print("napis dve cisla oddelene medzerou")
 
 vstup = input()
 cislo_1, cislo_2 = vstup.split()

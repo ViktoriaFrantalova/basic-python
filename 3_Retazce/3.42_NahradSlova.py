@@ -1,10 +1,12 @@
-# V zadaném textu najděte všechny výskyty slova "je" a nahraďte je za slovo "bude". Nezapomeňte opravený text vypsat.
+# Nahraď slová
+
+# V zadanom texte nájdite všetky výskyty slova "je" a nahraďte ich za slovo "bude". Nezabudnite opravený text vypísať.
 
 # Sample Input:
-# Honza je doktor.
+# Lukáš je doktor.
 
 # Sample Output:
-# Honza bude doktor.
+# Lukáš bude doktor.
 
 string = input()
 nahrada = string.replace('je', 'bude')

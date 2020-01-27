@@ -1,7 +1,9 @@
-# Na vstupu získáte dvě fráze. Na výstup vypište výmluvu vygenerovanou z těchto frází.
+# Spajanie reťazcov
 
-str1 = input() # umýt nádobí
-str2 = input() # musím chytat Pokémony
+# Na vstupe získate dve frázy. Na výstup vypíšte výhovorku vygenerovanú z týchto fráz.
 
-print(f'Bohužel nemůžu {str1}, protože {str2}.')
-# Bohužel nemůžu umýt nádobí, protože musím chytat Pokémony.
+str1 = input() # umyť riad
+str2 = input() # musím chytať Pokémony
+
+print(f'Bohužiaľ nemôžem {str1}, pretože {str2}.')
+# Bohužiaľ nemôžem umyť riad, pretože musím chytať Pokémony.

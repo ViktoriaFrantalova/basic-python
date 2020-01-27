@@ -1,14 +1,14 @@
-# Kalkulacka
+# Kalkulačka
 
-# Na vstupu získate dvě desetinná čísla oddělená matematickým operátorem. Proveďte výpočet a vypište výsledek zaokrouhlený na 2 desetinná místa.
+# Na vstupe získate dve desatinné čísla oddelené matematickým operátorom. Vykonajte výpočet a vypíšte výsledok zaokrúhlený na 2 desatinné miesta.
 
-# Možné operace:
+# Možné operácie:
 
-# sčítání +
-# odečítání -
-# násobení *
-# dělení /
-# Pokud bude zadaný nepovolený operátor, vypište na výstupu None.
+# Sčítanie +
+# Odčítanie -
+# Násobenie *
+# Delenie /
+# Ak bude zadaný nepovolený operátor, vypíšte na výstupe None.
 
 # Sample Input:
 # 1 + 2
@@ -16,7 +16,7 @@
 # Sample Output:
 # 3.00
 
-cislo_1, znamienko, cislo_2 = input().split(' ')
+cislo_1, znamienko, cislo_2 = input().split()
 if znamienko == '+':
     riesenie = float(cislo_1) + float(cislo_2)
     print('{:.2f}'.format(riesenie))

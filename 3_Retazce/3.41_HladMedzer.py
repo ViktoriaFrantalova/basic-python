@@ -1,13 +1,15 @@
-# V zadaném textu najděte první výskyt mezery a tři znaky, které za ní následují.
+# Hladam medzeru
+
+# V zadanom texte najdite prvý výskyt medzery a tri znaky, ktoré za ňou následujú.
 
 # Sample Input:
-# Zítra bude krásné počasí.
+# Zajtra bude krásne počasie.
 
 # Sample Output:
-# 5
+# 6
 # bud
 
 string = input()
 medzera_index = string.find(' ')
 print(medzera_index)
-print(string[1+medzera_index:4+medzera_index])
+print(string[1+medzera_index:4+medzera_index]) # rozsah [od:do]

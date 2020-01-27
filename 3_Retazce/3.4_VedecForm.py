@@ -1,4 +1,6 @@
-# Vstupní řetězec převeďte na číslo a vypište jako číslo ve vědeckém formátu.
+# Vedecky format
+
+# Vstupný reťazec preveďte na číslo a vypíšte ako číslo vo vedeckom formáte.
 
 # Sample Input:
 # 40800000000.00000000000000

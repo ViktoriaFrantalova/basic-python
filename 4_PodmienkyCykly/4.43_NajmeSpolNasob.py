@@ -1,6 +1,6 @@
-# Najmensi spolocny nasobok
+# Najmenší spoločný násobok
 
-# Pro dvě zadaná čísla najděte nejmenší společný násobek v rozsahu 1-100 a ten vypište. Pokud toto číslo nenajdete, vypište pouze None.
+# Pre dve zadané čísla nájdite najmenší spoločný násobok v rozsahu 1-100 a ten vypíšte. Pokiaľ toto číslo nenájdete, vypíšte len None.
 # -----------------------------------------------------------
 # NSN(16,6):
 # rozklad 16: 16 = 2×8 = 2×2×4 = 2^4
@@ -11,7 +11,7 @@
 # Ak m a n sú nesúdeliteľné, najmenší spoločný násobok je ich súčin.
 # Súčin najmenšieho spoločného násobku a najväčšieho spoločného deliteľa čísel m a n je ich súčin.
 
-# Vyzkoušejte také:
+# Vyskúšajte tiež:
 # 12 15
 # 3 6
 # 8 11
@@ -23,7 +23,7 @@
 # Sample Output:
 # 12
 
-vstup_1, vstup_2 = input().split(' ')
+vstup_1, vstup_2 = input().split()
 if int(vstup_1) > int(vstup_2):
     vacsi_vstup = int(vstup_1)
 else:

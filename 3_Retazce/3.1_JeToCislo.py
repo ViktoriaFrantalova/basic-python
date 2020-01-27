@@ -1,8 +1,11 @@
-# Na standarním vstupu (Sample Input) získate nějaký řetezec pomocí funkce input. Tento řetězec otestujte, jestli obsahuje pouze číslice a vypište na standardní výstup True jestli ano, v opačném případě vypište False. Pro výpis použijte funkci print.
+# Je to cislo?
+
+# Na štandardným vstupu (Sample Input) získate nejaký reťazec pomocou funkcie input. Tento reťazec otestujte, či obsahuje iba číslice a vypíšte na štandardný výstup True ak áno, v opačnom prípade vypíšte False. Pre výpis použite funkciu print.
 
 vstup = input()
 test = vstup.isdigit() 
 print(test)
 
+#inak
 #----------------------------------------
-print(input().isdigit())
+# print(input().isdigit())

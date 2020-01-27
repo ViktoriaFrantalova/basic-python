@@ -1,8 +1,7 @@
-# V tomto úkolu už víme, že pokaždé dostaneme číslo, ale nevíme jaké. Zjistěte jestli se jedná o liché nebo sudé číslo. Pro sudé číslo vypište 0 a pro liché vypište 1. (Podmínky jsme ještě nedělali, jde to bez nich.)
+# Kladne a zaporne cislo
+
+# V tejto úlohe už vieme, že zakaždým dostaneme číslo, ale nevieme aké. Zistite či sa jedná o párne alebo nepárne číslo. Pre párne číslo vypíšte 0 a pre nepárne vypíšte 1.
 
 vstup_cislo = input()
-test = (int(vstup_cislo)%2) or 0
+test = (int(vstup_cislo)%2)
 print(test)
-
-#-----------------------------------
-print(int(input()) % 2)

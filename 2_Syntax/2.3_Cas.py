@@ -1,8 +1,6 @@
 # CAS
 
-# Čas t (v sekundách) vyjádřete jako počet celých hodin h, minut m a sekund s.
-
-# (Výstup za vás udělá Stepik automaticky ve formátu h:m:s.)
+# Čas t (v sekundách) vyjadřrite ako počet celých hodín h, minút m a sekund s.
 
 # Sample Input 1:
 # 90

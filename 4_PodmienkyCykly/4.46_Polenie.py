@@ -1,5 +1,5 @@
-# Půlení
-# Na vstupu získáte přirozené číslo. Zjistěte kolik krát po sobě lze toto číslo dělit dvěma (např. 40 --> 20 --> 10 --> 5, odpověď je 3krát)
+# Polenie
+# Na vstupe získate prirodzené číslo. Zistite koľko krát po sebe možno toto číslo deliť dvoma (napr. 40 -> 20 -> 10 -> 5, odpoveď je 3krát)
 
 # Sample Input 1:
 # 40

@@ -1,4 +1,6 @@
-# Vytvořte program, který bude od uživatele načítat reálná čísla, vždy pouze jedno číslo na každém řádku. Když uživatel napíše na řádek "stop", vypíše se součet dosud zadaných čísel a program skončí. Součet vypisujte na 2 desetinná místa.
+# Scitavanie cisel
+
+# Vytvorte program, ktorý bude od užívateľa načítavať reálne čísla, vždy iba jedno číslo na každom riadku. Keď používateľ napíše do riadku "stop", vypíše sa súčet doteraz zadaných čísel a program skončí. Súčet vypisujte na 2 desatinné miesta.
 
 # Sample Input:
 # 5
@@ -9,17 +11,16 @@
 # Sample Output:
 # 6.70
 
-x = 0
 y = 0
 while True:
     x = str(input())
     if (x == 'stop'):
         break
-    y = float(x) + float(y)
+    y = float(y) + float(x)
 
 print('{:.2f}'.format(y))
 
-# #Alternativní řešení:
+# #Alternatívne riešenie:
 # suma = 0
 # vstup = input()
 # while vstup != 'stop':
@@ -29,7 +30,7 @@ print('{:.2f}'.format(y))
 # print(f'{suma:.2f}')
 
 
-# # Alternativní řešení:
+# #Alternatívne riešenie:
 # suma = 0
 # while True:
 #     vstup = input()

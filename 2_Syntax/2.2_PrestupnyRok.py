@@ -1,6 +1,6 @@
-# Procvičení logických výrazů
+# Precvičenie logických výrazov
 
-# V proměnné rok máme uložené přirozené číslo. Napište program, který zjistí, zda-li se jedná o přestupný rok a uloží výsledek do proměnné prestupny.
+# V premennej rok máme uložené prirodzené číslo. Napíšte program, ktorý zistí, či ak sa jedná o priestupný rok a uloží výsledok do premennej priestupný.
 
 # Sample Input 1:
 # 2012
