@@ -1,7 +1,7 @@
 # Vyber data zo suboru .txt a uprav ich tak aby si spocital priemer jednotlivych pismen
 numbers = {}
 
-with open("ukazka1.txt") as txtfile: # txtfile je lubovolna premenna s ktorov budem pracovat
+with open("ukazka1.txt") as txtfile: # txtfile je lubovolna premenna s ktorou budem pracovat
     for line in txtfile: # aby som precitala vsetky riadky
         key = line[0] # prvy znak v riadku
         number = float(line[1:].strip()) # alebo line[2:-1]

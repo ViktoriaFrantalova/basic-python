@@ -1,6 +1,8 @@
-# Na vstupu získate seznam čísel oddělených mezerou. Spočítejte a vypište minimum, maximum, průměr a medián. Vypište poslední číslo.
+# Hladanie cisel
 
-# Vyzkoušejte i tento vstup:
+# Na vstupe získate zoznam čísel oddelených medzerou. Spočítajte a vypíšte minimum, maximum, priemer a medián. Vypíšte posledné číslo.
+
+# Vyskoušajte i tento vstup:
 # 3 9 4 8 2 1
 
 # Sample Input:
@@ -14,7 +16,6 @@ moj_zoznam = input().split()
 dlzka = len(moj_zoznam) # pocet cisel v zozname
 for prvok in range(0, dlzka):
     moj_zoznam[prvok] = int(moj_zoznam[prvok])
-# iny zapis 1 2 3 4 8 9
 # moj_zoznam = [int(x) for x in moj_zoznam]    
 sortovany_zoznam = sorted(moj_zoznam, reverse=False) # [7, 10, 11, 13, 15]
 maxi = max(moj_zoznam) # maximalne cislo

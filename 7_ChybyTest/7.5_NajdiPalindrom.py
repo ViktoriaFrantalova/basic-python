@@ -1,6 +1,6 @@
 # Najdi palindrom
 
-# Napište definici funkce najdi_palindrom, která bere parametry veta a n. Funkce ve větě najde palindrom délky n a vrátí ho jako návratovou hodnotu. Pokud se ve větě žádný takový palindrom nenachází, funkce vyhodí chybu typu LookupError.  (Funkce bude ignorovat velikost písmen a mezery.)
+# Napíšte definíciu funkcie najdi_palindrom, ktorá berie parametre veta a n. Funkcia vo vete nájde palindróm dĺžky n a vráti ho ako návratovú hodnotu. Ak sa vo vete žiadny takýto palindróm nenachádza, funkcia vyhodí chybu typu LookupError. (Funkcia bude ignorovať veľkosť písmen a medzery.)
 
 # Sample Input 1:
 # 'Petr jede v kajaku', 5
@@ -15,7 +15,7 @@
 # 'kunananuk'
 
 # Sample Input 3:
-# 'Miluji Python', 3
+# 'Milujem Python', 3
 
 # Sample Output 3:
 # LookupError
@@ -36,6 +36,4 @@ def najdi_palindrom(veta: str, n: int) -> str:
         raise LookupError()
     return vysledok
 
-# vstup = input()
-# veta, n = vstup.split(', ')
-print(najdi_palindrom('Petr jede v kajaku', 5))
+print(najdi_palindrom('Kuna nanuk nemá ráda', 9))

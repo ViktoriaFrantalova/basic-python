@@ -1,6 +1,6 @@
-# Řadové číslovky - pokračování
+# Radové číslovky - pokračovanie
 
-# Napište definici funkce order_numbers, která jako argument přijme seznam přirozených čísel, seřadí je od největšího po nejmenší, a vypíše je na terminál spolu s jejich pořadím. V řešení můžete volat funkci ordinal (bude fungovat tak, jak byla zadána v předchozí úloze).
+# Napíšte definíciu funkcie order_numbers, ktorá ako argument prijme zoznam prirodzených čísel, zoradi ich od najväčšieho po najmenší, a vypíše ich na terminál spolu s ich poradím.
 
 from typing import List
 
@@ -16,7 +16,6 @@ def order_numbers(numbers: List[int]) -> None:
 	"""
 	zoradenie = sorted(numbers,reverse=True) # od najvacsieho po najmensie
 	for index in range(1,len(zoradenie)):
-		print(index)
 		if index < 20:
 			if index == 1:
 				pripona = 'st'
@@ -26,7 +25,7 @@ def order_numbers(numbers: List[int]) -> None:
 				pripona = 'rd'
 			else:
 				pripona = 'th'  
-		else:   #pripona for > 20
+		else:   #pripona pre > 20
 			desiatky = str(index)
 			desiatky = desiatky[-2]
 			jednotky = str(index)
@@ -42,8 +41,7 @@ def order_numbers(numbers: List[int]) -> None:
 					pripona = 'rd'
 				else:
 					pripona = 'th'
-		moj_index = index
-		moja_pripona = pripona
-	return (f'{moj_index}{moja_pripona}')
+
+	# return (f'{moj_index}{pripona} is {index}')
 
 print(order_numbers([10, 5, 30, 18, 2, 25]))

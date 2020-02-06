@@ -1,6 +1,6 @@
-# Převrácená hodnota
+# Prevrátená hodnota
 
-# Zadaný vstup se pokuste převést na číslo N, a vypočítejte pro něj převrácenou hodnotu 1/N . Pokud se to nepovede, vypište None.
+# Zadaný vstup sa pokúste previesť na číslo N, a vypočítajte pre neho prevrátenú hodnotu 1 / N. Ak sa to nepodarí, vypíšte None.
 
 # Sample Input 1:
 # 10

@@ -1,22 +1,22 @@
-# Tajná zpráva
+# Tajná správa
 
-# Napište definici funkce desifruj, která přijme zakódovanou větu (vše bude malými písmeny bez diakritiky a interpunkce). Vaším úkolem je přečíst jednotlivá slova pozpátku a vrátit celou dekódovanou zprávu.
+# Napíšte definíciu funkcie desifruj, ktorá prijme zakódovanú vetu (všetko bude malými písmenami bez diakritiky a interpunkcie). Vašou úlohou je prečítať jednotlivé slová pospiatky a vrátiť celú dekódované správu.
 
-def desifruj(tajna_zprava: str) -> str:
+def desifruj(tajna_sprava: str) -> str:
   """
-  >>> desifruj('ibil es im anaj')
-  'libi se mi jana'
-  >>> desifruj('medjup recev tip')
-  'pujdem vecer pit'
+  >>> desifruj('icap as im anaj')
+  'paci sa mi jana'
+  >>> desifruj('medjop recev tip')
+  'pojdem vecer pit'
   """
   nova_sprava = []
-  moja_sprava = tajna_zprava.split()
+  moja_sprava = tajna_sprava.split()
   for slovo in moja_sprava:
-    nove_slovo = slovo[::-1]
+    nove_slovo = slovo[::-1] # prepise slovo naopak
     nova_sprava.append(nove_slovo)
   vysledok = ''
   for slovo  in nova_sprava:
     vysledok = vysledok + ' ' +  slovo
   return vysledok
 
-print(desifruj('ibil es im anaj'))
+print(desifruj('medjop recev tip'))

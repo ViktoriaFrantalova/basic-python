@@ -1,19 +1,18 @@
-# SLOVNIK
-#Na vstupu získáte klice#hodnoty, vytvořte slovník a vyberte hodnotu pro klíč utery.
+# slovnik
+
+#Na vstupe získate kľuče# hodnoty, vytvorte slovník a vyberte hodnotu pre kľúč utorok.
 
 # Sample Input:
-
-# pondeli#rizek utery#smazak streda#halusky ctvrtek#gulas patek#smazak
+# pondelok#rizka utorok#smazak streda#halusky stvrtok#gulas piatok#smazak
 
 # Sample Output:
-
 # smazak
 
 vstup = input().split(' ')
 for i in vstup:
-    if('utery' in i):
+    if('utorok' in i):
         vstup = i.split('#')
         for j in vstup:
-            if('utery' not in j):
+            if('utorok' not in j):
                 print(j)
 

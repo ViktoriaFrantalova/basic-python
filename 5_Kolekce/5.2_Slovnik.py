@@ -1,4 +1,6 @@
-# Na vstupu získáte název barev a jejich počítačovou reprezentaci na přeskáčku. Vaším cílem je vytvořit slovník, který bude jako klíč obsahovat název barvy a jako hodnotu její reprezentaci. Vypište celý slovník
+# Uprava podla kluca
+
+# Na vstupe získate názov farieb a ich počítačovú reprezentáciu na preskáčku. Vaším cieľom je vytvoriť slovník, ktorý bude ako kľúč obsahovať názov farby a ako hodnotu jej reprezentáciu. Vypíšte celý slovník
 
 # Sample Input:
 # červená #FF0000 modrá #0000FF zelená #008000 žlutá #FFFF00
@@ -20,27 +22,27 @@ for i in range(len(vstup)):
 
 print('{' + farba + '}')
 
-# # Alternativní řešení:
+# # Alternatívne riešenie:
 # casti = input().split()
-# barvy = casti[0::2]
+# farby = casti[0::2]
 # kody = casti[1::2]
 # slovnik = {}
-# for barva, kod in zip(barvy, kody):
-#     slovnik[barva] = kod
+# for farba, kod in zip(farby, kody):
+#     slovnik[farba] = kod
 # print(slovnik)
 
-# # Alternativní řešení: 
+# # Alternatívne riešenie: 
 # casti = input().split()
-# barvy = casti[0::2]
+# farby = casti[0::2]
 # kody = casti[1::2]
-# slovnik = {barva: kod for barva, kod in zip(barvy, kody)}
+# slovnik = {farba: kod for farba, kod in zip(farby, kody)}
 # print(slovnik)
 
 # # Alternativní řešení 2:
 # casti = input().split()
 # slovnik = {}
 # for i in range(0, len(casti), 2):  # iterujeme ob 1
-#     barva = casti[i]
+#     farba = casti[i]
 #     kod = casti[i+1]
-#     slovnik[barva] = kod
+#     slovnik[farba] = kod
 # print(slovnik)

@@ -1,11 +1,11 @@
 # Hledame kopie
 
-# Na vstupu získáte několik slov, z nichž dvě jsou stejná. Vypište, o které slovo se jedná a na kterých dvou pozicích se nachází (pozice počítáme od nuly).
+# Na vstupe získate niekoľko slov, z ktorých dve sú rovnaké. Vypíšte, o ktore slovo sa jedná a na ktorých dvoch pozíciách sa nachádza (pozícia počítame od nuly).
 
-# Hint: Jde to i bez použití funkcí jako find nebo index. Stačí využít vhodný typ kolekce.
+# Hint: Ide to aj bez použitia funkcií ako find alebo index. Stačí využiť vhodný typ kolekcie.
 
 # Sample Input:
-# košík bouda kokos olovo mango kokos užovka karate
+# košík bunda kokos olovo mango kokos užovka karate
 
 # Sample Output:
 # kokos 2 5

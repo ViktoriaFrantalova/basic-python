@@ -1,11 +1,11 @@
-# Seznam čísel
+# Zoznam čísel
 
-# Napište definici funkce cisla, která přijímá řetězec. Řetězec rozdělte podle ";" a prvky, které nelzou převést na číslo, ignorujte. Návratovou hodnotou funkce bude seznam čísel (float).
+# Napíšte definíciu funkcie cisla, ktorá prijíma reťazec. Reťazec rozdeľte podľa ";" a prvky, ktoré nemožno previesť na číslo, ignorujte. Návratovú hodnotou funkcie bude zoznam čísel (float).
 
-# Vaše funkce bude volána takto:
+# Vaša funkcia bude volaná takto:
 
-# retezec = intput()
-# print(cisla(retezec))
+# retezec = input()
+# print(cisla(retazec))
 
 # Sample Input:
 # 8;1;2.2;_;5.3;9.8
@@ -15,16 +15,16 @@
 
 from typing import List
 
-def cisla(retezec: str) -> List[float]:
-    retezec = retezec.split(';')
+def cisla(retazec: str) -> List[float]:
+    retazec = retazec.split(';')
     zoznam = []
-    for i in range(0,len(retezec)):
+    for i in range(0,len(retazec)):
         try:
-            vstup = float(retezec[i])
+            vstup = float(retazec[i])
             zoznam.append(vstup)
         except ValueError:
             i = i + 1
     return zoznam
 
-retezec = input()
-print(cisla(retezec))
+retazec = input()
+print(cisla(retazec))

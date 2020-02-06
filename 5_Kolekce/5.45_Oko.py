@@ -1,10 +1,10 @@
 # Oko
 
-# Ve hře Oko (Blackjack) je cílem získat co největší počet bodů, ne však víc než 21. Přitom karty 2 až 10 mají při svou vlastní hodnotu; karty J, Q, K (spodek, královna, král) mají hodnotu 10; eso (A) má hodnotu 11.
+# V hre Oko (Blackjack) je cieľom získať čo najväčší počet bodov, nie však viac ako 21. Pritom karty 2 až 10 majú pri svoju vlastnú hodnotu; karty J, Q, K (spodok, kráľovná, kráľ) majú hodnotu 10; eso (A) má hodnotu 11.
 
-# Např. mám-li na ruce karty 3, 5, K, 2, pak mám 3+5+10+2 = 20 bodů. Mám-li na ruce karty 6, J, A, pak mám 0 bodů, protože 6+10+11 = 27, což je víc než 21.
+# Napr. ak mám na ruke karty 3, 5, K, 2, potom mám 3 + 5 + 10 + 2 = 20 bodov. Ak mám na ruke karty 6, J, A, potom mám 0 bodov, pretože 6 + 10 + 11 = 27, čo je viac ako 21.
 
-# Na vstupu získáte posloupnost karet oddělených čárkami. Spočítejte, za kolik bodů se tyto karty počítají, a výsledek vypište na výstup.
+# Na vstupe získate postupnosť kariet oddelených čiarkami. Spočítajte, za koľko bodov sa tieto karty počítajú, a výsledok vypíšte na výstup.
 
 # input: 2, 3, 5, K
 # output: 20

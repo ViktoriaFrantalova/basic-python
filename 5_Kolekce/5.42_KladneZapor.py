@@ -1,13 +1,11 @@
-# Lichá a sudá
+# Nepárne a párne
 
-# Na vstupu získate čísla, ty rozdělte na sudá a lichá. Prvně vypište lichá, pak sudá.
+# Na vstupe získate čísla, tie rozdeľte na párne a nepárne. Najprv vypíšte nepárne, potom párne.
 
 # Sample Input:
-
 # 8 11 4 3 7 2 6 13 5 12
 
 # Sample Output:
-
 # 11 3 7 13 5
 # 8 4 2 6 12
 

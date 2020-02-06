@@ -1,8 +1,8 @@
 # KOSTKY
 
-# Na vstupu získáte přirozené číslo. Najděte všechny způsoby, jak lze toto číslo získat při hodu dvěma hracími kostkami.
+# Na vstupe získate prirodzené číslo. Nájdite všetky spôsoby, ako možno toto číslo získať pri hode dvoma hracími kockami.
 
-# Výsledek vypište jako seznam dvojic. Dvojice vypisujte ve tvaru (menší, větší) a seřaďte je podle prvního čísla. Pokud zadané číslo nelze získat při hodu dvěma kostkami, vraťte prostě prázdný seznam.
+# Výsledok vypíšte ako zoznam dvojíc. Dvojica vypisujte v tvare (menšie, väčšie) a zoraďte ich podľa prvého čísla. Pokiaľ zadané číslo nie je možné získať pri hode dvoma kockami, vráťte proste prázdny zoznam.
 
 # Sample Input:
 # 8

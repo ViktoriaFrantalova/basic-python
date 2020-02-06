@@ -1,6 +1,6 @@
 # Delicka
 
-# Napište funkci delicka, která bude přijímat parameter text a volitelný parameter separator (defaultní separátor = ';'). Funkce rozdělí text podle parametru separator, převede první dva prvky na reálná čísla a vrátí jejich podíl.
+# Napíšte funkciu Delicka, ktorá bude prijímať parameter text a voliteľný parameter separator (defaultný separátor = ';'). Rozdeľuje text podľa parametra separator, prevedie prvé dva prvky na reálne čísla a vráti ich podiel.
 
 # Sample Input 1:
 # delicka('1;2;haha')
@@ -18,13 +18,13 @@ def delicka(text: str, separator: str = ';') -> float:
     prvy, druhy, *_ = text.split(separator)
     return float(prvy) / float(druhy)
 
-print(input())
+print(delicka('1;2;haha'))
 
-# # Alternativní řešení:
+# # Alternatívne riešenie:
 # def delicka(text: str, separator: str = ';') -> float:
 #     prvky = text.split(separator)
 #     return float(prvky[0]) / float(prvky[1])
 
-# print(eval(input()))  # Neměňte! Do not change!
+# print(input())
 
 

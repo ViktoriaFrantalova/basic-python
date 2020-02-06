@@ -1,28 +1,27 @@
 # Společná písmena
 
-# Napište definici funkce spolecna_pismena, která přijímá seznam řetězců. Funkce vrátí seznam znaků, které se vyskytují v každém z těchto řetězců. Seznam bude seřazen podle abecedy. Pokud bude funkce volána na prázdném seznamu, vrátí prázdný seznam.
+# Napíšte definíciu funkcie spolecna_pismena, ktorá prijíma zoznam reťazcov. Funkcia vráti zoznam znakov, ktoré sa vyskytujú v každom z týchto reťazcov. Zoznam bude zoradený podľa abecedy. Pokiaľ bude funkcia volaná na prázdnom zozname, vráti prázdny zoznam.
 
 # Sample Input:
-# spolecna_pismena(['mrkev', 'krkavec', 'krabice'])
+# spolecna_pismena(['mrkva', 'krkavec', 'krabice'])
 
 # Sample Output:
 # ['e', 'k', 'r']
 
 from typing import List
 
-def spolecna_pismena(retezce: List[str]) -> List[str]:
-    if(len(retezce) == 0):
-        return retezce
-    najkratsi_vstup = retezce[0]
-    for i in range(0, len(retezce)):
-        if(len(najkratsi_vstup) < len(retezce[0])):
-            najkratsi_vstup = retezce[0]                  
-    retezce.remove(najkratsi_vstup)
-    pole_bez_najkratsieho_vstupu = retezce
+def spolecna_pismena(retazce: List[str]) -> List[str]:
+    if(len(retazce) == 0):
+        return retazce
+    najkratsi_vstup = retazce[0]
+    for i in range(0, len(retazce)):
+        if(len(najkratsi_vstup) < len(retazce[0])):
+            najkratsi_vstup = retazce[0]                  
+    retazce.remove(najkratsi_vstup)
+    pole_bez_najkratsieho_vstupu = retazce
 
     pole_nerovnakych_znakov = []
-    for i in range(0, len(pole_bez_najkratsieho_vstupu)):
-        predosli_znak = najkratsi_vstup[0] 
+    for i in range(0, len(pole_bez_najkratsieho_vstupu)): 
         for j in range(0, len(najkratsi_vstup)):
             if (
                 najkratsi_vstup[j] not in pole_bez_najkratsieho_vstupu[i] and
@@ -40,4 +39,4 @@ def spolecna_pismena(retezce: List[str]) -> List[str]:
     vysledok.sort()
     return vysledok
     
-print(spolecna_pismena(['mrkev', 'krkavec', 'krabice']))
+print(spolecna_pismena(['mrkva', 'krkavec', 'krabice']))

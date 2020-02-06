@@ -6,12 +6,12 @@
 * na viac riadkov => """..."""
 
 ```py
-napeti = 5  # V s t u p n i n a p e t i [ V ]
-def pocitej_odpor(napeti, proud): 
+napatie = 5  # V s t u p n e n a p a t i e [ V ]
+def pocitaj_odpor(napatie, prud): 
 """ 
 vypocet podla Ohmovho zakona [ V ] 
 """
-odpor = napeti / proud     
+odpor = napatie / prud     
 return odpor 
 ``` 
 # Premenne
@@ -20,7 +20,7 @@ return odpor
 ```python
 roky, polomer_kruhu, x1, x2, y...
 ```
-* hodnotu priradam pomocou `=`
+* hodnotu priratam pomocou `=`
 ```python
 a = 22
 b = 10
@@ -55,7 +55,7 @@ print("Hello") # vypise sa Hello
 abs(-5) # vypise sa 5, ako absolutna hodnota
 ```
 
-* patria sem aj knihovni - `modules` => subor konstant, premennych a dalsich funkcii
+* patria sem aj knihovne - `modules` => subor konstant, premennych a dalsich funkcii
 `Moduly` - nacitam pomocou `import`
 
 ```python
@@ -63,6 +63,8 @@ import math
 math.pi # vypise sa mi 3.14159... 
 
 math.sqrt(2) # vypise sa odmocnina = 1.14142...
+
+math.pow(2, 2) # vypise sa mocnina = 4.0
 
 math.log(100) # prirodzeny logaritmus...
 
@@ -118,7 +120,7 @@ def block3():
 ```python
 2 ** 8 # vypise sa 256
 
-16 ** 0.5 # vypise sa 4.0
+16 ** 0.5 # vypise sa 4.0 (odmocnina z 2)
 ```
 * poradie matematickych funkcii je ako v matematiken
 
@@ -144,9 +146,9 @@ x == 5  # je x rovne 5
 '''Hello'''
 """Hello"""
 
-retezec = """dlouhy retezec
-pres hodne radku"""
-print(retezec) # dlouhy retezec pres hodne radku
+retazec = """dlhy retazec
+cez viacero riadkov"""
+print(retazec) # dlhy retazec cez viacero riadkov
 
 print("I'm sorry.") # I'm sorry.
 ```
@@ -163,23 +165,23 @@ retazec = 'moj string'
 retazec # vypise sa: 'moj string'
 ```
 # Specialne znaky a escapovanie
-- zapisujeme pomocou spatneho lomitka `\`
+- zapisujeme pomocou nespravneho lomitka `\`
 - Naj:
   - `\n` novy riadok 
   - `\t` tabulator
   - `\'` apostrof
   - `\"` uvodzovky
-  - `\\` spatne lomitko
+  - `\\` nespravne lomitko
 
-# Operzcie s retcami
-- funkcia `len` - zisti dlzku retazca
+# Operacie s retazcami
+- funkcia `len()` - zisti dlzku retazca
 ```python
 len('ahoj') # 4
 len('Dobry den. \n') # 11
 ```
 - operator `+` -> spojovanie retazca
 ```python
-'dvě' + ' ' + 'slova' # 'dvě slova'
+'dve' + ' ' + 'slova' # 'dve slova'
 a = 2
 b = 'slova'
 str(a) + ' ' + b # '2 slova'
@@ -191,40 +193,40 @@ str(a) + ' ' + b # '2 slova'
 - volanie znakovej -> pomocou [] a indexu
 - zaporne indexi sprava od -1  
 ```python
-retezec = 'Hello World'
-retezec[0] # 'H'
-retezec[1] # 'e'
-retezec[-1] # 'd'
-retezec[-2] # 'l'
+retazec = 'Hello World'
+retazec[0] # 'H'
+retazec[1] # 'e'
+retazec[-1] # 'd'
+retazec[-2] # 'l'
 ```
 - podretazec -> zapisujem [od:do]
 ```python
-retezec = 'Hello World'
-retezec[2:5] # 'llo'
-retezec[-4:] # 'orld'
-retezec[:4] # 'Hell'
-retezec[:] # 'Hello World'
+retazec = 'Hello World'
+retazec[2:5] # 'llo'
+retazec[-4:] # 'orld'
+retazec[:4] # 'Hell'
+retazec[:] # 'Hello World'
 ```
 - preskakovanie znaku [od:do:krok]
 - vieme vynechat od, do alebo obe
 - obrateny retazec - krok = -1
 ```python
-retezec = '0123456789'
-retezec[1:8:2] # '1357'
+retazec = '0123456789'
+retazec[1:8:2] # '1357'
 
-retezec[::3] # '0369'
+retazec[::3] # '0369'
 
-retezec[::-1] # '9876543210'
+retazec[::-1] # '9876543210'
 ```
 # Retazec nemozno upravovat!
 ```python
-retezec = 'Hello World'
-retezec[6] = 'X' # error
+retazec = 'Hello World'
+retazec[6] = 'X' # error
 
-retezec = retezec[:6] + 'X' + retezec[7:]
-retezec # 'Hello Xorld'
+retazec = retazec[:6] + 'X' + retazec[7:]
+retazec # 'Hello Xorld'
 ```
-- hladanie podretazcov `(substrings)`-> operatory in a not in testuju ci je/nie je ihla v kope sena
+- hladanie podretazcov `(substrings)`-> operatory `in` a `not in` testuju ci je/nie je ihla v kope sena
 ```python
 '123' in 'ABCDefgh1234' # True
 '456' in 'ABCDefgh1234' # False
@@ -234,25 +236,25 @@ retezec # 'Hello Xorld'
 - METODY: 
   * metoda `count()`- pocitam pocet
 ```python
-retezec = 'Nesnese se se sestrou.'
-retezec.count('se') # 4
+retazec = 'Neznesie sa so sestrou.'
+retazec.count('sa') # 4
 
-'se'.count(retezec) # 0   
+'sa'.count(retazec) # 0   
 ```
   * metoda `find()`- hladam index
 ```python
-retezec = 'Nesnese se se sestrou.'
-retezec.find('se') # 5 
+retazec = 'Neznesie sa so sestrou.'
+retazec.find('sa') # 5 
 ```
   * metoda `startswith()`- hlada iba na zaciatku
   * metoda `endswith()`- hlada iba na konci
 ```python
-retezec = 'Nesnese se se sestrou.'
-retezec.startswith('se') # False
+retazec = 'Neznesie sa so sestrou.'
+retazec.startswith('sa') # False
 
-retezec.startswith('Nes') # True
+retazec.startswith('Nez') # True
 
-retezec.endswith('.') # True
+retazec.endswith('.') # True
 ```
   * metoda `replace()`- nahradi stary podretazec za novy
     * treti parameter nastavi max pocet nahradeni
@@ -264,10 +266,10 @@ retezec.endswith('.') # True
   * metoda `split()`-rozdeli retazec podla zadaneho separatoru
     * pokial nie je separator nastaveny beru sa defaultne zhluky bielych znakov(medzera, \t, \n)
 ```python
-retezec = 'dvě slova \t tři celá slova'
-retezec.split() # ['dvě', 'slova', 'tři', 'celá', 'slova']
+retezec = 'dve slova \t tri cele slova'
+retezec.split() # ['dve', 'slova', 'tri', 'cele', 'slova']
 
-retezec.split(' ') # ['dvě', '', 'slova', '\t', 'tři', 'celá', 'slova']
+retezec.split(' ') # ['dve', '', 'slova', '\t', 'tri', 'cele', 'slova']
 ```
 - odstranenie bielych znakov na okrajoch
   - metoda `strip()` - odstranenie z oboch koncov retazca
@@ -281,16 +283,16 @@ retezec.split(' ') # ['dvě', '', 'slova', '\t', 'tři', 'celá', 'slova']
   - metoda `capitalize()` - prve pismeno velke v prvom slove
   - metoda `title()` - prve pismeno velke v kazdom slove
 ```python
-retezec = 'ABCD efgh Ijkl'
-retezec.upper() # 'ABCD EFGH IJKL'
+retazec = 'ABCD efgh Ijkl'
+retazec.upper() # 'ABCD EFGH IJKL'
 
-retezec.lower() # 'abcd efgh ijkl'
+retazec.lower() # 'abcd efgh ijkl'
 
-retezec.swapcase() # 'abcd EFGH iJKL'
+retazec.swapcase() # 'abcd EFGH iJKL'
 
-retezec.capitalize() # 'Abcd efgh ijkl'
+retazec.capitalize() # 'Abcd efgh ijkl'
 
-retezec.title() # 'Abcd Efgh Ijkl'
+retazec.title() # 'Abcd Efgh Ijkl'
 ```
 # Logicke operacie 
 - `isalpha()` - obs iba pismena
@@ -307,37 +309,37 @@ retezec.title() # 'Abcd Efgh Ijkl'
 
 'a \t\n\r'.isspace() # False
 ```
-- `isupper()`, `islower()`-su vsetky psmena velke/male
+- `isupper()`, `islower()`-su vsetky pismena velke/male
 ```python
-'Mám 5 jablíček.'.islower() # False
+'Mám 5 jablk.'.islower() # False
 
-'mám 5 jablíček.'.islower() # True
+'mám 5 jablk.'.islower() # True
 
-'A Je To Tady'.istitle() # True
+'A Je To Tu'.istitle() # True
 ```
 # Formatovanie retazca
 1. metoda `format()` - mame sablonu do ktorej umiestnujeme znacku `{}`, kt sa nahradia hodnotamy y parametru funkcie
 ```python
-sablona = 'Jmenuji se {} a je mi {} let.'
-sablona.format('Anička', 5) # 'Jmenuji se Anička a je mi 5 let.'
+sablona = 'Volam sa {} a mam {} rokov.'
+sablona.format('Anička', 5) # 'Volam sa Anička a mam 5 rokov.'
 ```
    - znacky mozem indexovation a aj pomenovat
 ```python
-sablona = 'Jmenuji se {}, je mi {} let, líbí se mi {}.'
-sablona.format('Anička', 5, 'Prasátko Peppa')
-# 'Jmenuji se Anička, je mi 5 let, líbí se mi Prasátko Peppa.'
+sablona = 'Volam sa {}, mam {} rokov, paci sa mi {}.'
+sablona.format('Anička', 5, 'Prasiatko Peppa')
+# 'Volam sa Anička, mam 5 rokov, paci sa mi Prasiatko Peppa.'
 
-sablona = 'Jmenuji se {2}, je mi {1} let, líbí se mi {0}.'
-sablona.format('Anička', 5, 'Prasátko Peppa')
-# 'Jmenuji se Prasátko Peppa, je mi 5 let, líbí se mi Anička.'
+sablona = 'Volam sa {2}, mam {1} rokov, paci sa mi {0}.'
+sablona.format('Anička', 5, 'Prasiatko Peppa')
+# 'Volam sa Prasiatko Peppa, mam 5 rokov, paci sa mi Anička.'
 
-sablona = 'Jmenuji se {2}, je mi {0} let, líbí se mi {1}.'
-sablona.format('Anička', 5, 'Prasátko Peppa')
-# 'Jmenuji se Prasátko Peppa, je mi Anička let, líbí se mi 5.'
+sablona = 'Volam sa {2}, mam {0} rokov, paci sa mi {1}.'
+sablona.format('Anička', 5, 'Prasiatko Peppa')
+# 'Volam sa Prasiatko Peppa, mam Anička rokov, paci sa mi 5.'
 
-sablona = 'Jmenuji se {jmeno}, je mi {vek} let, líbí se mi {co}.'
-sablona.format(vek=5, co='Prasátko Peppa', jmeno='Anička')
-# 'Jmenuji se Anička, je mi 5 let, líbí se mi Prasátko Peppa.'
+sablona = 'Volam sa {jmeno}, mam {vek} rokov, paci sa mi {co}.'
+sablona.format(vek=5, co='Prasiatko Peppa', jmeno='Anička')
+# 'Volam sa Anička, mam 5 rokov, paci sa mi Prasiatko Peppa.'
 ```
 TYPY:
 - vo znacke za dvojbodkov definujeme:
@@ -356,29 +358,29 @@ TYPY:
 2. `f-string` - funguje podobne ako `format` ale znacky musia byt pomenovane
 - hodnoty sa beru priamo z premennych v prostredi
 ```python
-jmeno = 'Anička'
+meno = 'Anička'
 vek = 5
-co = 'Prasátko Peppa'
+co = 'Prasiatko Peppa'
 
-f'Jmenuji se {jmeno}, je mi {vek:.2f} let, líbí se mi {co:^25}.'
-# 'Jmenuji se Anička, je mi 5.00 let, líbí se mi      Prasátko Peppa     .'
+f'Volam sa {meno}, je mi {vek:.2f} rokov, paci sa mi {co:^25}.'
+# 'Volam sa Anička, je mi 5.00 rokov, paci sa mi      Prasiatko Peppa     .'
 ```
 # VSTUP (input) a VYSTUP (output)
-- funkcia `input` - sluzi na predanie info. do beziaceho programu
+- funkcia `input()` - sluzi na predanie info. do beziaceho programu
   - uzivatelovi vypise hlasku, vysledok je retazec, kt. zadal uzivatel
 ```python
-jmeno = input('Jak se jmenuješ? ')
-vek = input('Kolik ti je let? ')
-co = input('Co se ti líbí? ')
-print(f'Jmenuješ se {jmeno}, je ti {vek} let, líbí se ti {co}.')
+meno = input('Ako sa volas? ')
+vek = input('Kolko mas rokov? ')
+co = input('Co sa ti paci? ')
+print(f'Volas sa {meno}, je ti {vek} rokov, pacia sa ti {co}.')
 
-#Jak se jmenuješ? Honza
-#Kolik ti je let? 7
-#Co se ti líbí? Pokémoni
-#Jmenuješ se Honza, je ti 7 let, líbí se ti Pokémoni.
+#Ako sa volas? Honza
+#Kolko mas rokov? 7
+#Co sa ti paci? Pokémoni
+#Volas sa Honza, je ti 7 rokov, pacia sa ti Pokémoni.
 ```
-- funkcia `output` teda `print` - sluzi na predanie info. von y beziaceho programu
-  - vsetky parametre premeni na retazec a vypise ich
+- funkcia `output` teda `print` - sluzi na predanie info. von z beziaceho programu
+  - vsetky parametre premeny na retazec a vypise ich
 ```python
 print('ahoj', 5, True) # ahoj 5 True
 ```
@@ -408,8 +410,8 @@ print(4, 5, 6, sep='|', end='.')
 ```
 # Reprezentacia znakov v pocitaci
 - kazdy znak je v znakovej sade reprezentovany svojim ordinalnym cislom
-- funkcia `ord` zistuje ordinalne cislo znaku
-- opakom je funkcia `chr`, ktora vracia znak pre zadane ordinalne cislo
+- funkcia `ord()` zistuje ordinalne cislo znaku
+- opakom je funkcia `chr()`, ktora vracia znak pre zadane ordinalne cislo
 ```python
 ord('A') # 65
 
@@ -428,7 +430,7 @@ chr(367) # 'ů'
 print('\x41 \u0041 \U00000041 \xE1 \N{pound sign}')
 # A A A á £
 ```
-## 3.PODMYNKY A CYKLY
+## 3.PODMIENKY A CYKLY
 
 # Logicke operatory
 - `and` - "a" (logicky sucin)
@@ -467,7 +469,7 @@ None or 1 # 1
 9 + 3 > 11 and 5 != 6 or not True # True
 ```
 # Bloky
-- casti kodu, kt sa vykonavaju v konkretnych situaciach
+- casti kodu, kt. sa vykonavaju v konkretnych situaciach
 - zacinaju na predchadzajucom riadku dvojbodkou `:`
 - su odsadene urcitym poctom medzier/tabulatorov
 - bloky mozu byt aj vnorene
@@ -521,7 +523,7 @@ else:
 - `if` 
 ```python
 if podminka:
-    udelej_neco
+    urob_nieco
 ```
 ```python
 x = 15
@@ -536,10 +538,10 @@ print('Koniec') # Koniec
 ```
 - `if.. else`
 ```python
-if podminka:
-    udelej_neco
+if podmienka:
+    urob_nieco
 else:
-    udelej_neco_jine
+    urob_nieco_ine
 ```
 ```python
 x = 15
@@ -559,14 +561,14 @@ print('Koniec') # Koniec
 - `if... elif... else`
 - moze byt aj viacej podmienok s `elif`
 ```python
-if podminka1:
-    udelej_neco_1
-elif podminka2:
-    udelej_neco_2
+if podmienka1:
+    urob_nieco_1
+elif podmienka2:
+    urob_nieco_2
 else:
-    udelej_neco_jine
+    urob_nieco_jine
 ```
-- vykona sa vzdyiba prvy blok v kt. je splnena podmianka
+- vykona sa vzdy iba prvy blok v kt. je splnena podmianka
 ```python
 x = 8
 if x > 10:
@@ -580,21 +582,21 @@ print('Koniec') # Koniec
 # Cykly  
 - cyklus `while` 
 ```python
-while podminka:
-    udelej_neco
+while podmienka:
+    urob_nieco
 ```
-- jedno prevedenie udelej_neco sa nazyva jedna iterace 
+- jedno prevedenie urob_nieco sa nazyva jedna iterace 
 - treba davat pozor na zacyklenie
 ```python
-slovo = 'ozvěna'
+slovo = 'ozvena'
 while len(slovo) > 0:
     print(slovo)
     slovo = slovo[1:]
 print('Konec')
-# ozvěna
-# zvěna
-# věna
-# ěna
+# ozvena
+# zvena
+# vena
+# ena
 # na
 # a
 # Konec
@@ -603,14 +605,14 @@ print('Konec')
 - objekty, kt. vieme prechadzat po prvkoch (iterovat)
 - napr. 
   - retazce: 'Ahoj' ---> 'A', 'h', 'o', 'j'
-  - zoznamy: 'Dobrý den všem'.split() ---> 'Dobrý', 'den', 'všem'
+  - zoznamy: 'Dobrý den vsetkym'.split() ---> 'Dobrý', 'den', 'vsetkym'
 - nevieme iterovat: 5, True, 3.14, print ... 
 
 - cyklus `for` 
 - určeny na iterovanie
 ```python
 for i in iterable:
-    udelej_neco(i)
+    urob_nieco(i)
 ```
 ```python
 for znak in 'abcd':
@@ -620,12 +622,12 @@ for znak in 'abcd':
 # c!
 # d!
 
-for slovo in 'Toto je hezká věta'.split():
+for slovo in 'Toto je pekna veta'.split():
     print(slovo, len(slovo))
 # Toto 4
 # je 2
-# hezká 5
-# věta 4
+# pekna 5
+# veta 4
 ```
 # Rozsah, funckia `range()`
 - reprezentuje postupnost cisel
@@ -663,7 +665,7 @@ range(3, 10) ---> 3, 4, 5, 6, 7, 8, 9
 range(3, 10, 2) ---> 3, 5, 7, 9
 
 - vsetky argumenty musia byt `int` !!!  
-- `start` je zahrnuty v rozsahu ale `end` nie
+- `start` je zahrnuty v rozsahu ale `end` nie je
 
 ```python
 for i in range(-5, 0):
@@ -703,29 +705,29 @@ print('Konec')
 # Riadenie cyklu `for` pomocou `break` a `else` 
 - pokial cyklus prebehol cely(neukoncil sa pomocou `break`), spusti sa blok `else`
 ```python
-for prvek in iterable:
-    delej_neco ...
+for prvok in iterable:
+    delej_nieco ...
     break
     ...
 else:
-    udelej_neco_dalsi
+    urob_nieco_dalsie
 ```
 ```python
 for i in range(30, 35):
     print(i)
     if i % 11 == 0:
-        print(f'Nalezen násobek jedenácti: {i}')
+        print(f'Najdeni nasobok cisla jedenast: {i}')
         break
 else:
-    print('Žádné číslo dělitelné 11 nenalezeno.')
+    print('Žiadne cislo delitelne 11 sa nenaslo.')
 # 30
 # 31
 # 32
 # 33
-# Nalezen násobek jedenácti: 33
+# Najdeni nasobok cisla jedenast: 33
 ```
 ## 4.KOLEKCE  
-- objekty, kt. obs. strukturne viac honot, vsetky kolekce su iterovane objekty 
+- objekty, kt. obs. strukturne viac hodnot, vsetky kolekce su iterovane objekty 
 - zakladne kolekce: 
   - `list` (zoznam) - upravovatelny zoznam zoradenich hodnot, [1, 5, 1]
   - `tuple` (n-tice) - neupraveny subor zoradenich hodnot so specifickym vyznamom(nechceme menit), (1, 5, 1)
@@ -743,19 +745,19 @@ else:
 # Zoznam `list`
 - vytvorime ho pomocou:
   - [] z jednotlivych prvkov 
-  - funkcii `list` y ineho iterovatelneho objektu
+  - funkcii `list` z ineho iterovatelneho objektu
 
-- vieme ho modifikovat naroydiel od retazcov teda: menit, pridavat, odoberat prvky
+- vieme ho modifikovat narozdiel od retazcov teda: menit, pridavat, odoberat prvky
 - je to najcastejsie pouzivany typ kolekce
 - na poradi zalezi !!!
 - pouzitie: 
   -  ked mame viac obdobnych objektov ako zoznam cisel, zoznam studentov
 ```python
-seznam = [1, 2, 3, 4, 5]
-seznam # [1, 2, 3, 4, 5]
+zoznam = [1, 2, 3, 4, 5]
+zoznam # [1, 2, 3, 4, 5]
 
-seznam = []
-seznam # []
+zoznam = []
+zoznam # []
 
 pismena = list('hello')
 pismena # ['h', 'e', 'l', 'l', 'o']
@@ -768,14 +770,14 @@ cisla # [0, 1, 2, 3, 4]
 ```
 - Indexovanie
 ```python
-seznam = [1, 2, 3, 4, 5]
-seznam[2] # 3
+zoznam = [1, 2, 3, 4, 5]
+zoznam[2] # 3
 
-seznam[-1] # 5
+zoznam[-1] # 5
 
-seznam[1:4] # [2, 3, 4]
+zoznam[1:4] # [2, 3, 4]
 
-seznam[:-2] # [1, 2, 3]
+zoznam[:-2] # [1, 2, 3]
 ```
 
 # Operacie so zoznamami
@@ -821,27 +823,27 @@ any([True, True, True, False]) # True
 
 # Modifikacia zoznamu
 ```python
-seznam # [1, 2, 3, 4, 5]
+zoznam # [1, 2, 3, 4, 5]
 
-seznam[2] = 8
-seznam # [1, 2, 8, 4, 5]
+zoznam[2] = 8
+zoznam # [1, 2, 8, 4, 5]
 ```
 - Pridavanie prvkov
   - metoda `appender(prvok)` - prida novy prvok na koniec
   - metoda `insert(index, prvok)` - prida prvok na dany index
   - metoda `extend(iterable)` - prida na koniec zoznamu vsetky prvky z ineho iterovatelneho objektu
 ```python
-seznam = [1, 2, 3]
-seznam # [1, 2, 3]
+zoznam = [1, 2, 3]
+zoznam # [1, 2, 3]
 
-seznam.append(4)
-seznam # [1, 2, 3, 4]
+zoznam.append(4)
+zoznam # [1, 2, 3, 4]
 
-seznam.insert(2, 10)
-seznam # [1, 2, 10, 3, 4]
+zoznam.insert(2, 10)
+zoznam # [1, 2, 10, 3, 4]
 
-seznam.extend([1, 2, 3])
-seznam # [1, 2, 10, 3, 4, 1, 2, 3]
+zoznam.extend([1, 2, 3])
+zoznam # [1, 2, 10, 3, 4, 1, 2, 3]
 ```
 
 - Odoberanie prvkov
@@ -850,50 +852,50 @@ seznam # [1, 2, 10, 3, 4, 1, 2, 3]
   - metoda `remove(prvok)`- odobere prvy vyskyt prvku
   - metoda `del` - odstrani prvok
 ```python
-seznam # [1, 2, 10, 3, 4, 1, 2, 3]
+zoznam # [1, 2, 10, 3, 4, 1, 2, 3]
 
-x = seznam.pop() # Odstraň a vrať poslední prvek
-print(seznam, x) # [1, 2, 10, 3, 4, 1, 2] 3
+x = zoznam.pop() # Odstraň a vrať poslední prvek
+print(zoznam, x) # [1, 2, 10, 3, 4, 1, 2] 3
 
-x = seznam.pop(2) # Odstraň a vrať druhý prvek
-print(seznam, x) # [1, 2, 3, 4, 1, 2] 10
+x = zoznam.pop(2) # Odstraň a vrať druhý prvek
+print(zoznam, x) # [1, 2, 3, 4, 1, 2] 10
 
-seznam # [1, 2, 3, 4, 1, 2]
+zoznam # [1, 2, 3, 4, 1, 2]
 
-seznam.remove(2) # Odstraň prvek 2
-seznam # [1, 3, 4, 1, 2]
+zoznam.remove(2) # Odstraň prvek 2
+zoznam # [1, 3, 4, 1, 2]
 ```
 
 - Zmena smeru `reverse()`
 ```python
-seznam # [1, 3, 4, 1, 2]
+zoznam # [1, 3, 4, 1, 2]
 
-seznam.reverse()
-seznam # [2, 1, 4, 3, 1]
+zoznam.reverse()
+zoznam # [2, 1, 4, 3, 1]
 
 del sesznam[2]
-seznam # [1, 3, 1, 2]
+zoznam # [1, 3, 1, 2]
 ```
 - Usporiadanie
   - metoda `sort()` s volitelným parametrom `reverse`
 ```python
-seznam = [1, 4, 2, -3, 5, 0]
-seznam.sort()
-seznam # [-3, 0, 1, 2, 4, 5]
+zoznam = [1, 4, 2, -3, 5, 0]
+zoznam.sort()
+zoznam # [-3, 0, 1, 2, 4, 5]
 
-seznam.sort(reverse=True)
-seznam # [5, 4, 2, 1, 0, -3]
+zoznam.sort(reverse=True)
+zoznam # [5, 4, 2, 1, 0, -3]
 
-seznam = ['pes', 'kočka', 'slon']
-seznam.sort()
-seznam # ['kočka', 'pes', 'slon']
+zoznam = ['pes', 'mačka', 'slon']
+zoznam.sort()
+zoznam # ['mačka', 'pes', 'slon']
 
-seznam.sort(key=len)
-seznam # ['pes', 'slon', 'kočka']
+zoznam.sort(key=len)
+zoznam # ['pes', 'slon', 'mačka']
 ```
 # n-tice `tuple`
 - vytvorime ho pomocou:
-  - () z jednotlivych prvkov 
+  - `()` z jednotlivych prvkov 
   - funkciou `tuple` z ineho iterovatelneho objektu
 - nevieme modifikovat
 - pouzivam ak maju prvky svoj specificky vyznam a nie je nutne modifikovat prvky => ulice, cislo, mesto
@@ -902,10 +904,10 @@ seznam # ['pes', 'slon', 'kočka']
 adresa = ('Vlhká', 5, 'Brno')
 adresa # ('Vlhká', 5, 'Brno')
 
-seznam # ['pes', 'slon', 'kočka']
+zoznam # ['pes', 'slon', 'mačka']
 
-ntice = tuple(seznam)
-ntice # ('pes', 'slon', 'kočka')
+ntice = tuple(zoznam)
+ntice # ('pes', 'slon', 'mačka')
 ```
 - "Nultice" => empty tuple
 ```python
@@ -922,7 +924,7 @@ cislo = (5)
 cislo # 5
 ```
 
-- Pozor na roydiel medzi "jedinci" a samotnym prvkom
+- Pozor na rozdiel medzi "jedincami" a samotnym prvkom
 ```python
 (5,) == 5 # False
 ```
@@ -944,7 +946,7 @@ cisla * 3 # (1, 2, 3, 1, 2, 3, 1, 2, 3)
 
 # Mnozina `set`
 - vytvorime ju pomocou:
-  - {} y jednotlivych prvkov
+  - `{}` z jednotlivych prvkov
   - funkcie `set` z ineho iterovatelneho objektu
 - vieme ju modifikovat
 ```python
@@ -956,8 +958,8 @@ mnozina # {'e', 'h', 'l', 'o'}
 ```
 - kazdy prvok obsadeny najviac jeden-krat
 ```python
-seznam = [1, 1, 2, 3, 3]
-set(seznam) # {1, 2, 3}
+zoznam = [1, 1, 2, 3, 3]
+set(zoznam) # {1, 2, 3}
 ```
 - nevieme indexovat
 ```python
@@ -973,7 +975,7 @@ mnozina[0]
 ```python
 {1, 2, 3} == {3, 2, 1} # True
 ```
-- prazdna mnozina sa yapisuje `set()`, pretoze {} je zarezervovane pre prazdny slovnik
+- prazdna mnozina sa zapisuje `set()`, pretoze {} je zarezervovane pre prazdny slovnik
 ```python
 type(set()) # set  
 
@@ -992,19 +994,19 @@ len(A) # 3
 A = {1, 2, 3}
 B = {2, 4, 6}
 
-A & B # Průnik A ∩ B
+A & B # Prienik A ∩ B
 # {2}
 
-A | B # Sjednocení A ∪ B
+A | B # Zjednotenie A ∪ B
 # {1, 2, 3, 4, 6}
 
-A - B # Rozdíl množin A - B (prvky A kromě prvků B)
+A - B # Rozdiel množin A - B (prvky A okrem prvkov B)
 # {1, 3}
 
 A <= B # A je podmnožinou B (A ⊆ B) 
 # False
 
-A < B # A je vlastní podmnožinou B (A ⊂ B)
+A < B # A je vlastnou podmnožinou B (A ⊂ B)
 # False
 ```
 
@@ -1045,20 +1047,20 @@ A # set()
 
 # Slovnik `dict`
 - vytvorime ho pomocou
-  - {} y jednotlivych dvojic klucovych hodnot
+  - `{}` z jednotlivych dvojic klucovych hodnot
   - funkcie `dict` z ineho iterovatelneho objektu
 - slovnik vieme modifikovat
-- kazdy kluc je obsiahnuty najviac jeden-kont
+- kazdy kluc je obsiahnuty najviac jeden-krat
 - indexujeme podla klucu (nie podla poradia)
 ```python
-slovnik = {'klic1': 'hodnota1', 'klic2': 'hodnota2'}
-slovnik # {'klic1': 'hodnota1', 'klic2': 'hodnota2'}
+slovnik = {'kluc1': 'hodnota1', 'kluc2': 'hodnota2'}
+slovnik # {'kluc1': 'hodnota1', 'kluc2': 'hodnota2'}
 
 slovnik = {} # Prázdný slovník
 slovnik # {}
 
-seznam_dvojic = [('jack', 4098), ('sape', 4139), ('guido', 4127)]
-slovnik = dict(seznam_dvojic)
+zoznam_dvojic = [('jack', 4098), ('sape', 4139), ('guido', 4127)]
+slovnik = dict(zoznam_dvojic)
 slovnik # {'guido': 4127, 'jack': 4098, 'sape': 4139}
 ```
 - Indexovanie pomocou kluca
@@ -1077,7 +1079,7 @@ print(slovnik.get('bob')) # None
 print(slovnik.get('bob', 'defaultni_hodnota')) # defaultni_hodnota
 ```
 - Testovanie pritomnosti kluca
-  - u slovnikov sa pomocou `in` dotazujeme na kluce/ nie na hodnoty
+  - u slovnikov sa pomocou `in` dotazujeme na kluce nie na hodnoty
 ```python
 slovnik = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 'a' in slovnik # True
@@ -1109,7 +1111,7 @@ slovnik # {'a': 1, 'alice': 9876, 'b': 2, 'bob': 1234, 'c': 3, 'd': 4, 'guido': 
 
 # Homegenne a heterogenne kolekce, kolekce v kolekci
 - Homegenne kolekce - hodnoty rovnakeho typu [1, 2, 3]
-- heterogenne kolekce - hodnotyzmiesaneho typu [1, 'ahoj', True]
+- heterogenne kolekce - hodnoty zmiesaneho typu [1, 'ahoj', True]
 - kolekce v kolekci
   - vynimka: Kluce v slovniku a prvky mnozin mozu byt iba nemodifikovatelne objekty
 ```python
@@ -1124,37 +1126,37 @@ slovnik # {'a': 1, 'alice': 9876, 'b': 2, 'bob': 1234, 'c': 3, 'd': 4, 'guido': 
 - pomocou operatora `*`
 - vytiahneme vsetky prvky z iterovatelneho objektu
 ```python
-seznam = [1, 2, 3, 4]
-print(seznam) # [1, 2, 3, 4]
+zoznam = [1, 2, 3, 4]
+print(zoznam) # [1, 2, 3, 4]
 
-rint(*seznam) # Stejné jako print(1, 2, 3, 4)
+rint(*zoznam) # Rovnako ako print(1, 2, 3, 4)
 # 1 2 3 4
 
-[0, seznam, 5, 6] # [0, [1, 2, 3, 4], 5, 6]
+[0, zoznam, 5, 6] # [0, [1, 2, 3, 4], 5, 6]
 
-[0, *seznam, 5, 6] # Stejné jako [0, 1, 2, 3, 4, 5, 6]
+[0, *zoznam, 5, 6] # Rovnako ako [0, 1, 2, 3, 4, 5, 6]
 # [0, 1, 2, 3, 4, 5, 6]
 ```
 - pomocou viacej premennych na lavej strane priradenia
 ```python
-seznam # [1, 2, 3, 4]
+zoznam # [1, 2, 3, 4]
 
-a, b, c, d = seznam
+a, b, c, d = zoznam
 a # 1
 b # 2
 
-prvni, druhy, *zbytek, posledni = range(10)
-prvni # 0
+prvy, druhy, *zbytok, posledni = range(10)
+prvy # 0
 druhy # 1
-zbytek # [2, 3, 4, 5, 6, 7, 8]
+zbytok # [2, 3, 4, 5, 6, 7, 8]
 posledni # 9
 ```
 
 # Prechadzanie kolekcie
 - pomocou cyklu `for` 
 ```python
-for prvek in {1, 2, 3, 2}:
-print(prvek)
+for prvok in {1, 2, 3, 2}:
+print(prvok)
 # 1
 # 2
 # 3
@@ -1162,12 +1164,12 @@ print(prvek)
 - cez kluc
 ```python
 slovnik = {'guido': 4127, 'jack': 4098}
-for jmeno in slovnik:
-print(jmeno) 
+for meno in slovnik:
+print(meno) 
 # guido
 # jack
 ```
-- cez hodnotyzmiesaneho
+- cez hodnoty zmiesaneho
 ```python
 for telefon in slovnik.values():
 print(telefon)
@@ -1176,82 +1178,82 @@ print(telefon)
 ```
 - cez kluce a hodnoty
 ```python
-for jmeno, telefon in slovnik.items():
-print(f'{jmeno}: {telefon}')
+for meno, telefon in slovnik.items():
+print(f'{meno}: {telefon}')
 # guido: 4127
 # jack: 4098
 ```
 # Chytre prechadzanie kolekci
 - funkcia `enumerate()` ocisluje prvky
 ```python
-jmena = ['Bob', 'Alice', 'Cyril']
-for i, jmeno in enumerate(jmena):
-print(f'{i}. {jmeno}')
+mena = ['Bob', 'Alice', 'Cyril']
+for i, meno in enumerate(mena):
+print(f'{i}. {meno}')
 # 0. Bob
 # 1. Alice
 # 2. Cyril
 
-for i, jmeno in enumerate(jmena, 1):
-print(f'{i}. {jmeno}')
+for i, meno in enumerate(mena, 1):
+print(f'{i}. {meno}')
 # 1. Bob
 # 2. Alice
 # 3. Cyril
 ```
 - funkcia `reversed()` prechadza od konca
 ```python
-for jmeno in reversed(jmena):
-print(jmeno)
+for jmeno in reversed(mena):
+print(meno)
 # Cyril
 # Alice
 # Bob
 ```
 - funkcia `sorted()` vytvara novy zoradeni zoznam
 ```python
-for jmeno in sorted(jmena):
-print(jmeno)
+for meno in sorted(mena):
+print(meno)
 # Alice
 # Bob
 # Cyril
 ```
 - funckia `zip()` prechadza viac objektami na raz
 ```python
-for jmeno, pismenko in zip(jmena, 'XYZW'):
-print(jmeno, pismenko)
+for meno, pismenko in zip(mena, 'XYZW'):
+print(meno, pismenko)
 # Bob X
 # Alice Y
 # Cyril Z
 ```
-POZOR !!! tieto funkcie nevytvaraju kolekce, iba iteratoe urceny k jednorazovemu prejdeni prvku
+POZOR !!! tieto funkcie nevytvaraju kolekce, iba iteratie urceny k jednorazovemu prejdeni prvku
 ```python
-iterator = reversed(jmena)
-for jmeno in iterator:
-print(jmeno)
+iterator = reversed(mena)
+for meno in iterator:
+print(meno)
 # Cyril
 # Alice
 # Bob
 ```
 # Generator vyrazu (generator expression)
-- pomocou `for...in...` [if...] mozeme vztvarat a filtrovat kolekcie
+- pomocou `for...in...` [if...] mozeme vytvarat a filtrovat kolekcie
 ```python
-puvodni = [1, 2, 3, 4, 5, 6]
-str(x) for x in puvodni]
+povodni = [1, 2, 3, 4, 5, 6]
+str(x) for x in povodni]
 # ['1', '2', '3', '4', '5', '6']
 
-{i: i**2 for i in puvodni} 
+{i: i**2 for i in povodni} 
 # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36}
 ```
 - filtrujeme pridanim `if`
 ```python
-{x for x in puvodni if x % 2 == 0}
+{x for x in povodni if x % 2 == 0}
 # {2, 4, 6}
 ```
-- typ vzslednej kolekce je dany typom zatvoriek: [zoznam], {mnozina} alebo slovnik
+- typ vyslednej kolekce je dany typom zatvoriek: [zoznam], {mnozina} alebo slovnik
   - Vynimka: () vytvaraju iterator a nie n-tici
 ```python
-(x for x in puvodni if x >= 3) # iterátor 
+(x for x in povodni if x >= 3) # iterátor 
 # <generator object <genexpr> at 0x7f887c3b09e8>
 
-tuple(x for x in puvodni if x >= 3) # n-tice
+tuple(x for x in povodni if x >= 3) # n-tice
 # (3, 4, 5, 6)
 ```
 - funkcia `join()` spojuje prvky pomocou separatoru, funguje ale iba na prvky typu `str`
@@ -1263,26 +1265,26 @@ iterable = ['1', '2', '3']
 # Vytvaranie noveho objektu vs modifikacie objektu
 - vytvaranie noveho objektu:
 ```python
-puvodni = 'Spam spam spam.'
-novy = puvodni.replace('spam', 'ham')
-print(puvodni) # Spam spam spam.
+povodni = 'Spam spam spam.'
+novy = povodni.replace('spam', 'ham')
+print(povodni) # Spam spam spam.
 print(novy) # Spam ham ham.
 
-puvodni = [1, 8, 5, 2]
-novy = sorted(puvodni)
-print(puvodni) # [1, 8, 5, 2]
+povodni = [1, 8, 5, 2]
+novy = sorted(povodni)
+print(povodni) # [1, 8, 5, 2]
 print(novy) # [1, 2, 5, 8]
 ```
 - modifikacia objektu:
 ```python
-puvodni = [1, 8, 5, 2]
-novy = puvodni.sort()
-print(puvodni) # [1, 2, 5, 8]
+povodni = [1, 8, 5, 2]
+novy = povodni.sort()
+print(povodni) # [1, 2, 5, 8]
 print(novy) # None
 
-puvodni = [1, 8, 5, 2]
-novy = puvodni.append(0)
-print(puvodni) # [1, 8, 5, 2, 0]
+povodni = [1, 8, 5, 2]
+novy = povodni.append(0)
+print(povodni) # [1, 8, 5, 2, 0]
 print(novy) # None
 ```
 # Rovnake objekty vs ten isty objekt
@@ -1335,7 +1337,7 @@ print(a, b) # [6, 8, 3, 1] [1, 3, 6, 8]
   - 3. vrati navratovu hodnotu: retazec zadany uzivatelom
   
 ARGUMENTY
-  - pozicne(positional) - uvadzaju sa kao prve
+  - pozicne(positional) - uvadzaju sa ako prve
   - pomenovane(keyword) - vieme prehadzovat
 - napriklad: 3  pozicne:1, 2, 'A' a 2 pomenovane: '-', ';\n'
 ```python
@@ -1354,14 +1356,14 @@ METODY
 - parametre a premenne vytvorene vnutri funkcie existuju IBA TAM!!!
 
 # Navratova hodnota funkcie (return value)
-- je to hodnota, kt je vysledkom volania funkcie
+- je to hodnota, kt. je vysledkom volania funkcie
 - ked sa prevedie `return` funkcia skonci a vyskoci ako u `break`
 ```python
-def obsah_ctverce(a):
-    print('Počítám obsah čtverce...')
+def obsah_stvorca(a):
+    print('Počítám obsah štvorca...')
     S = a**2
     return S
-S1 = obsah_ctverce(5)
+S1 = obsah_stvorca(5)
 S1 # 25
 ```
 - defaultna navratova hodnota:
@@ -1375,10 +1377,10 @@ S1 # 25
 - defaultna hodnota parametru:
   - mozeme nastavit v definicii funkcie pomocou `=`
 ```python
-def pozdrav(jmeno, opakovani=1):
-    for i in range(opakovani):
-        print(f'Hello {jmeno}!')
-pozdrav('Bob', opakovani=3)
+def pozdrav(meno, opakovanie=1):
+    for i in range(opakovanie):
+        print(f'Hello {meno}!')
+pozdrav('Bob', opakovanie=3)
 # Hello Bob!
 # Hello Bob!
 # Hello Bob!
@@ -1388,7 +1390,7 @@ pozdrav('Bob', opakovani=3)
 - nepovinne, ale uzitocne
 ```python
 def objem_valce(r, h):
-    """Spočítej a vrať objem válce o polomeru r a výšce h."""
+    """Spočítaj a vrať objem válca o polomeru r a výške h."""
     V = math.pi * r**2 * h
     return V
 ```
@@ -1398,35 +1400,35 @@ def objem_valce(r, h):
 - vyuziva VSCode
 ```python
 import math
-def objem_valce(r: float, h: float) -> float:
-    """Spočítej a vrať objem válce o polomeru r a výšce h."""
+def objem_valca(r: float, h: float) -> float:
+    """Spočítaj a vrať objem válca o polomeru r a výške h."""
     V = math.pi * r**2 * h
     return V
 
-V1 = objem_valce(5, 2)
+V1 = objem_valca(5, 2)
 print(V1) # .....
 ```
 
 ```python
-def pozdrav(jmeno: str, opakovani: int = 1) -> None:
-    """Vypiš pozdrav osobě jmeno opakovani-krát."""
-    for i in range(opakovani):
-        print(f'Hello {jmeno}!')
+def pozdrav(meno: str, opakovanie: int = 1) -> None:
+    """Vypiš pozdrav osobe meno opakovany-krát."""
+    for i in range(opakovanie):
+        print(f'Hello {meno}!')
 ```
 - pomocou modulo `typing` mozeme presnejsie specifikovat typy:
 ```python
 def min_max_pocet(cisla: list) -> tuple:
-    """Vrať nejmenší, největší číslo a počet čísel."""
+    """Vrať najmenší, najvacsie číslo a počet čísel."""
     return (min(cisla), max(cisla), len(cisla))
 ```
 ```python
 from typing import Tuple, List
 def min_max_pocet(cisla: List[float]) -> Tuple[float, float, int]:
-    """Vrať nejmenší, největší číslo a počet čísel."""
+    """Vrať najmenší, najvacsie číslo a počet čísel."""
     return (min(cisla), max(cisla), len(cisla))
 ```
 
-# Rekurze
+# Rekurzia
 - ked funkcia vola sama seba
 - Pozor!!! hrozi zacyklenie(volanie faktorial(0)) - ukoncim to `Ctrl+C`
 ```python
@@ -1440,14 +1442,14 @@ def faktorial(n: int) -> int:
 faktorial(5) # 120
 ```
 PRIKLAD REKURZIE
-- Platy zaměstnanců máme uloženy ve slovníkové struktuře rozdělené podle hierarchie
+- Platy zamestnancov máme uložene vo slovníkovej strukture rozdelené podla hierarchie
 univerzity (fakulty, ústavy apod.).
-- Chceme spočítat součet platů všech zaměstnanců.
+- Chceme spočítat sučet platov všetkych zamestnancov.
 ```python
 platy = {
-    'PřF': {
-        'Biologie': {'Alice': 30, 'Bob': 30},
-        'Chemie': {
+    'PrF': {
+        'Biologia': {'Alica': 30, 'Bob': 30},
+        'Chemia': {
             'Organika': {'Cyril': 35},
             'Anorganika': {'Dana': 28}
         },
@@ -1457,31 +1459,31 @@ platy = {
     'FSpS': {'Hana': 30}
 }
 
-def rekurzivni_soucet(celek):
-    if isinstance(celek, dict): # Testuje jestli cast je typu dict.
-        return sum(rekurzivni_soucet(cast) for cast in celek.values())
+def rekurzivni_sucet(celek):
+    if isinstance(celek, dict): # Testuje ci cast je typu dict.
+        return sum(rekurzivni_sucet(cast) for cast in celek.values())
     else:
         return celek
 
-rekurzivni_soucet(platy) # 247
+rekurzivni_sucet(platy) # 247
 ```
 # Rozbalovanie argumentov (unpacking)
   - pozicne => rozbalim pomocou `*`(z iterovatelneho objektu)
   - pomenovane => rozbalim pomocou `**`(zo slovnika)
 ```python
 cisla = [3, 2, 1]
-formatovani = {'sep': ', ', 'end': '.'}
-print(*cisla, **formatovani) # 3, 2, 1.
+formatovanie = {'sep': ', ', 'end': '.'}
+print(*cisla, **formatovanie) # 3, 2, 1.
 
 print(cisla) # [3, 2, 1]
-print(*cisla) # Ekvivalentní print(3, 2, 1) 
+print(*cisla) # Ekvivalentny print(3, 2, 1) 
 # 3 2 1
-print(*cisla, **formatovani) # Ekvivalentní print(3, 2, 1, sep=', ', end='.')
+print(*cisla, **formatovanie) # Ekvivalentny print(3, 2, 1, sep=', ', end='.')
 # 3, 2, 1.
 ```
 # Nenasytne parametry
-- pokial pouzijete `*` pred nazvom posledneho parametru, tento parameter bude obs. vsetky nadbztocne pozicne arg.
-- pokial pouzijete `**` pred nazvom posledneho parametru, tento parameter bude obs. vsetky nadbzyocne klucove arg. 
+- pokial pouzijete `*` pred nazvom posledneho parametru, tento parameter bude obs. vsetky nadbytocne pozicne arg.
+- pokial pouzijete `**` pred nazvom posledneho parametru, tento parameter bude obs. vsetky nadbytocne klucove arg. 
 ```python
 def foo(a, b, *args, **kwargs):
     print(a)
@@ -1499,18 +1501,18 @@ foo(1, 2, 3, 4, 5, 6, x=100, y=200)
 - vytvorenie funkcie bez mena
 ```python
 studenti = [('Alice', 'Nováková'), ('Cyril', 'Veselý'), ('Bob', 'Marley')]
-sorted(studenti) # Řadí podle křestního jména
+sorted(studenti) # Zoraduje podla krsneho mena
 # [('Alice', 'Nováková'), ('Bob', 'Marley'), ('Cyril', 'Veselý')]
 #---------------------------------------------------------------------------
 
-def prijmeni(osoba):
+def priezvysko(osoba):
     return osoba[1]
-sorted(studenti, key=prijmeni) # Řadí podle příjmení
+sorted(studenti, key=prijmeni) # Zoraduje podla priezvyska
 # [('Bob', 'Marley'), ('Alice', 'Nováková'), ('Cyril', 'Veselý')]
 ```
 - ekvivalent bez pomenovanych funkcii:
 ```python
-sorted(studenti, key = lambda osoba: osoba[1]) # Řadí podle příjmení
+sorted(studenti, key = lambda osoba: osoba[1]) # Zoraduje podla priezvyska
 # [('Bob', 'Marley'), ('Alice', 'Nováková'), ('Cyril', 'Veselý')]
 ```
 
@@ -1526,13 +1528,13 @@ def ozvena(slovo):
     while len(slovo) > 0:
         yield slovo
         slovo = slovo[1:]
-generator = ozvena('ahoj') # Vytváříme generátor
+generator = ozvena('ahoj') # Vytvorime generátor
 generator # <generator object ozvena at 0x7fd18c493830>
 
 next(generator) # Vygenerujeme 1. hodnotu
 # 'ahoj'
 
-for s in generator: # Vygenerujeme zbylé hodnoty
+for s in generator: # Vygenerujeme zvysne hodnoty
 print(s)
 # hoj
 # oj
@@ -1541,16 +1543,16 @@ print(s)
 for s in generator: # Generátor se už vyčerpal, nevypíše se nic
 print(s)
 ```
-- generator moze generovat i nekonecno postupnosti(není to problém, protože
-hodnoty se generují až když je potřeba)
+- generator moze generovat i nekonecno postupnosti(nie je to problém, pretože
+hodnoty se generují až ked je potreba)
 ```python
-def suda_cisla():
+def parne_cisla():
     i = 2
     while True:
         yield i
         i += 2
-enerator = suda_cisla()
-generator # <generator object suda_cisla at 0x7fd18c3c56d0>
+enerator = parne_cisla()
+generator # <generator object parne_cisla at 0x7fd18c3c56d0>
 
 for x in generator:
     print(x)
@@ -1586,17 +1588,17 @@ for x in iterator:
 
 ```python
 if True:
-print("Hello World!") # Chybí odsazení
+print("Hello World!") # Chyba odsadenie
 
 # File "<ipython-input-1-97322b684b0b>", line 2
-# print("Hello World!") # Chybí odsazení
+# print("Hello World!") # Chyba odsadenie
 # ^
 # IndentationError: expected an indented block
 ```
 - casto sa chyba odhali az na nasledujucom riadku
 ```python
 import math
-a = abs(math.sqrt((10 - 5)**2) # Chybí konec závorky
+a = abs(math.sqrt((10 - 5)**2) # Chyba koniec zátvorky
 print(a)
 
 # File "<ipython-input-3-143e81d33c6d>", line 3
@@ -1655,8 +1657,8 @@ print(a)
 ```python
 def foo(cisla):
     for x in cisla:
-        print(podil(1, x))
-def podil(a, b):
+        print(podiel(1, x))
+def podiel(a, b):
     return a / b
 foo([3, 2, 0])
 
@@ -1669,81 +1671,82 @@ foo([3, 2, 0])
 # <ipython-input-4-ba5814e3052f> in foo(cisla)
 # 1 def foo(cisla):
 # 2 for x in cisla:
-# ----> 3 print(podil(1, x))
-# <ipython-input-5-0a3c1262fa57> in podil(a, b)
-# 1 def podil(a, b):
+# ----> 3 print(podiel(1, x))
+# <ipython-input-5-0a3c1262fa57> in podiel(a, b)
+# 1 def podiel(a, b):
 # ----> 2 return a / b
 # ZeroDivisionError: division by zero
 ```
 **Osetrenie vynimky** ked sa vieme s konkretnou vynimkou nejako vyrovnat, odchytime ju pomocou bloku `try... except`
 ```python
 import math
-def podil(a, b):
-  print(f'Počítá se {a}/{b}...')
+def podiel(a, b):
+  print(f'Počita sa {a}/{b}...')
   try:
     c = a / b
-    print('Dělení proběhlo bez problémů')
+    print('Delenie prebehlo bez problémov')
     return c
   except ZeroDivisionError:
-    print('Dělení nulou ¯\_(ツ)_/¯')
+    print('Delenie nulou ¯\_(ツ)_/¯')
     return math.nan # Not-a-number
 
-podil(5, 2)
+podiel(5, 2)
 
 # Počítá se 5/2...
-# Dělení proběhlo bez problémů
+# Delenie prebehlo bez problemov
 # 2.5
 #---------------------------------------------
-podil(5, 0)
+podiel(5, 0)
 
 # Počítá se 5/0...
-# Dělení nulou ¯\_(ツ)_/¯
+# Delenie nulou ¯\_(ツ)_/¯
 # nan
 ```
+
 **Kombinacia vynimiek**
 ```python
 try:
-  jmenovatel = int(input())
-  vysledek = 1 / jmenovatel
-  print(f'OK: {vysledek}')
+  menovatel = int(input())
+  vysledok = 1 / menovatel
+  print(f'OK: {vysledok}')
 except ZeroDivisionError:
-  print('Nulou nelze dělit!')
+  print('Nulov nevieme delit!')
 except ValueError:
-  print('Nemůžu převést zadaný vstup na číslo!')
+  print('Nemozeme previest zadany vstup na cislo!')
 except (RuntimeError, TypeError, NameError):
-  pass # jako by se chyba nestala
+  pass # ako by sa chyba nestala
 except:
   print('Chyba vole!')
   raise # výjimka se znovu vyvolá
 
 # tisíc
-# Nemůžu převést zadaný vstup na číslo!
+# Nemozeme previest zadany vstup na cislo!
 ```
 
 `try... except... else... finally`
 ```python
-def podil(a, b):
+def podiel(a, b):
   try:
     c = a / b
   except ZeroDivisionError:
-    print('Nulou nelze dělit')
+    print('Nulov sa neda delit')
     c = math.inf
   else:
-    print('Proběhlo bez výjimky!')
+    print('Prebehlo bez výjimky!')
   finally:
-    print('Já se provedu pokaždé')
+    print('Ja sa prevediem stale')
     return c
 
-podil(5, 2)
+podiel(5, 2)
 
 # Proběhlo bez výjimky!
-# Já se provedu pokaždé
+# Ja sa prevediem stale
 # 2.5
 #-------------------------------------------------------------
-podil(5, 0)
+podiel(5, 0)
 
-# Nulou nelze dělit
-# Já se provedu pokaždé
+# Nulov sa neda delit
+# Ja sa prevediem stale
 # inf
 ```
 
@@ -1755,12 +1758,12 @@ podil(5, 0)
 ```python
 def faktorial(n):
   if n >= 0:
-    vysledek = 1
+    vysledok = 1
     for i in range(1, n+1):
-      vysledek *= i
-    return vysledek
+      vysledok *= i
+    return vysledok
   else:
-    raise ValueError('Nelze spočítat faktoriál záporného čísla.')
+    raise ValueError('Neda sa spočítat faktoriál záporného čísla.')
 faktorial(10)
 
 # 3628800
@@ -1771,10 +1774,10 @@ faktorial(-5)
 # <ipython-input-16-3635df1c3214> in <module>()
 # ----> 1 faktorial(-5)
 # <ipython-input-14-a68bea9aa445> in faktorial(n)
-# 6 return vysledek
+# 6 return vysledok
 # 7 else:
-# ----> 8 raise ValueError('Nelze spočítat faktoriál záporného čísla.')
-# ValueError: Nelze spočítat faktoriál záporného čísla.
+# ----> 8 raise ValueError('Neda sa spočítat faktoriál záporného čísla.')
+# ValueError: Neda sa spočítat faktoriál záporného čísla.
 ```
 
 **return** vs **raise**
@@ -1807,27 +1810,27 @@ fluffy(2)
 # ----> 7 raise ValueError(n)
 # ValueError: 2
 ```
-- iba `raise` vieme vyuzit v bloku `except` - opat vyhadzuje odchztenu vznimku
+- iba `raise` vieme vyuzit v bloku `except` - opat vyhadzuje odchytenu vynimku
 ```python
-def podil(a, b):
+def podiel(a, b):
   try:
     return a / b
   except:
-    print('Nastala výjimka.')
+    print('Nastala výnimka.')
     raise
 
-podil(5, 0)
+podiel(5, 0)
 # Nastala výjimka.
 # ---------------------------------------------------------------------------
 # ZeroDivisionError Traceback (most recent call last)
 # <ipython-input-22-f4456981ee1c> in <module>()
-# ----> 1 podil(5, 0)
-# <ipython-input-21-e839663917b1> in podil(a, b)
-# 1 def podil(a, b):
+# ----> 1 podiel(5, 0)
+# <ipython-input-21-e839663917b1> in podiel(a, b)
+# 1 def podiel(a, b):
 # 2 try:
 # ----> 3 return a / b
 # 4 except:
-# 5 print('Nastala výjimka.')
+# 5 print('Nastala výnimka.')
 # ZeroDivisionError: division by zero
 ```
 # Testovanie
@@ -1845,11 +1848,11 @@ Testy v dokumentacii funkcie
 - modul `doctest` kontroluje, ci sa funkcia chova tak ako to popisuju testy
 - [viac_tu](https://docs.python.org/3/library/doctest.html)
 ```python
-def soucet(a, b):
+def sucet(a, b):
   """ Vrací součet parametrů.
-  >>> soucet(1, 2)
+  >>> sucet(1, 2)
   3
-  >>> soucet(10, 2)
+  >>> sucet(10, 2)
   12
   """
   return 3

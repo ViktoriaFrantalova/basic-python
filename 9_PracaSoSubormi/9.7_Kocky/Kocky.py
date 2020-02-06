@@ -1,6 +1,6 @@
 """
 Úloha:
-Alice hádže kockou 10x. Aká je šanca, že z týchto 10 hodov padnú aspoň 4 šestky?
+Alica hádže kockou 10x. Aká je šanca, že z týchto 10 hodov padnú aspoň 4 šestky?
 Úlohu riešte pomocou simulácie, tj. Náhodne vygenerujte 10 hodov kockou (modul random) a rozhodnite, či padli aspoň 4 šestky. Toto opakujte 10000 krát a spočítajte, aké percento pokusov bolo úspešné.
 (Správny výsledok je okolo 7%, samozrejme to vždy vyjde trochu inak.)
 
@@ -25,15 +25,15 @@ def simuluj_4x6_po_sebe(n_hodov: int) -> bool:
     return '6666' in hody_retezec
 
 n_pokusov = 10000
-uspesnych_Alice = 0
+uspesnych_Alica = 0
 uspesnych_Bob = 0
 
 for i in range(n_pokusov):
     if simuluj_4x6(10):
-        uspesnych_Alice += 1
+        uspesnych_Alica += 1
 
-pravdepodobnost_Alice = uspesnych_Alice / n_pokusov
-pravdepodobnostPercenta_Alice = pravdepodobnost_Alice * 100
+pravdepodobnost_Alica = uspesnych_Alica / n_pokusov
+pravdepodobnostPercenta_Alica = pravdepodobnost_Alica * 100
 
 for i in range(n_pokusov):
     if simuluj_4x6_po_sebe(100):
@@ -42,5 +42,5 @@ for i in range(n_pokusov):
 pravdepodobnost_Bob = uspesnych_Bob / n_pokusov
 pravdepodobnostPercenta_Bob = pravdepodobnost_Bob * 100
 
-print(f'Pravdepodobnost je cca - Alice: {pravdepodobnostPercenta_Alice:.2f} % ')
+print(f'Pravdepodobnost je cca - Alica: {pravdepodobnostPercenta_Alica:.2f} % ')
 print(f'Pravdepodobnost je cca - Bob: {pravdepodobnostPercenta_Bob:.2f} % ')

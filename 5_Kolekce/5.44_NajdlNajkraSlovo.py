@@ -1,14 +1,12 @@
-# Nejdelší a nejkratší slovo
+# Najdlhšia a najkratšiu slovo
 
-# V zadaném vstupu najděte najdelší a nejkratší slovo
+# V zadanom vstupu nájdite najdlhšia a najkratšia slovo
 
 # Sample Input:
-
-# pes kočka holub slepice sokol anaconda slon liška
+# pes macka holub sliepka sokol anakonda slon liška
 
 # Sample Output:
-
-# anaconda
+# anakonda
 # pes
 
 vstup = input().split(' ')

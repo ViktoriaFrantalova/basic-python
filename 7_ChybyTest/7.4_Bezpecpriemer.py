@@ -1,8 +1,8 @@
-# Bezpečný průměr
+# Bezpečný priemer
 
-# Napište funkci prumer, která bere jako parametr seznam reálných čísel a vrací jejich průměr (pomocí klasického vzorce suma / počet).
+# Napíšte funkciu priemer, ktorá berie ako parameter zoznam reálnych čísel a vracia ich priemer (pomocou klasického vzorca suma / počet).
 
-# Zamyslete se nad tím, jaké problémy by mohly během výpočtu nastat, a napište funkci tak, aby neskončila chybou. Pokud průměr nelze spočítat, vraťte hodnotu math.nan (nan = not a number).
+# Zamyslite sa nad tým, aké problémy by mohli počas výpočtu nastať, a napíšte funkciu tak, aby neskončila chybou. Ak sa priemer nedá spočítať, vráťte hodnotu math.nan (nan = not a number).
 
 # Sample Input:
 # [2, 7, 9]
@@ -13,7 +13,7 @@
 import math
 from typing import List
 
-def prumer(cisla: List[float]) -> float:
+def priemer(cisla: List[float]) -> float:
     try:
         priemer = sum(cisla) / len(cisla)
         return priemer
@@ -21,4 +21,4 @@ def prumer(cisla: List[float]) -> float:
         return math.nan
 
 cisla = input()
-print(prumer(cisla))
+print(priemer(cisla))

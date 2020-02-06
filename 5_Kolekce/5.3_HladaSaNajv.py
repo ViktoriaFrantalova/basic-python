@@ -1,8 +1,8 @@
 # Hlada sa pozicia navacsie cisla
 
-# Na vstupu získate jednotlivá čísla oddělená mezerou, vaším úkolem je nalézt pozici (index) největšího čísla. Pokud bude více největších čísel, vraťte pozici prvního.
+# Na vstupe získate jednotlivé čísla oddelené medzerou, vašou úlohou je nájsť pozíciu (index) najväčšieho čísla. Pokiaľ bude viac najväčších čísel, vráťte pozíciu prvého.
 
-# Vyzkoušejte také:
+# Vyskúšajte tiež:
 # 1 1 1 1 1
 # nebo
 # 2 3 4 5 1
@@ -14,8 +14,8 @@
 # 5
 
 
-vstup = input().split( )
-dlzka = (len(vstup))
+vstup = input().split()
+dlzka = len(vstup)
 
 for i in range(0, dlzka):
     vstup[i] = int(vstup[i])
@@ -26,7 +26,7 @@ if vstup.count(int(maxi)) > 1:
 else:
     print(vstup.index(int(maxi)))
 
-# # Alternativní řešení:
+# # Alternatívne riešenie:
 # retezce = input().split()
 # cisla = [int(r) for r in retezce]
 # maximum = max(cisla)

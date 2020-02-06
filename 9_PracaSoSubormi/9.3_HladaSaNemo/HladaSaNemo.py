@@ -1,10 +1,7 @@
 """
 Úloha:
-Vytvorte program, ktorý načíta súbor CSFD-Hleda_se_Nemo.txt
-a vypíše na výstup všetky riadky, na ktorých sa vyskytuje slovo Nemo.
-Navyše bude u každého riadku uvedené poradie riadku v pôvodnom súbore.
-Pozor: vyberte správne kódovanie, aby sa podarilo súbor načítať
-a aby sa správne zobrazila diakritika.
+Vytvorte program, ktorý načíta súbor CSFD-Hleda_se_Nemo.txt a vypíše na výstup všetky riadky, na ktorých sa vyskytuje slovo Nemo. Navyše bude u každého riadku uvedené poradie riadku v pôvodnom súbore.
+Pozor: vyberte správne kódovanie, aby sa podarilo súbor načítať a aby sa správne zobrazila diakritika.
 
 Vzorový výstup:  
    2 a odlehlém příbytku ze sasanek Marlin a jeho jediný syn Nemo. Marlin se s

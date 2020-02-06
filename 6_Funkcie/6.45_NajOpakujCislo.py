@@ -1,8 +1,8 @@
-# Nejčastěji se opakující číslo
+# Najčastejšie sa opakujúce číslo
 
-# Napište definici funkce nejcastejsi, která přijímá seznam čísel a vrací nejčastěji se opakující číslo v tomto seznamu.
+# Napíšte definíciu funkcie najcastejsi, ktorá prijíma zoznam čísel a vracia najčastejšie sa opakujúce číslo v tomto zozname.
 
-# Pokud bude seznam prázdný, vraťte None. Pokud bude víc různých čísel se stejným, maximálním počtem výskytů, vraťte jedno z nich - je jedno které.
+# Pokiaľ bude zoznam prázdny, vráťte None. Pokiaľ bude viac rôznych čísel s rovnakým, maximálnym počtom výskytov, vráťte jedno z nich - je jedno ktoré.
 
 # Sample Input:
 # [1, 2, 3, 3, 4, 4, 1, 2, 5, 3, 2, 1, 2]
@@ -12,19 +12,17 @@
 
 from typing import List
 
-def nejcastejsi(cisla: List[int]) -> int:
+def najcastejsi(cisla: List[int]) -> int:
     sort_cisla = sorted(cisla)
     if (len(sort_cisla) == 0):
         return None
     pole = []
-    vysledok= []
     for cislo in sort_cisla:
         if cislo not in pole:
-            pole.append(cislo)
-            
+            pole.append(cislo) # [1, 2, 3, 4, 5]
+    
     pocet = 0
     posledny_pocet = 0
-    pole_pocet = []
     vysledok = 0
     for cisloI in range(0, len(pole)):
         for cisloJ in range(0, len(sort_cisla)):
@@ -37,4 +35,4 @@ def nejcastejsi(cisla: List[int]) -> int:
                 pocet = 0
     return vysledok
                     
-print(nejcastejsi([1, 2, 3, 3, 4, 4, 1, 2, 5, 3, 2, 1, 2]))
+print(najcastejsi([1, 2, 3, 3, 4, 4, 1, 2, 5, 3, 2, 1, 2]))

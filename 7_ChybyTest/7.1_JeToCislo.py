@@ -1,6 +1,6 @@
 # Je to číslo?
 
-# Na vstupu získate řetězec, zjistěte jestli je to desetinné číslo. Pokud ano, vypište True; pokud ne, vypište False.
+# Na vstupe získate reťazec, zistite či je to desatinné číslo. Ak áno, vypíšte True; ak nie, vypíšte False.
 
 # Sample Input 1:
 # -8.3

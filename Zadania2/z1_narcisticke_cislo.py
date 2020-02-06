@@ -1,4 +1,6 @@
-## koment ucitela: Na konci stačilo “return sucet == int(n)”
+# Narcisticke číslo je číslo, ktoré je rovné súčtu svojich cifier umocnená na počet cifier.
+# Napr. číslo 8208 je narcisticke, pretože 8 ^ 4 + 2 ^ 4 + 0 ^ 4 + 8 ^ 4 = 8208.
+# Napíšte definíciu funkcie je_narcisticke, ktorá zoberie prirodzené číslo n a vráti True, práve vtedy, keď n je narcisticke číslo.
 
 def je_narcisticke(n: int) -> bool:
     """
@@ -19,9 +21,6 @@ def je_narcisticke(n: int) -> bool:
     for cifra in n:
       medzi_sucet = int(cifra) ** int(pocet_cifier)
       sucet = sucet + int(medzi_sucet)
-    if int(sucet) == int(n):
-      return True
-    else:
-      return False
-
+    return int(sucet) == int(n)
+      
 print(je_narcisticke(153))

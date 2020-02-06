@@ -1,24 +1,22 @@
-# Řešíme kvadratickou rovnici pomocí funkce
+# Riešime kvadratickú rovnicu pomocou funkcie
 
-# Napište definici funkce koreny, která přijímá tři číselné parametry a, b, c. Výstupem funkce budou kořeny kvadratické rovnice v n-tici. Počítejte s tím, že zadaná kvadratická rovnice může mít dva, jeden nebo žádný kořen.
-
-# Řádek print(eval(input())) zabezpečí, že vaše funkce se bude volat přesně tak, jak je uvedeno na vzorovém vstupu. Nemusíte tedy načítat vstup ani vypisovat výstup, stačí naimplementovat funkci.
+# Napíšte definíciu funkcie korene, ktorá prijíma tri číselné parametre a, b, c. Výstupom funkcie budú korene kvadratickej rovnice v n-ticu. Počítajte s tým, že zadaná kvadratická rovnica môže mať dva, jeden alebo žiadny koreň.
 
 # Sample Input 1:
-# koreny(1.0, -5.0, 6.0)
+# korene(1.0, -5.0, 6.0)
 
 # Sample Output 1:
 # (3.0, 2.0)
 
 # Sample Input 2:
-# koreny(1.0, -2.0, 1.0)
+# korene(1.0, -2.0, 1.0)
 
 # Sample Output 2:
 # (1.0,)
 
 from typing import Tuple
 
-def koreny(a: float, b: float, c: float) -> Tuple[float, float]:
+def korene(a: float, b: float, c: float) -> Tuple[float, float]:
     D = b**2 - 4*a*c
     if D > 0:
       x2 = (-b + D**0.5) / (2*a)
@@ -30,7 +28,7 @@ def koreny(a: float, b: float, c: float) -> Tuple[float, float]:
     else:
       return ()
 
-print(koreny(1.0, -2.0, 1.0)) 
+print(korene(1.0, -2.0, 1.0)) 
 
 
 

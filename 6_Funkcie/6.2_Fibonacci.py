@@ -1,6 +1,6 @@
-# Fibonacciho posloupnosti
+# Fibonacciho postupnosti
 
-# Napište funkci, která získá jako parametr počet prvků Fibonacciho posloupnosti a ty vrátí ve formě seznamu.
+# Napíšte funkciu, ktorá získa ako parameter počet prvkov Fibonacciho postupnosti a tie vráti vo forme zoznamu.
 
 # Sample Input:
 # fibonacci(6)
@@ -23,7 +23,7 @@ def fibonacci(n: int) -> List[int]:
 
 print(fibonacci(6))
 
-#--------------------------------------------------
+# # Alternatívne riešenie:
 # from typing import List
 
 # def fibonacci(n: int) -> List[int]:
@@ -32,16 +32,16 @@ print(fibonacci(6))
 #     elif n == 1:
 #         return [1]
 #     else:
-#         vysledek = [1, 1]
-#         while len(vysledek) < n:
-#             nove_cislo = vysledek[-2] + vysledek[-1]
-#             vysledek.append(nove_cislo)
-#         return vysledek
+#         vysledok = [1, 1]
+#         while len(vysledok) < n:
+#             nove_cislo = vysledok[-2] + vysledok[-1]
+#             vysledok.append(nove_cislo)
+#         return vysledok
 
-# print(eval(input()))  # Neměňte! Do not change!
+# print(fibonacci(6))  
 
 
-# # Alternativní řešení:
+# # Alternatívne riešenie:
 # from typing import List
 
 # def fibonacci(n: int) -> List[int]:
@@ -50,10 +50,10 @@ print(fibonacci(6))
 #     elif n == 1:
 #         return [1]
 #     else:
-#         vysledek = [1, 1]
+#         vysledok = [1, 1]
 #         for i in range(n - 2):
-#             vysledek.append(sum(vysledek[-2:]))
-#         return vysledek
+#             vysledok.append(sum(vysledok[-2:]))
+#         return vysledok
 
-# print(eval(input()))  # Neměňte! Do not change!
+# print(fibonacci(6))  
 

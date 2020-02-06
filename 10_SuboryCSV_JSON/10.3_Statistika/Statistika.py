@@ -46,10 +46,10 @@ def extrahuj_stlpec(tabulka: List[List[str]]) -> List[List[float]]:
     stlpec = []
     for i in range(n_stlpcov):
         try:
-            novy_sloupec = [float(radek[i]) for radek in tabulka]
+            novy_stlpce = [float(radek[i]) for radek in tabulka]
         except ValueError:  # Ak sa niektorú hodnotu nepodarí konvertovať na float
-            novy_sloupec = []
-        stlpec.append(novy_sloupec)
+            novy_stlpce = []
+        stlpec.append(novy_stlpce)
     return stlpec
 
 
@@ -83,8 +83,8 @@ if args.header:
 stlpec = extrahuj_stlpec(tabulka)
 
 statistiky = []
-for sloupec in stlpec:
-    statistika = spocitaj_statistiku(args.stat, sloupec)
+for stlpce in stlpec:
+    statistika = spocitaj_statistiku(args.stat, stlpce)
     statistiky.append(statistika)
 
 with open(args.output, 'w', encoding='utf8') as f:

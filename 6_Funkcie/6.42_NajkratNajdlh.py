@@ -1,26 +1,26 @@
-# Nejkratší a nejdelší
+# Najkratšia a najdlhšia
 
-# Napište definici funkce kratke_dlouhe, která přijmá řetězec. Výstupem funkce bude n-tice obsahující dvě slova, nejkratší slovo a nejdelší slovo. Vstup nebude obsahovat interpunkci.
+# Napíšte definíciu funkcie kratke_dlhe, ktoré prijmú reťazec. Výstupom funkcie bude n-tice obsahujúce dve slová, najkratšia slovo a najdlhšia slovo. Vstup nebude obsahovať interpunkciu.
 
 # Sample Input:
-# kratke_dlouhe('Moje nejoblíbenější hračka byl plyšový medvídek Pú')
+# kratke_dlhe('Moja najobľúbenejšia hračka bol plyšový medvedík Pú')
 
 # Sample Output:
-# ('Pú', 'nejoblíbenější')
+# ('Pú', 'najobľúbenejšia')
 
 from typing import Tuple
 
-def kratke_dlouhe(retezec: str) -> Tuple[str, str]:
-    pole_vstupov = retezec.split( )
-    dlhe_slovo = pole_vstupov[0]
-    kratke_slovo = pole_vstupov[0]
-    dlzka_vstupneho_pola = 0
-    for i in range(0, len(pole_vstupov)):
-        dlzka_vstupneho_pola = len(pole_vstupov[i])
-        if(dlzka_vstupneho_pola > len(dlhe_slovo)):
-            dlhe_slovo = pole_vstupov[i]
-        if(dlzka_vstupneho_pola < len(kratke_slovo)):
-            kratke_slovo = pole_vstupov[i]
-    return (kratke_slovo, dlhe_slovo)
+def kratke_dlhe(retazec: str) -> Tuple[str, str]:
+    vstupy = retazec.split()
+    dlhe = vstupy[0]
+    kratke = vstupy[0]
+    dlzka_vstupy = 0
+    for i in range(0, len(vstupy)):
+        dlzka_vstupy = len(vstupy[i])
+        if(dlzka_vstupy > len(dlhe)):
+            dlhe = vstupy[i]
+        if(dlzka_vstupy < len(kratke)):
+            kratke = vstupy[i]
+    return (kratke, dlhe)
     
-print(kratke_dlouhe('Moje nejoblíbenější hračka byl plyšový medvídek Pú'))
+print(kratke_dlhe('Moja najobľúbenejšia hračka bol plyšový medvedík Pú'))
