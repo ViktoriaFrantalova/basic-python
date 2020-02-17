@@ -1070,7 +1070,7 @@ slovnik # {'guido': 4127, 'jack': 4098, 'sape': 4139}
 slovnik['jack'] # 4098
 slovnik['bob'] # error...
 ```
-  - metoda `get()` je ako [], ale riesi i chybajuce kluce
+  - metoda `get(key, value)` je ako [], ale riesi i chybajuce kluce
 ```python
 print(slovnik.get('guido')) # 4127
 
@@ -1783,7 +1783,7 @@ faktorial(-5)
 **return** vs **raise**
 - obe ukoncuju beh funkcie
 - `return x` - uspesne ukoncenie, vrati sa navratova hodnota x
-- `raise x` - neuspe3ne ukoncenie, vyhodi sa vynimka
+- `raise x` - neuspesne ukoncenie, vyhodi sa vynimka
 ```python
 def fluffy(n):
   if n == 0:
@@ -1843,13 +1843,13 @@ podiel(5, 0)
 
 **Doctest**
 Testy v dokumentacii funkcie
-  - vyzeraju ako interaktivny Pzyhon
+  - vyzeraju ako interaktivny Python
   - popisuju, ako sa ma funkcia chovat na konkretnych vstupoch
 - modul `doctest` kontroluje, ci sa funkcia chova tak ako to popisuju testy
 - [viac_tu](https://docs.python.org/3/library/doctest.html)
 ```python
 def sucet(a, b):
-  """ Vrací součet parametrů.
+  """ Vracia sučet parametrov.
   >>> sucet(1, 2)
   3
   >>> sucet(10, 2)
@@ -1860,30 +1860,30 @@ def sucet(a, b):
 import doctest
 doctest.testmod()
 **********************************************************************
-File "__main__", line 5, in __main__.soucet
+File "__main__", line 5, in __main__.sucet
 Failed example:
-soucet(10, 2)
+sucet(10, 2)
 Expected:
 12
 Got:
 3
 **********************************************************************
 1 items had failures:
-1 of 2 in __main__.soucet
+1 of 2 in __main__.sucet
 ***Test Failed*** 1 failures.
 # TestResults(failed=1, attempted=2)`
 ```
-- spusteie doctestu z prikazoveho riadku:
+- spustenie doctestu z prikazoveho riadku:
 ```
-- $ python3 -m doctest muj_skript.py
+- $ python3 -m doctest moj_skript.py
 ```
 - i ked prejdu vsetky testy neznamena to ze funkcia je spravna!
 ```python
-def soucet(a, b):
-  """ Vrací součet parametrů.
-  >>> soucet(2, 2)
+def sucet(a, b):
+  """ Vracia sučet parametrov.
+  >>> sucet(2, 2)
   4
-  >>> soucet(0, 0)
+  >>> sucet(0, 0)
   0
   """
   return a * b
@@ -1919,10 +1919,10 @@ def test_eval(test_input, expected):
     assert eval(test_input) == expected
 ```
 ## 7. PRACA SO SUBORMI
-`Subor` - sada informacii ulozenych pod konkretnym menom na dotovom mediu, kazdz je ulozeny v nejakom formate
+`Subor` - sada informacii ulozenych pod konkretnym menom na datovom mediu, kazdy je ulozeny v nejakom formate
   - `textovy` (TXT, DOCX, HTML...)
   - `binarny` (ZIP, JPEG, MPEG4...) 
-!!!Poznamka - textovy subor je vlastne binarny subor, kde kazdy bajt(skupina bajtov) koduje nejaky znak. Roydiel je v tom, ako bude subor citat.
+!!!Poznamka - textovy subor je vlastne binarny subor, kde kazdy bajt(skupina bajtov) koduje nejaky znak. Rozdiel je v tom, ako bude subor citat.
 
 ### Textove subory
 - subory tvorene postupnost znakov
@@ -2081,20 +2081,15 @@ text # 'chleba;jogurt;;'
 - metoda `tell()` vracia aktualnu poziciu ukazovatela, `seek()` nastavuje poziciu ukazovatela
 ```python
 with open('nakup.txt') as f:
-    print(f.tell())
-    print(f.readline().rstrip())
-    print(f.tell())
-    print(f.readline().rstrip())
-    print(f.tell())
-# 0
-# chleba
-# 7
-# jogurt
-# 14
+    print(f.tell()) # 0
+    print(f.readline().rstrip()) # chleba
+    print(f.tell()) # 7
+    print(f.readline().rstrip()) # jogurt
+    print(f.tell()) # 14
+
 with open('nakup.txt') as f:
     f.seek(7)
-    print(f.readline().rstrip())
-# jogurt
+    print(f.readline().rstrip()) # jogurt
 ```
 ## Specialne "subory"
 - `sys.stdin` - cita zo standardneho vstupu
@@ -2104,7 +2099,7 @@ with open('nakup.txt') as f:
 ## Kodovanie suborov `(encoding)`
 - v suboroch realne nie su ulozene znaky ale iba bajty
 - kodovanie popisuje, ako sa znaky zakoduju do bajtov `encode` a spat `decode`
-- ak natvarim subor a vidim, ze znaky sa mi neyhoduju napr. pri makkych spoluhlaskach tak mam yle nastavene kodovanie
+- ak natvarim subor a vidim, ze znaky sa mi neyhoduju napr. pri makkych spoluhlaskach tak mam zle nastavene kodovanie
 - priklady zleho kodovania:
 ```python
 with open('skarabeus.txt', encoding = 'windows-1250') as f:
@@ -2187,8 +2182,8 @@ from math import factorial as fact
 fact(6) # 720
 ```
 ### Spustenie modulu ako scriptu
-- z prirodyenej riadky pomocou prepinaca `-m`
-```python
+- z prirodzenej riadky pomocou prepinaca `-m`
+```
 $ python3 -m doctest
 ```
 ### Zdroje modulu/balickov
@@ -2224,11 +2219,11 @@ Modul pre výpočet obsahu rozných geometrických útvarov.
 """
 import math
 
-def obsah_obdelniku(a: float, b:float) -> float:
-    """Vrať obsah obdlzníku o stranách a, b."""
+def obsah_obdlzniku(a: float, b:float) -> float:
+    """Vrať obsah obdlzniku o stranách a, b."""
     return a * b
 
-def obsah_ctverce(a: float) -> float:
+def obsah_stvorca(a: float) -> float:
     """Vrať obsah stvorca o strane a."""
     return a**2
 
@@ -2237,7 +2232,7 @@ def obsah_kruhu(r: float) -> float:
     return math.pi * r**2
 #-------------------------------------------------
 from ukazkove_moduly import obsahy
-obsahy.obsah_ctverce(5.0) # 25.0
+obsahy.obsah_stvorca(5.0) # 25.0
 ```
 
 - subor ukazkove_moduly/fibonacci.py:
@@ -2248,7 +2243,7 @@ Modul pre generovánie Fibonacciho postupnosti.
 from typing import List
 
 def fib(n: int) -> List[int]:
-    """Vrať prvních n prvků Fibonacciho posloupnosti."""
+    """Vrať prvych n prvkov Fibonacciho postupnosti."""
     result = []
     a, b = 1, 1
     while len(result) < n:
@@ -2257,10 +2252,10 @@ def fib(n: int) -> List[int]:
     return result
 
 def main() -> None:
-    """Interaktivní výpis Fibonacciho posloupnosti."""
+    """Interaktivny výpis Fibonacciho postupnosti."""
     pocet = int(input('Zadej požadovaný počet prvků: '))
-    posloupnost = fib(pocet)
-    print(*posloupnost, sep=', ')
+    postupnost = fib(pocet)
+    print(*postupnost, sep=', ')
 
 if __name__ == '__main__':
 main()
@@ -2278,13 +2273,14 @@ from ukazkove_moduly import fibonacci as fib
 fib.fib(10) # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 ```
   - spustenie z prikazoveho riadku:
-  ```python
+  ```
   $ python3 ukazkove_moduly/fibonacci.py 
-  zadej požadovaný počet prvků: 10
+
+  zadaj požadovaný počet prvkov: 10
   1, 1, 2, 3, 5, 8, 13, 21, 34, 55
   ```
 
-## Uztitocne moduly
+## Uzitocne moduly
 - [standardnaknihovna](https://docs.python.org/3.7/library/
 (https://docs.python.org/3.7/library/))
 - [PythonPackageIndex](https://pypi.org/ (https://pypi.org/))
@@ -2363,8 +2359,9 @@ fib.fib(10) # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
   print(suma)
   ```
   - spustenie z prikazovej riadky
-  ```python
+  ```
   $ python3 ukazkove_moduly/suma.py 1 5 8
+  
   ['suma.py', '1', '5', '8']
   # 14
   ```
@@ -2386,7 +2383,7 @@ fib.fib(10) # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
   shutil.copytree('Pictures', 'Desktop/Studijni_materialy_z_Pythonu') # Zkopíruj adresár a všetko v nom
   ```
 9. Modul `os.path` - funkcie pre pracu s cestami (`path` = umiestnenie suboru alebo adresara)
-  - riesi za nas rozdiely medzi operacnymi szstemami
+  - riesi za nas rozdiely medzi operacnymi systemami
   1. ABSOLUTNA CESTA - zacina v koreni suboroveho systemu (v Unixu / vo Windowse pismeno disku)
   ```python
   /home/krtecek/Pictures/funny_cat.gif
@@ -2481,9 +2478,10 @@ except OSError:
 - sluzi pre ukladanie tabulkovych dat
 - hodnoty su do stlpcou rozdelene pomocou separatoru (delimeter, vacsinou ciarka) a do riadku pomocou znakov noveho riadku
 - [linka](https://cs.wikipedia.org/wiki/CSV)
-!!!!!!**- ![tabulka_auta](/.myimage)**!!!!!
+- Tabulka:
+- [tabulka](./MyImage/formatCSV.png)
 - CSV:
-  Rokvyroby,Značka,Model,Cena
+  Rok vyroby,Značka,Model,Cena
   1995,Opel,Vectra,45000
   1998,Škoda,Felicia,80000
   2002,Škoda,Octavia,70000
@@ -2493,7 +2491,7 @@ except OSError:
 - `csv.writer` - ukladanie vo formate CSV
 ### Citanie
 ```python
-with open('tabulka_auta.csv', 'r') as f:
+with open('tabulka.csv', 'r') as f:
     print(f.read())
 # Rok výroby,Značka,Model,Cena
 # 1995,Opel,Vectra,45000
@@ -2503,7 +2501,7 @@ with open('tabulka_auta.csv', 'r') as f:
 ```python
 import csv
 
-with open('tabulka_auta.csv', 'r') as f:
+with open('tabulka.csv', 'r') as f:
     reader = csv.reader(f)
     for riadok in reader:
         print(riadok)
@@ -2514,7 +2512,7 @@ with open('tabulka_auta.csv', 'r') as f:
 ```
 - nacitane hodnoty su vzdy retazec, musime si ich sami previest na cislo
 ```python
-with open('tabulka_auta.csv', 'r') as f:
+with open('tabulka.csv', 'r') as f:
     reader = csv.reader(f)
     tabulka = list(reader)
 tabulka
@@ -2524,7 +2522,7 @@ tabulka
 # ['2002', 'Škoda', 'Octavia', '70000']]
 ```
 ```python
-with open('tabulka_auta.csv') as f:
+with open('tabulka.csv') as f:
     csvreader = csv.DictReader(f)
     for riadok in csvreader:
         print(dict(riadok))
@@ -2551,7 +2549,7 @@ with open('vzdialenosti.csv') as f:
 # Ostrava,165,362,0
 ```
 ### Zapis specialnych znakov
-!!!!**- Tabulka: ![Tabulka](./MyImage...)**!!!!!!!
+![Tabulka](./MyImage/tabulka.png)
 - CSV:
   - 1995,Opel,Vectra,"klimatizace, střešní okno",45000
     1998,Škoda,"Felicia ""Fun""",,80000
@@ -2578,14 +2576,9 @@ with open('vzdialenosti.csv') as f:
 ## Format `JSON`
 - JavaScript Object Notation
 - [JSON](https://www.json.org/json-en.html)
-- Mapovaie na typy Pythonu:
-  !!! **![Tabulka]
-  Python JSON Poznámka
-int/float 5, 10.2 5, 10.2
-řetězec 'ahoj' "ahoj" vždy dvojité uvozovky
-True, False true, false
-None null
-seznam [], n-**!!!!!!
+- Mapovanie na typy Pythonu:
+- ![Tabulka](./MyImage/formatjson.png)
+ 
 ## Modul `json`
 - `json.load()` - nacitaj JSON zo suboru
 - `json.loads()` - nacitaj JSON z retazca
@@ -2703,13 +2696,13 @@ print('Delimiter:', args.delimiter)
 print('Statistics:', args.stat)
 ```
 - spustenie z prikazoveho riadku:
-```python
+```
 $ python3 make_statistics.py
 $ python3 make_statistics.py --help
 $ python3 make_statistics.py data.csv --stat median --header --verbose
 $ python3 make_statistics.py data.csv -s median -Hv
 ```
-4. Modul `requests` - internetova komunikacia cez protokol `HTTP`
+1. Modul `requests` - internetova komunikacia cez protokol `HTTP`
   - nutne doinstalovat pomocou pipu
   - posielame poziadavky (request) na server pomocou metod `GET`, `POST`, `PUT`, `DELETE`, ...
 ```python
@@ -2769,7 +2762,7 @@ _,,)\.~,,._
 
 # 9. VEDECKY PYTHON
 - instalacia
-```vanie popisuje, ako sa 
+```
 python -m pip install numpy/jupyter/atplotlib
 ```
 ## NumPy
@@ -2779,7 +2772,7 @@ python -m pip install numpy/jupyter/atplotlib
 import numpy as np
 ```
 - zakl. objekt s ktorym NumpPy pracuje
-- iba prvkz rovnakeho typu
+- iba prvky rovnakeho typu
 - fixna velkost
 ```python
 np.array([1, 3, 4])
@@ -2788,7 +2781,7 @@ np.array([1, 3, 4])
 ```python
 np.arange(10) #array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 ```
-- funkcia `linspace` - viem si ...
+- funkcia `linspace`
 ```python
 np.linspace(0, 1, 11) 
 # array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
@@ -2836,18 +2829,22 @@ np.zeros((3, 3)) # array([[0., 0., 0.],
 ```python
 x = np.ones((3, 3))
 x # array([[1., 1., 1.],
-        # [1., 1., 1.],
-        # [1., 1., 1.]])
+         # [1., 1., 1.],
+         # [1., 1., 1.]])
 ```
 - vytvorim si jednotkovu maticu pomocou funkcie `eye()`
 ```python
 np.eye(3)
 # array([[1., 0., 0.],
-      # [0., 1., 0.],
-      # [0., 0., 1.]])
+       # [0., 1., 0.],
+       # [0., 0., 1.]])
 ```
-
-****
+```python
+3 * np.eye(3) + np.arange(9).reshape(3, 3)
+# array([[ 3., 1., 2.],
+       # [ 3., 7., 5.],
+       # [ 6., 7., 11.]])
+```
 
 # Uzitocne funkcie
 ```python
@@ -2857,36 +2854,62 @@ b # array([[ 0, 1, 2, 3, 4],
         # [10, 11, 12, 13, 14],
         # [15, 16, 17, 18, 19],
         # [20, 21, 22, 23, 24]])
-
-**dokonc**
 ```
+```python
+a = np.arange(30).reshape(5, 6)
+np.min(a), np.max(a), np.sum(a), np.mean(a) # (0, 29, 435, 14.5)
+```
+- vsetky spomenute funkcie maju parameter `axis`, ktory urcuje, ci previest funkciu cez riadkz alebo stlpce
+```python
+a = np.arange(30).reshape(5, 6)
+np.sum(a, axis=0) # array([60, 65, 70, 75, 80, 85])
+
+np.sum(a, axis=1) # array([ 15, 51, 87, 123, 159])
+```
+
 # Linearna algebra
 - `np.linalg`
 - velke mnozstvo funkcii (determinaty, inverzne matice, vlastne hodnoty, ...)
 
-**dokonc**
+![obr](./MyImage/algebra.png)
+
+```python
+A = np.array([[1, 1], [2, -1]])
+A # array([[ 1, 1],
+        # [ 2, -1]])
+
+b = np.array([1, 2])
+b # array([1, 2])
+
+np.linalg.solve(A, b) # array([1., 0.])
+```
 
 # Vizualizacia dat - `matplotlib` 
 - asi najrozsirenejsi modul
-- podobnz szytax ako v Matlabu
-- velke mnoystvo nastaveni, typy grafov
+- podobny syntax ako v Matlabu
+- velke mnozstvo nastaveni, typy grafov
 - pracujeme nad NumPy polom
 ```python
 import matplotlib.pyplot as plt
 ```
 - funkcia `plot` - vykreslovacia funkcia
-- defaltne vzkresluje spojenu ciaru
-- `-o` vzkreslenie v bodoch, `'x'` - vykreslenie v znaku x
-- funkcia `grid` - zobrayi sa mi mriezka
+- defaltne vykresluje spojenu ciaru
+- `-o` vykreslenie v bodoch, `'x'` - vykreslenie v znaku x
+- funkcia `grid` - zobrazi sa mi mriezka
 ```python
 xs = np.linspace(0, 10, 50)
 plt.plot(xs, np.sin(xs))
 plt.show() # [<matplotlib.lines.Line2D at 0x7fef25f51250>]
-
+```
+![obr](./MyImage/sinusoida.png)
+```python
+xs = np.linspace(0, 10, 50)
 plt.grid()
 plt.plot(xs, np.sin(xs), '-o', color='red')
 # [<matplotlib.lines.Line2D at 0x7fef25eb2950>]
 ```
+![obr](./MyImage/sinusoidabod.png)
+
 - ak vykreslujem viac os tak musim pouzit funkciu `legend()`
 ```python
 plt.grid()
@@ -2897,6 +2920,8 @@ plt.plot(xs, np.sin(xs), label='$y = \sin{x}$')
 plt.plot(xs, np.cos(xs), label='$y = \cos{x}$')
 plt.legend() # <matplotlib.legend.Legend at 0x7fef25e975d0>
 ```
+![obr](./MyImage/goniometrickefun.png)
+
 - stlpcovy graf `bar`
 ```python
 x = np.random.randint(10, size=10)
@@ -2905,9 +2930,11 @@ x # array([1, 4, 4, 8, 6, 3, 4, 7, 1, 3])
 plt.bar(np.arange(10), x)
 # <BarContainer object of 10 artists>
 ```
+![obr](./MyImage/stlpcovygraf.png)
+
 - histogram = ukazuje cetnost
 - funkcia `hist()` - 
-- `bins` - viem si podla toho ...
+- `bins`
 ```python
 plt.hist(np.random.sample(100), bins=15)
 # (array([ 4., 9., 5., 4., 5., 5., 10., 5., 5., 7., 8., 12., 5.,
@@ -2918,8 +2945,9 @@ plt.hist(np.random.sample(100), bins=15)
 # 0.996744 ]),
 # <a list of 15 Patch objects>)
 ```
+![obr](./MyImage/stlpcovygraf1.png)
 
-- Bodovz graf `scatter`
+- Bodovy graf `scatter`
 ```python
 xs = np.random.sample(50)
 ys = np.random.sample(50)
@@ -2929,6 +2957,8 @@ colors = np.random.randint(3, size=50) # budem mat 3 farby
 plt.scatter(xs, ys, c=colors, s=sizes) # volam
 # <matplotlib.collections.PathCollection at 0x7fef25eba6d0>
 ```
+![obr](./MyImage/bodovygraf.png)
+
 # NumPy - masky
 - funkcia `mask` - zamaskujem urcite data, kt nevyhovuje mojejj odmienky
 
@@ -2952,15 +2982,21 @@ a[~mask] # array([ 7, 11])
 xs = np.arange(100)
 ys = np.random.sample(100)
 plt.scatter(xs, ys)
+```
+![obr](./MyImage/bod.png)
 
+```python
+xs = np.arange(100)
+ys = np.random.sample(100)
 for threshold in np.linspace(0, 1, 6):
 mask = (ys > threshold) & (ys < threshold + 0.2)
 plt.scatter(xs[mask], ys[mask])
 ```
+![obr](./MyImage/bod2.png)
 
 # Nahodny vypocet piii
 ```python
-xs = np.random.sample(10000) * 2 - 1 # body syradnic ktore su v rozsahu od -1 do 1, vdaka nasobeniu 2 a odpocitaniu 1
+xs = np.random.sample(10000) * 2 - 1 # body suradnic ktore su v rozsahu od -1 do 1, vdaka nasobeniu 2 a odpocitaniu 1
 ys = np.random.sample(10000) * 2 - 1
 
 mask = xs ** 2 + ys ** 2 <= 1 # vykresli mi plnykruh
@@ -2969,8 +3005,9 @@ plt.scatter(xs[~mask], ys[~mask])
 
 4 * np.sum(mask) / len(mask) # pocet bodov v ktuhu/pocet bodov v celej maske a vyde mi moje pii
 # 3.138 - ak zvacsim pocet bodov tak ziskam presnejsie pii
-**dokonc**
 ```
+![obr](MyImage/randombodfar.png)
+
 # NumPy Vstup a Vystup
 - textovy
   - `np.savetxt` a `np.loadtxt`
@@ -2980,7 +3017,7 @@ plt.scatter(xs[~mask], ys[~mask])
   - `np.save` a `np.load`
   - rychlejsi, mensia velkost
 
-- `%%timeit` - ymeriam cas ako dlho bude trvat vygenerovanie
+- `%%timeit` - zmeriam cas ako dlho bude trvat vygenerovanie
 ```python
 %%timeit
 [x ** 2 for x in range(1000)]
@@ -2996,6 +3033,27 @@ np.arange(1000) ** 2
 a = list(np.random.sample(1000))
 b = list(np.random.sample(1000))
 ```
-- tri sposoby:
-  - 
+- Python = tri sposoby:
+```python
+%%timeit
+c = []
+for 1 in range(len(a)):
+    c.append(a[1] + b[1])
+```
 
+```python
+%%timeit
+c = []
+for x, y in zip(a, b):
+    c.append(x + y)
+```
+
+```python
+%%timeit
+c = [x + y for x, y in zip(a, b)]
+```
+- NumPy:
+```np
+%%timeit
+c = a + b
+```
